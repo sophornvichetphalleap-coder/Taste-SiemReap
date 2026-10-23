@@ -1,0 +1,1686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>Taste Siem Reap · Travel Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== reset & base ===== */
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+
+    body {
+      background:
+        radial-gradient(circle at 50% 0%, rgba(168, 184, 165, 0.20), transparent 42%),
+        linear-gradient(180deg, #fdfbf7 0%, #faf7f2 50%, #f5f0e8 100%);
+      color: var(--text);
+      font-family: "DM Sans", sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+      min-height: 100dvh;
+      overflow-x: hidden;
+    }
+
+    a { color:inherit; text-decoration:none; }
+    button { font-family:inherit; cursor:pointer; border:none; background:none; }
+    img { display:block; width:100%; height:auto; max-width:100%; }
+
+    /* ===== variables ===== */
+    :root {
+      --bg: #faf7f2;
+      --bg-soft: #f2ede4;
+      --card: #ffffff;
+      --card-hover: #fffdf9;
+      --gold: #b8924a;
+      --gold-light: #d4b06a;
+      --text: #2d2a26;
+      --muted: #6b665f;
+      --muted-dark: #8a847c;
+      --border: rgba(60, 55, 48, 0.10);
+      --shadow: 0 12px 30px rgba(60, 50, 40, 0.08);
+      --radius: 20px;
+
+      --header-height: 70px;
+      --container-padding: 20px;
+    }
+
+    /* ============================================================
+       HEADER
+    ============================================================ */
+    header.site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(250, 247, 242, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      height: var(--header-height);
+      transition: height 0.3s ease;
+    }
+
+    .navbar {
+      max-width: 1200px;
+      margin: 0 auto;
+      height: 100%;
+      padding: 0 var(--container-padding);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .logo {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(20px, 2.5vw, 26px);
+      font-weight: 700;
+      letter-spacing: .3px;
+      flex-shrink: 0;
+      white-space: nowrap;
+      color: var(--text);
+    }
+
+    .logo span { color: var(--gold); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: clamp(15px, 2vw, 30px);
+      list-style: none;
+      height: var(--header-height);
+    }
+
+    .nav-links a {
+      color: var(--text);
+      font-size: clamp(12px, 1vw, 14px);
+      font-weight: 500;
+      transition: .25s ease;
+      position: relative;
+      padding: 5px 0;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--gold); }
+
+    .nav-links a.active::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 2px;
+      background: var(--gold);
+      border-radius: 10px;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .nav-action {
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      background: transparent;
+      cursor: pointer;
+      transition: .25s ease;
+      font-size: 14px;
+    }
+
+    .nav-action:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(184, 146, 74, .08);
+    }
+
+    .language-wrapper { position: relative; }
+
+    .language-btn {
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      background: transparent;
+      cursor: pointer;
+      transition: .25s ease;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .language-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(184, 146, 74, .08);
+    }
+
+    .language-menu {
+      position: absolute;
+      right: 0;
+      top: calc(100% + 10px);
+      min-width: 145px;
+      padding: 7px;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      display: none;
+      z-index: 100;
+    }
+
+    .language-menu.show { display: block; }
+
+    .language-option {
+      width: 100%;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      padding: 10px 11px;
+      border-radius: 10px;
+      text-align: left;
+      cursor: pointer;
+      font-size: 13px;
+      transition: .2s ease;
+    }
+
+    .language-option:hover,
+    .language-option.active {
+      background: rgba(184, 146, 74, .12);
+      color: var(--gold);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 8px;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: .3s ease;
+    }
+
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    .mobile-nav-overlay {
+      display: none;
+      position: fixed;
+      top: var(--header-height);
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(250, 247, 242, 0.98);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 999;
+      padding: 30px var(--container-padding);
+      overflow-y: auto;
+    }
+
+    .mobile-nav-overlay.open { display: block; }
+
+    .mobile-nav-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .mobile-nav-links a {
+      display: block;
+      padding: 16px 20px;
+      color: var(--text);
+      font-size: 18px;
+      font-weight: 500;
+      border-radius: 12px;
+      transition: .25s ease;
+      text-align: center;
+    }
+
+    .mobile-nav-links a:hover,
+    .mobile-nav-links a.active {
+      background: rgba(184, 146, 74, .12);
+      color: var(--gold);
+    }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    .guide-hero {
+      max-width:1200px;
+      margin:0 auto;
+      padding:clamp(80px, 12vw, 120px) clamp(16px, 4vw, 24px) clamp(24px, 4vw, 48px);
+      text-align:center;
+    }
+    .eyebrow {
+      color:var(--gold);
+      text-transform:uppercase;
+      letter-spacing:clamp(2px, 0.4vw, 3px);
+      font-size:clamp(10px, 1.2vw, 12px);
+      font-weight:700;
+      margin-bottom:14px;
+    }
+    .guide-hero h1 {
+      font-family:"Playfair Display",serif;
+      font-size:clamp(32px, 9vw, 76px);
+      line-height:1.08;
+      max-width:900px;
+      margin:0 auto;
+      color:var(--text);
+    }
+    .guide-hero h1 span { color:var(--gold); }
+    .guide-hero p {
+      max-width:720px;
+      margin:clamp(16px, 3vw, 24px) auto 0;
+      color:var(--muted);
+      font-size:clamp(14px, 1.4vw, 16px);
+      padding:0 clamp(4px, 2vw, 8px);
+    }
+
+    /* ============================================================
+       QUICK NAV / TABS
+    ============================================================ */
+    .quick-nav {
+      max-width:1200px;
+      margin:0 auto;
+      padding:0 clamp(16px, 4vw, 24px) clamp(30px, 5vw, 50px);
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:10px;
+    }
+    .quick-nav a {
+      padding:9px 18px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:#ffffff;
+      color:var(--muted);
+      font-size:clamp(12px, 1vw, 13px);
+      font-weight:500;
+      transition:.25s ease;
+      white-space:nowrap;
+      box-shadow:0 2px 6px rgba(60, 50, 40, .04);
+    }
+    .quick-nav a:hover {
+      border-color:var(--gold);
+      color:var(--gold);
+      background:rgba(184, 146, 74, .08);
+    }
+
+    /* ============================================================
+       MAIN
+    ============================================================ */
+    .guide-section {
+      max-width:1200px;
+      margin:0 auto;
+      padding:0 clamp(16px, 4vw, 24px) clamp(60px, 8vw, 80px);
+      flex:1 0 auto;
+      width:100%;
+    }
+
+    .section-block {
+      margin-bottom:clamp(44px, 7vw, 70px);
+      scroll-margin-top:calc(var(--header-height) + 20px);
+    }
+
+    .section-heading {
+      display:flex;
+      flex-wrap:wrap;
+      align-items:flex-end;
+      justify-content:space-between;
+      margin-bottom:clamp(20px, 3vw, 30px);
+      gap:12px;
+    }
+    .section-heading h2 {
+      font-family:"Playfair Display",serif;
+      font-size:clamp(24px, 4.5vw, 38px);
+      line-height:1.15;
+      color:var(--text);
+    }
+    .section-heading h2 span { color:var(--gold); }
+    .section-heading p {
+      color:var(--muted);
+      font-size:clamp(13px, 1.1vw, 15px);
+      max-width:560px;
+    }
+
+    /* ===== info grid ===== */
+    .info-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+      gap:clamp(16px, 3vw, 24px);
+    }
+    .info-card {
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:clamp(20px, 3vw, 26px);
+      transition:transform .3s ease, background .3s ease, box-shadow .3s ease;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      box-shadow:var(--shadow);
+    }
+    @media (hover: hover) {
+      .info-card:hover {
+        transform:translateY(-4px);
+        background:var(--card-hover);
+        box-shadow:var(--shadow);
+      }
+    }
+    .info-icon {
+      width:48px;
+      height:48px;
+      border-radius:14px;
+      background:#f5efe3;
+      border:1px solid rgba(184, 146, 74, .3);
+      display:grid;
+      place-items:center;
+      font-size:22px;
+    }
+    .info-card h3 {
+      font-family:"Playfair Display",serif;
+      font-size:clamp(17px, 2vw, 20px);
+      line-height:1.25;
+      color:var(--text);
+    }
+    .info-card p {
+      color:var(--muted);
+      font-size:clamp(13px, 1.05vw, 14px);
+      flex:1;
+    }
+
+    /* ===== itinerary list ===== */
+    .itinerary {
+      display:flex;
+      flex-direction:column;
+      gap:clamp(16px, 2.5vw, 22px);
+    }
+    .itinerary-item {
+      display:grid;
+      grid-template-columns:auto 1fr;
+      gap:clamp(16px, 3vw, 26px);
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:clamp(20px, 3vw, 28px);
+      align-items:flex-start;
+      transition:background .3s ease, transform .3s ease, box-shadow .3s ease;
+      box-shadow:var(--shadow);
+    }
+    @media (hover: hover) {
+      .itinerary-item:hover {
+        background:var(--card-hover);
+        transform:translateX(4px);
+      }
+    }
+    .itinerary-day {
+      font-family:"Playfair Display",serif;
+      font-size:clamp(28px, 5vw, 44px);
+      color:var(--gold);
+      opacity:0.75;
+      line-height:1;
+      min-width:60px;
+    }
+    .itinerary-content h3 {
+      font-family:"Playfair Display",serif;
+      font-size:clamp(18px, 2.2vw, 22px);
+      margin-bottom:8px;
+      line-height:1.25;
+      color:var(--text);
+    }
+    .itinerary-content p {
+      color:var(--muted);
+      font-size:clamp(13px, 1.05vw, 14.5px);
+      margin-bottom:12px;
+    }
+    .itinerary-tags {
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+    .itinerary-tag {
+      display:inline-flex;
+      align-items:center;
+      gap:5px;
+      padding:5px 12px;
+      border-radius:999px;
+      background:rgba(184, 146, 74, .1);
+      color:var(--gold);
+      font-size:clamp(11px, 0.9vw, 12px);
+      font-weight:500;
+    }
+
+    /* ===== tips list ===== */
+    .tips-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+      gap:clamp(16px, 3vw, 24px);
+    }
+    .tip-item {
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      background:var(--bg-soft);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:clamp(18px, 3vw, 22px);
+    }
+    .tip-icon {
+      flex-shrink:0;
+      width:44px;
+      height:44px;
+      border-radius:50%;
+      background:#ffffff;
+      border:1px solid rgba(184, 146, 74, .3);
+      display:grid;
+      place-items:center;
+      font-size:20px;
+    }
+    .tip-text h4 {
+      font-size:clamp(14.5px, 1.4vw, 16px);
+      font-weight:600;
+      color:var(--text);
+      margin-bottom:4px;
+      line-height:1.3;
+    }
+    .tip-text p {
+      color:var(--muted);
+      font-size:clamp(12.5px, 1vw, 13.5px);
+    }
+
+    /* ===== phrase table ===== */
+    .phrase-list {
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+      gap:clamp(12px, 2vw, 16px);
+    }
+    .phrase-item {
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:16px 18px;
+      transition:background .25s ease, border-color .25s ease;
+      box-shadow:0 2px 8px rgba(60, 50, 40, .04);
+    }
+    .phrase-item:hover {
+      background:var(--card-hover);
+      border-color:rgba(184, 146, 74, .35);
+    }
+    .phrase-en {
+      color:var(--muted);
+      font-size:clamp(11px, 0.9vw, 12px);
+      text-transform:uppercase;
+      letter-spacing:0.5px;
+      margin-bottom:4px;
+    }
+    .phrase-kh {
+      color:var(--gold);
+      font-size:clamp(15px, 1.4vw, 17px);
+      font-weight:600;
+      margin-bottom:2px;
+    }
+    .phrase-rom {
+      color:var(--muted);
+      font-size:clamp(12px, 1vw, 13px);
+      font-style:italic;
+    }
+
+    /* ===== CTA box ===== */
+    .cta-box {
+      position:relative;
+      overflow:hidden;
+      border-radius:clamp(18px, 3vw, 26px);
+      padding:clamp(28px, 6vw, 60px) clamp(20px, 5vw, 50px);
+      background:
+        linear-gradient(120deg, rgba(184, 146, 74, .12), transparent 55%),
+        linear-gradient(200deg, rgba(168, 184, 165, .18), transparent 60%),
+        var(--card);
+      border:1px solid var(--border);
+      text-align:center;
+      margin-top:clamp(32px, 5vw, 50px);
+      box-shadow:var(--shadow);
+    }
+    .cta-box h2 {
+      font-family:"Playfair Display",serif;
+      font-size:clamp(22px, 4vw, 38px);
+      line-height:1.15;
+      max-width:760px;
+      margin:0 auto clamp(14px, 3vw, 20px);
+      color:var(--text);
+    }
+    .cta-box h2 span { color:var(--gold); }
+    .cta-box p {
+      color:var(--muted);
+      font-size:clamp(13px, 1.2vw, 15.5px);
+      max-width:640px;
+      margin:0 auto clamp(20px, 4vw, 30px);
+    }
+    .cta-buttons {
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:12px;
+    }
+    .btn {
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:12px 26px;
+      border-radius:999px;
+      font-size:clamp(13px, 1.05vw, 14.5px);
+      font-weight:600;
+      transition:.25s ease;
+      cursor:pointer;
+      border:1px solid transparent;
+    }
+    .btn-primary {
+      background:var(--gold);
+      color:#ffffff;
+    }
+    .btn-primary:hover {
+      background:var(--gold-light);
+      transform:translateY(-2px);
+      box-shadow:0 8px 20px rgba(184, 146, 74, .3);
+    }
+    .btn-secondary {
+      background:transparent;
+      color:var(--gold);
+      border-color:rgba(184, 146, 74, .5);
+    }
+    .btn-secondary:hover {
+      background:rgba(184, 146, 74, .1);
+      border-color:var(--gold);
+      transform:translateY(-2px);
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer.site-footer {
+      margin-top: clamp(50px, 8vh, 110px);
+      padding: clamp(30px, 4vh, 55px) var(--container-padding) clamp(18px, 3vh, 25px);
+      background: #f0ece3;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-grid {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: clamp(20px, 4vw, 45px);
+    }
+
+    .footer-brand h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(20px, 2.2vw, 25px);
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    .footer-brand h2 span { color: var(--gold); }
+
+    .footer-brand p {
+      max-width: 350px;
+      color: var(--muted);
+      font-size: clamp(11px, 1vw, 13px);
+    }
+
+    .socials {
+      display: flex;
+      gap: 9px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .social {
+      width: clamp(30px, 3vw, 35px);
+      height: clamp(30px, 3vw, 35px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.5);
+      font-size: clamp(11px, 1vw, 13px);
+      transition: .25s ease;
+      cursor: pointer;
+    }
+
+    .social:hover {
+      color: var(--gold);
+      border-color: var(--gold);
+      background: #ffffff;
+    }
+
+    .footer-column h3 {
+      color: var(--gold);
+      font-size: clamp(10px, 0.9vw, 12px);
+      letter-spacing: 1px;
+      margin-bottom: 15px;
+    }
+
+    .footer-column a {
+      display: block;
+      color: var(--muted);
+      font-size: clamp(11px, 0.9vw, 12px);
+      margin-bottom: 9px;
+      transition: .25s ease;
+    }
+
+    .footer-column a:hover { color: var(--gold); }
+
+    .copyright {
+      max-width: 1200px;
+      margin: clamp(20px, 3vh, 40px) auto 0;
+      padding-top: clamp(14px, 2vh, 20px);
+      border-top: 1px solid var(--border);
+      color: var(--muted-dark);
+      font-size: clamp(10px, 0.8vw, 11px);
+      text-align: center;
+    }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1024px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      :root { --header-height: 64px; --container-padding: 16px; }
+
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .nav-action { width: 32px; height: 32px; font-size: 12px; }
+      .language-btn { width: 32px; height: 32px; font-size: 10px; }
+
+      .itinerary-item {
+        grid-template-columns:1fr;
+        gap:8px;
+      }
+      .itinerary-day {
+        min-width:0;
+        font-size:32px;
+      }
+
+      .footer-grid { grid-template-columns: 1fr; gap: 25px; }
+      .mobile-nav-overlay { padding: 20px var(--container-padding) 40px; }
+      .mobile-nav-links a { font-size: 16px; padding: 14px 16px; }
+    }
+
+    @media (max-width: 480px) {
+      :root { --header-height: 58px; --container-padding: 14px; }
+      .logo { font-size: clamp(17px, 4.5vw, 20px); }
+      .nav-action { width: 28px; height: 28px; font-size: 11px; }
+      .language-btn { width: 28px; height: 28px; font-size: 9px; }
+      .hamburger span { width: 22px; height: 2px; }
+
+      .language-menu { min-width: 130px; right: -10px; }
+      .language-option { font-size: 12px; padding: 8px 10px; }
+      .mobile-nav-links a { font-size: 14px; padding: 12px 14px; }
+
+      .btn { padding:11px 22px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration:0.01ms !important;
+        transition-duration:0.01ms !important;
+      }
+      html { scroll-behavior:auto; }
+    }
+  </style>
+  <link rel="stylesheet" href="site-header.css">
+</head>
+<body>
+
+<!-- ============================================================
+     HEADER
+============================================================ -->
+<header class="site-header">
+  <nav class="navbar">
+    <a href="index.html" class="logo">
+      Taste <span>Siem Reap</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html" data-i18n="navHome">Home</a></li>
+      <li><a href="res.html" data-i18n="navRestaurants">Restaurants</a></li>
+      <li><a href="experience.html" data-i18n="navExperience">Experience</a></li>
+      <li><a href="Aboutus.html" data-i18n="navAbout">About Us</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <div class="language-wrapper" id="languageWrapper">
+        <button class="language-btn" id="languageButton" type="button" aria-label="Language">
+          <span id="currentLanguage">EN</span>
+        </button>
+        <div class="language-menu" id="languageMenu">
+          <button class="language-option active" data-language="en" type="button">🇬🇧 English</button>
+          <button class="language-option" data-language="zh" type="button">🇨🇳 中文</button>
+          <button class="language-option" data-language="km" type="button">🇰🇭 ខ្មែរ</button>
+        </div>
+      </div>
+
+      <button class="hamburger" id="hamburger" type="button" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<!-- ============================================================
+     MOBILE NAV
+============================================================ -->
+<div class="mobile-nav-overlay" id="mobileNav">
+  <ul class="mobile-nav-links">
+    <li><a href="index.html" data-i18n="navHome">Home</a></li>
+    <li><a href="res.html" data-i18n="navRestaurants">Restaurants</a></li>
+    <li><a href="experience.html" data-i18n="navExperience">Experience</a></li>
+    <li><a href="Aboutus.html" data-i18n="navAbout">About Us</a></li>
+  </ul>
+</div>
+
+<!-- ============================================================
+     HERO
+============================================================ -->
+<section class="guide-hero">
+  <div class="eyebrow" data-i18n="guideEyebrow">Everything You Need to Know</div>
+  <h1><span data-i18n="guideTitle1">Your Travel Guide to</span> <span data-i18n="guideTitle2">Siem Reap</span></h1>
+  <p data-i18n="guideIntro">From arrival tips to daily budgets, temple etiquette, transport, and the best times to eat — here's how to make the most of your trip to Siem Reap.</p>
+</section>
+
+<!-- ============================================================
+     QUICK NAV
+============================================================ -->
+<nav class="quick-nav">
+  <a href="#before" data-i18n="navBefore">Before You Go</a>
+  <a href="#getting" data-i18n="navGetting">Getting Around</a>
+  <a href="#budget" data-i18n="navBudget">Daily Budget</a>
+  <a href="#itinerary" data-i18n="navItinerary">3-Day Itinerary</a>
+  <a href="#etiquette" data-i18n="navEtiquette">Etiquette</a>
+  <a href="#phrases" data-i18n="navPhrases">Khmer Phrases</a>
+</nav>
+
+<!-- ============================================================
+     MAIN CONTENT
+============================================================ -->
+<section class="guide-section">
+
+  <!-- ===== BEFORE YOU GO ===== -->
+  <div class="section-block" id="before">
+    <div class="section-heading">
+      <div>
+        <h2 data-i18n="beforeTitle">Before You <span>Go</span></h2>
+        <p data-i18n="beforeText">Practical essentials to sort out before you land in Siem Reap.</p>
+      </div>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-icon">🛂</div>
+        <h3 data-i18n="visaTitle">Visa & Entry</h3>
+        <p data-i18n="visaText">Most nationalities can get a visa on arrival (USD $30) or apply online via e-Visa. Bring a passport photo and ensure your passport is valid for 6+ months.</p>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon">💵</div>
+        <h3 data-i18n="moneyTitle">Money & ATMs</h3>
+        <p data-i18n="moneyText">Cambodia uses US dollars and Khmer Riel side by side. Small USD bills ($1–$5) are most useful. ATMs are widely available with ~$5 fees.</p>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon">📶</div>
+        <h3 data-i18n="simTitle">SIM Cards</h3>
+        <p data-i18n="simText">Pick up a local SIM at the airport or any convenience store. Tourist plans cost around $5 for 1 week of data — great for maps and translation.</p>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon">🌤️</div>
+        <h3 data-i18n="weatherTitle">Best Time to Visit</h3>
+        <p data-i18n="weatherText">November to March is cool and dry — the peak season. April to May is hot, and June to October is the green season with occasional rain.</p>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon">💉</div>
+        <h3 data-i18n="healthTitle">Health & Safety</h3>
+        <p data-i18n="healthText">Drink bottled water, use mosquito repellent at dawn and dusk, and carry basic medicines. Siem Reap is generally very safe for travelers.</p>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon">📱</div>
+        <h3 data-i18n="appsTitle">Useful Apps</h3>
+        <p data-i18n="appsText">Grab for transport, Google Maps for offline navigation, Google Translate for Khmer, and XE Currency for quick exchange rates.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== GETTING AROUND ===== -->
+  <div class="section-block" id="getting">
+    <div class="section-heading">
+      <div>
+        <h2 data-i18n="gettingTitle">Getting <span>Around</span></h2>
+        <p data-i18n="gettingText">How to move between temples, markets, and the city center — plus typical prices.</p>
+      </div>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-icon">🛺</div>
+        <h3 data-i18n="tukTitle">Tuk-Tuk</h3>
+        <p data-i18n="tukText">The classic Siem Reap ride. Expect $2–$4 within town, $15–$20 for a full day of temple-hopping. Always agree on the price before you ride.</p>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon">🚗</div>
+        <h3 data-i18n="carTitle">Private Car / Grab</h3>
+        <p data-i18n="carText">Best for longer temple circuits or hot days. Grab cars are metered and reliable, usually $4–$10 for city trips. Day rates start around $45.</p>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon">🚲</div>
+        <h3 data-i18n="bikeTitle">Bicycle & E-Bike</h3>
+        <p data-i18n="bikeText">Great for exploring the city and nearby temples. Rentals cost $1–$3 for bicycles and $8–$12 for e-bikes. Helmets are recommended.</p>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon">🚶</div>
+        <h3 data-i18n="walkTitle">Walking</h3>
+        <p data-i18n="walkText">The city center (Pub Street, Old Market, riverside) is very walkable. Most hotels and restaurants are within 15 minutes of each other.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== DAILY BUDGET ===== -->
+  <div class="section-block" id="budget">
+    <div class="section-heading">
+      <div>
+        <h2 data-i18n="budgetTitle">Daily <span>Budget</span></h2>
+        <p data-i18n="budgetText">Approximate costs per person per day in Siem Reap (in USD).</p>
+      </div>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-icon">🎒</div>
+        <h3 data-i18n="budgetLow">Backpacker · $25–$40</h3>
+        <p data-i18n="budgetLowText">Hostel dorm ($6–$10), street food meals ($1–$3), tuk-tuk to temples ($15 split), Angkor pass shared over days.</p>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon">🏨</div>
+        <h3 data-i18n="budgetMid">Mid-Range · $50–$90</h3>
+        <p data-i18n="budgetMidText">Boutique guesthouse ($25–$45), restaurant meals ($3–$8), private tuk-tuk driver, one tour or cooking class.</p>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon">✨</div>
+        <h3 data-i18n="budgetHigh">Comfort · $120+</h3>
+        <p data-i18n="budgetHighText">4- or 5-star hotel ($70+), fine dining, private car with guide, spa treatments, and sunrise temple tours.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 3-DAY ITINERARY ===== -->
+  <div class="section-block" id="itinerary">
+    <div class="section-heading">
+      <div>
+        <h2 data-i18n="itineraryTitle">3-Day <span>Itinerary</span></h2>
+        <p data-i18n="itineraryText">A balanced plan mixing temples, food, culture, and rest.</p>
+      </div>
+    </div>
+
+    <div class="itinerary">
+      <div class="itinerary-item">
+        <div class="itinerary-day">01</div>
+        <div class="itinerary-content">
+          <h3 data-i18n="day1Title">Arrival & Old Market Evening</h3>
+          <p data-i18n="day1Text">Check into your hotel and take an easy first day. Explore the Old Market, walk along the river, and try your first Khmer dinner. End the night at Pub Street or a quiet rooftop bar.</p>
+          <div class="itinerary-tags">
+            <span class="itinerary-tag">🍜 Khmer dinner</span>
+            <span class="itinerary-tag">🛍️ Old Market</span>
+            <span class="itinerary-tag">🌙 Pub Street</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="itinerary-item">
+        <div class="itinerary-day">02</div>
+        <div class="itinerary-content">
+          <h3 data-i18n="day2Title">Angkor Sunrise & Small Circuit</h3>
+          <p data-i18n="day2Text">Start before dawn for sunrise at Angkor Wat. Then explore Bayon, Ta Prohm, and Banteay Kdei with a tuk-tuk driver. Break for lunch at a local stall and return to the hotel for an afternoon rest.</p>
+          <div class="itinerary-tags">
+            <span class="itinerary-tag">🌅 Angkor Wat</span>
+            <span class="itinerary-tag">🗿 Bayon</span>
+            <span class="itinerary-tag">🌿 Ta Prohm</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="itinerary-item">
+        <div class="itinerary-day">03</div>
+        <div class="itinerary-content">
+          <h3 data-i18n="day3Title">Floating Village & Cooking Class</h3>
+          <p data-i18n="day3Text">Take a morning trip to Kompong Khleang or Tonle Sap. In the afternoon, join a Khmer cooking class to learn dishes like Amok and fresh spring rolls. End with a farewell dinner at a trusted local restaurant.</p>
+          <div class="itinerary-tags">
+            <span class="itinerary-tag">🚤 Floating village</span>
+            <span class="itinerary-tag">👩‍🍳 Cooking class</span>
+            <span class="itinerary-tag">🍽️ Farewell dinner</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== ETIQUETTE ===== -->
+  <div class="section-block" id="etiquette">
+    <div class="section-heading">
+      <div>
+        <h2 data-i18n="etiquetteTitle">Cultural <span>Etiquette</span></h2>
+        <p data-i18n="etiquetteText">A few small gestures go a long way in Cambodia.</p>
+      </div>
+    </div>
+
+    <div class="tips-grid">
+      <div class="tip-item">
+        <div class="tip-icon">🙏</div>
+        <div class="tip-text">
+          <h4 data-i18n="etq1Title">Respect the Temples</h4>
+          <p data-i18n="etq1Text">Cover your shoulders and knees. Remove hats and shoes before entering shrines. Speak quietly and don't touch carvings or monks.</p>
+        </div>
+      </div>
+
+      <div class="tip-item">
+        <div class="tip-icon">👋</div>
+        <div class="tip-text">
+          <h4 data-i18n="etq2Title">The Sampeah Greeting</h4>
+          <p data-i18n="etq2Text">A gentle bow with palms pressed together is a polite greeting. A handshake is fine too, but a smile always works best.</p>
+        </div>
+      </div>
+
+      <div class="tip-item">
+        <div class="tip-icon">🦶</div>
+        <div class="tip-text">
+          <h4 data-i18n="etq3Title">Feet & Head</h4>
+          <p data-i18n="etq3Text">Don't point your feet at people or sacred objects. Avoid touching someone's head — it's considered the most sacred part of the body.</p>
+        </div>
+      </div>
+
+      <div class="tip-item">
+        <div class="tip-icon">📸</div>
+        <div class="tip-text">
+          <h4 data-i18n="etq4Title">Ask Before Photographing</h4>
+          <p data-i18n="etq4Text">Always ask permission before photographing people, especially monks and children. A small smile or nod usually gets a yes.</p>
+        </div>
+      </div>
+
+      <div class="tip-item">
+        <div class="tip-icon">🧧</div>
+        <div class="tip-text">
+          <h4 data-i18n="etq5Title">Tipping & Bargaining</h4>
+          <p data-i18n="etq5Text">Tipping is not required but appreciated. Bargain politely at markets, but never push too hard — a fair price helps the whole community.</p>
+        </div>
+      </div>
+
+      <div class="tip-item">
+        <div class="tip-icon">🍽️</div>
+        <div class="tip-text">
+          <h4 data-i18n="etq6Title">At the Table</h4>
+          <p data-i18n="etq6Text">Dishes are shared. Use the serving spoon, don't overfill your plate, and let elders start first. It's polite to try everything offered.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== KHMER PHRASES ===== -->
+  <div class="section-block" id="phrases">
+    <div class="section-heading">
+      <div>
+        <h2 data-i18n="phrasesTitle">Basic <span>Khmer Phrases</span></h2>
+        <p data-i18n="phrasesText">Even a few words in Khmer will warm hearts and open doors.</p>
+      </div>
+    </div>
+
+    <div class="phrase-list">
+      <div class="phrase-item">
+        <div class="phrase-en" data-i18n="phraseHelloEn">Hello</div>
+        <div class="phrase-kh">សួស្តី</div>
+        <div class="phrase-rom">Sua sdei</div>
+      </div>
+      <div class="phrase-item">
+        <div class="phrase-en" data-i18n="phraseThanksEn">Thank you</div>
+        <div class="phrase-kh">អរគុណ</div>
+        <div class="phrase-rom">Or kun</div>
+      </div>
+      <div class="phrase-item">
+        <div class="phrase-en" data-i18n="phraseYesEn">Yes</div>
+        <div class="phrase-kh">បាទ / ចាស</div>
+        <div class="phrase-rom">Baat / Jas</div>
+      </div>
+      <div class="phrase-item">
+        <div class="phrase-en" data-i18n="phraseNoEn">No</div>
+        <div class="phrase-kh">ទេ</div>
+        <div class="phrase-rom">Te</div>
+      </div>
+      <div class="phrase-item">
+        <div class="phrase-en" data-i18n="phraseHowMuchEn">How much?</div>
+        <div class="phrase-kh">ថ្លៃប៉ុន្មាន?</div>
+        <div class="phrase-rom">Tlai pon maan?</div>
+      </div>
+      <div class="phrase-item">
+        <div class="phrase-en" data-i18n="phraseDeliciousEn">Delicious!</div>
+        <div class="phrase-kh">ឆ្ងាញ់ណាស់</div>
+        <div class="phrase-rom">Chhnganh nas</div>
+      </div>
+      <div class="phrase-item">
+        <div class="phrase-en" data-i18n="phraseSorryEn">Excuse me / Sorry</div>
+        <div class="phrase-kh">សុំទោស</div>
+        <div class="phrase-rom">Som tos</div>
+      </div>
+      <div class="phrase-item">
+        <div class="phrase-en" data-i18n="phraseByeEn">Goodbye</div>
+        <div class="phrase-kh">លាហើយ</div>
+        <div class="phrase-rom">Lea haey</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== CTA ===== -->
+  <div class="cta-box">
+    <h2 data-i18n="ctaTitle">Ready to <span>Eat Well & Travel Smart?</span></h2>
+    <p data-i18n="ctaText">Browse our verified restaurants and food experiences, or dive into the heritage of Khmer cuisine before you arrive.</p>
+    <div class="cta-buttons">
+      <a href="res.html" class="btn btn-primary" data-i18n="ctaRestaurants">Explore Restaurants</a>
+      <a href="hari.html" class="btn btn-secondary" data-i18n="ctaHeritage">Khmer Food Heritage</a>
+    </div>
+  </div>
+
+</section>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <h2>Taste <span>Siem Reap</span></h2>
+      <p data-i18n="footerDescription">Your guide to the best restaurants, authentic experiences and travel tips in Siem Reap, Cambodia.</p>
+      <div class="socials">
+        <span class="social">f</span>
+        <span class="social">◎</span>
+        <span class="social">♪</span>
+        <span class="social">▶</span>
+      </div>
+    </div>
+
+    <div class="footer-column">
+      <h3 data-i18n="exploreFooter">EXPLORE</h3>
+      <a href="res.html" data-i18n="navRestaurants">Restaurants</a>
+      <a href="experience.html" data-i18n="navExperience">Experience</a>
+      <a href="tip.html" data-i18n="travelTips">Travel Tips</a>
+      <a href="Aboutus.html" data-i18n="navAbout">About Us</a>
+    </div>
+
+    <div class="footer-column">
+      <h3 data-i18n="informationFooter">INFORMATION</h3>
+      <a href="hari.html" data-i18n="heritage">Heritage</a>
+      <a href="tvr.html" data-i18n="travelGuide">Travel Guide</a>
+      <a href="Aboutus.html" data-i18n="aboutSiemReap">About Siem Reap</a>
+      <a href="faq.html" data-i18n="faq">FAQ</a>
+    </div>
+
+    <div class="footer-column">
+      <h3 data-i18n="supportFooter">SUPPORT</h3>
+      <a href="contactus.html" data-i18n="contactUs">Contact Us</a>
+      <a href="prv.html" data-i18n="privacy">Privacy Policy</a>
+      <a href="tou.html" data-i18n="terms">Terms of Use</a>
+    </div>
+  </div>
+
+  <div class="copyright" data-i18n="copyright">
+    © 2026 Taste Siem Reap. All rights reserved.
+  </div>
+</footer>
+
+<script>
+  (function(){
+    // ----- translations -----
+    const translations = {
+      en: {
+        navHome: "Home",
+        navRestaurants: "Restaurants",
+        navExperience: "Experience",
+        navAbout: "About Us",
+
+        guideEyebrow: "Everything You Need to Know",
+        guideTitle1: "Your Travel Guide to",
+        guideTitle2: "Siem Reap",
+        guideIntro: "From arrival tips to daily budgets, temple etiquette, transport, and the best times to eat — here's how to make the most of your trip to Siem Reap.",
+
+        navBefore: "Before You Go",
+        navGetting: "Getting Around",
+        navBudget: "Daily Budget",
+        navItinerary: "3-Day Itinerary",
+        navEtiquette: "Etiquette",
+        navPhrases: "Khmer Phrases",
+
+        beforeTitle: "Before You Go",
+        beforeText: "Practical essentials to sort out before you land in Siem Reap.",
+
+        visaTitle: "Visa & Entry",
+        visaText: "Most nationalities can get a visa on arrival (USD $30) or apply online via e-Visa. Bring a passport photo and ensure your passport is valid for 6+ months.",
+
+        moneyTitle: "Money & ATMs",
+        moneyText: "Cambodia uses US dollars and Khmer Riel side by side. Small USD bills ($1–$5) are most useful. ATMs are widely available with ~$5 fees.",
+
+        simTitle: "SIM Cards",
+        simText: "Pick up a local SIM at the airport or any convenience store. Tourist plans cost around $5 for 1 week of data — great for maps and translation.",
+
+        weatherTitle: "Best Time to Visit",
+        weatherText: "November to March is cool and dry — the peak season. April to May is hot, and June to October is the green season with occasional rain.",
+
+        healthTitle: "Health & Safety",
+        healthText: "Drink bottled water, use mosquito repellent at dawn and dusk, and carry basic medicines. Siem Reap is generally very safe for travelers.",
+
+        appsTitle: "Useful Apps",
+        appsText: "Grab for transport, Google Maps for offline navigation, Google Translate for Khmer, and XE Currency for quick exchange rates.",
+
+        gettingTitle: "Getting Around",
+        gettingText: "How to move between temples, markets, and the city center — plus typical prices.",
+
+        tukTitle: "Tuk-Tuk",
+        tukText: "The classic Siem Reap ride. Expect $2–$4 within town, $15–$20 for a full day of temple-hopping. Always agree on the price before you ride.",
+
+        carTitle: "Private Car / Grab",
+        carText: "Best for longer temple circuits or hot days. Grab cars are metered and reliable, usually $4–$10 for city trips. Day rates start around $45.",
+
+        bikeTitle: "Bicycle & E-Bike",
+        bikeText: "Great for exploring the city and nearby temples. Rentals cost $1–$3 for bicycles and $8–$12 for e-bikes. Helmets are recommended.",
+
+        walkTitle: "Walking",
+        walkText: "The city center (Pub Street, Old Market, riverside) is very walkable. Most hotels and restaurants are within 15 minutes of each other.",
+
+        budgetTitle: "Daily Budget",
+        budgetText: "Approximate costs per person per day in Siem Reap (in USD).",
+
+        budgetLow: "Backpacker · $25–$40",
+        budgetLowText: "Hostel dorm ($6–$10), street food meals ($1–$3), tuk-tuk to temples ($15 split), Angkor pass shared over days.",
+
+        budgetMid: "Mid-Range · $50–$90",
+        budgetMidText: "Boutique guesthouse ($25–$45), restaurant meals ($3–$8), private tuk-tuk driver, one tour or cooking class.",
+
+        budgetHigh: "Comfort · $120+",
+        budgetHighText: "4- or 5-star hotel ($70+), fine dining, private car with guide, spa treatments, and sunrise temple tours.",
+
+        itineraryTitle: "3-Day Itinerary",
+        itineraryText: "A balanced plan mixing temples, food, culture, and rest.",
+
+        day1Title: "Arrival & Old Market Evening",
+        day1Text: "Check into your hotel and take an easy first day. Explore the Old Market, walk along the river, and try your first Khmer dinner. End the night at Pub Street or a quiet rooftop bar.",
+
+        day2Title: "Angkor Sunrise & Small Circuit",
+        day2Text: "Start before dawn for sunrise at Angkor Wat. Then explore Bayon, Ta Prohm, and Banteay Kdei with a tuk-tuk driver. Break for lunch at a local stall and return to the hotel for an afternoon rest.",
+
+        day3Title: "Floating Village & Cooking Class",
+        day3Text: "Take a morning trip to Kompong Khleang or Tonle Sap. In the afternoon, join a Khmer cooking class to learn dishes like Amok and fresh spring rolls. End with a farewell dinner at a trusted local restaurant.",
+
+        etiquetteTitle: "Cultural Etiquette",
+        etiquetteText: "A few small gestures go a long way in Cambodia.",
+
+        etq1Title: "Respect the Temples",
+        etq1Text: "Cover your shoulders and knees. Remove hats and shoes before entering shrines. Speak quietly and don't touch carvings or monks.",
+
+        etq2Title: "The Sampeah Greeting",
+        etq2Text: "A gentle bow with palms pressed together is a polite greeting. A handshake is fine too, but a smile always works best.",
+
+        etq3Title: "Feet & Head",
+        etq3Text: "Don't point your feet at people or sacred objects. Avoid touching someone's head — it's considered the most sacred part of the body.",
+
+        etq4Title: "Ask Before Photographing",
+        etq4Text: "Always ask permission before photographing people, especially monks and children. A small smile or nod usually gets a yes.",
+
+        etq5Title: "Tipping & Bargaining",
+        etq5Text: "Tipping is not required but appreciated. Bargain politely at markets, but never push too hard — a fair price helps the whole community.",
+
+        etq6Title: "At the Table",
+        etq6Text: "Dishes are shared. Use the serving spoon, don't overfill your plate, and let elders start first. It's polite to try everything offered.",
+
+        phrasesTitle: "Basic Khmer Phrases",
+        phrasesText: "Even a few words in Khmer will warm hearts and open doors.",
+
+        phraseHelloEn: "Hello",
+        phraseThanksEn: "Thank you",
+        phraseYesEn: "Yes",
+        phraseNoEn: "No",
+        phraseHowMuchEn: "How much?",
+        phraseDeliciousEn: "Delicious!",
+        phraseSorryEn: "Excuse me / Sorry",
+        phraseByeEn: "Goodbye",
+
+        ctaTitle: "Ready to Eat Well & Travel Smart?",
+        ctaText: "Browse our verified restaurants and food experiences, or dive into the heritage of Khmer cuisine before you arrive.",
+        ctaRestaurants: "Explore Restaurants",
+        ctaHeritage: "Khmer Food Heritage",
+
+        footerDescription: "Your guide to the best restaurants, authentic experiences and travel tips in Siem Reap, Cambodia.",
+        exploreFooter: "EXPLORE",
+        informationFooter: "INFORMATION",
+        supportFooter: "SUPPORT",
+        travelTips: "Travel Tips",
+        heritage: "Heritage",
+        travelGuide: "Travel Guide",
+        aboutSiemReap: "About Siem Reap",
+        faq: "FAQ",
+        contactUs: "Contact Us",
+        privacy: "Privacy Policy",
+        terms: "Terms of Use",
+        copyright: "© 2026 Taste Siem Reap. All rights reserved."
+      },
+
+      km: {
+        navHome: "ទំព័រដើម",
+        navRestaurants: "ភោជនីយដ្ឋាន",
+        navExperience: "បទពិសោធន៍",
+        navAbout: "អំពីយើង",
+
+        guideEyebrow: "អ្វីៗដែលអ្នកត្រូវដឹង",
+        guideTitle1: "មគ្គុទេសក៍ធ្វើដំណើររបស់អ្នកទៅ",
+        guideTitle2: "សៀមរាប",
+        guideIntro: "ពីគន្លឹះមុនពេលមកដល់ ដល់ថវិកាប្រចាំថ្ងៃ ការគោរពប្រាសាទ ការធ្វើដំណើរ និងពេលវេលាល្អបំផុតសម្រាប់ញ៉ាំ — នេះជារបៀបធ្វើដំណើរទៅសៀមរាបឱ្យបានល្អបំផុត។",
+
+        navBefore: "មុនពេលទៅ",
+        navGetting: "ការធ្វើដំណើរ",
+        navBudget: "ថវិកាប្រចាំថ្ងៃ",
+        navItinerary: "កម្មវិធី ៣ ថ្ងៃ",
+        navEtiquette: "ការគោរព",
+        navPhrases: "ពាក្យខ្មែរ",
+
+        beforeTitle: "មុនពេលទៅ",
+        beforeText: "រឿងសំខាន់ៗដែលត្រូវរៀបចំមុនពេលអ្នកមកដល់សៀមរាប។",
+
+        visaTitle: "ទិដ្ឋាការ និងការចូល",
+        visaText: "ជនជាតិភាគច្រើនអាចទទួលបានទិដ្ឋាការនៅព្រលានយន្តហោះ (៣០ ដុល្លារ) ឬដាក់ពាក្យតាមអ៊ីនធឺណិត។ នាំរូបថតលិខិតឆ្លងដែន និងធានាលិខិតឆ្លងដែនមានសុពលភាព ៦ ខែឡើងទៅ។",
+
+        moneyTitle: "លុយ និង ATM",
+        moneyText: "កម្ពុជាប្រើប្រាស់ដុល្លារអាមេរិក និងរៀលខ្មែរជាមួយគ្នា។ ក្រដាសប្រាក់ដុល្លារតូចៗ (១–៥ ដុល្លារ) មានប្រយោជន៍បំផុត។ ATM មានច្រើនកន្លែងដោយគិតថ្លៃប្រហែល ៥ ដុល្លារ។",
+
+        simTitle: "ស៊ីមកាត",
+        simText: "ទិញស៊ីមកាតក្នុងស្រុកនៅព្រលានយន្តហោះ ឬហាងណាមួយ។ គម្រោងសម្រាប់អ្នកទេសចរមានតម្លៃប្រហែល ៥ ដុល្លារសម្រាប់ ១ សប្តាហ៍ — ល្អសម្រាប់ផែនទី និងការបកប្រែ។",
+
+        weatherTitle: "ពេលវេលាល្អបំផុតក្នុងការមក",
+        weatherText: "ខែវិច្ឆិកាដល់ខែមីនា ត្រជាក់ និងស្ងួត — រដូវកំពូល។ ខែមេសាដល់ខែឧសភា ក្តៅ ហើយខែមិថុនាដល់ខែតុលា ជារដូវបៃតងដែលមានភ្លៀងម្តងម្កាល។",
+
+        healthTitle: "សុខភាព និងសុវត្ថិភាព",
+        healthText: "ផឹកទឹកសុទ្ធ ប្រើថ្នាំកំចាត់មូសពេលព្រឹក និងល្ងាច ហើយនាំថ្នាំមូលដ្ឋានជាប់ខ្លួន។ សៀមរាបជាទូទៅមានសុវត្ថិភាពខ្ពស់សម្រាប់អ្នកទេសចរ។",
+
+        appsTitle: "កម្មវិធីមានប្រយោជន៍",
+        appsText: "Grab សម្រាប់ការធ្វើដំណើរ Google Maps សម្រាប់ផែនទីក្រៅបណ្តាញ Google Translate សម្រាប់ភាសាខ្មែរ និង XE Currency សម្រាប់អត្រាប្តូរប្រាក់។",
+
+        gettingTitle: "ការធ្វើដំណើរ",
+        gettingText: "របៀបធ្វើដំណើររវាងប្រាសាទ ផ្សារ និងកណ្តាលក្រុង — ព្រមទាំងតម្លៃធម្មតា។",
+
+        tukTitle: "តុកតុក",
+        tukText: "ការជិះដ៏ពេញនិយមនៅសៀមរាប។ តម្លៃ ២–៤ ដុល្លារក្នុងក្រុង ១៥–២០ ដុល្លារសម្រាប់មួយថ្ងៃទាំងមូល។ ត្រូវព្រមព្រៀងតម្លៃមុនពេលជិះ។",
+
+        carTitle: "ឡានឯកជន / Grab",
+        carText: "ល្អបំផុតសម្រាប់ដំណើរប្រាសាទឆ្ងាយ ឬថ្ងៃក្តៅ។ ឡាន Grab មានតម្លៃច្បាស់លាស់ និងអាចទុកចិត្តបាន ជាធម្មតា ៤–១០ ដុល្លារសម្រាប់ការធ្វើដំណើរក្នុងក្រុង។ តម្លៃមួយថ្ងៃចាប់ផ្តើមពី ៤៥ ដុល្លារ។",
+
+        bikeTitle: "កង់ និងកង់អគ្គិសនី",
+        bikeText: "ល្អសម្រាប់ការរុករកក្រុង និងប្រាសាទជិតៗ។ តម្លៃជួល ១–៣ ដុល្លារសម្រាប់កង់ និង ៨–១២ ដុល្លារសម្រាប់កង់អគ្គិសនី។ គួរពាក់មួកសុវត្ថិភាព។",
+
+        walkTitle: "ការដើរ",
+        walkText: "កណ្តាលក្រុង (ផ្លូវ Pub Street ផ្សារចាស់ មាត់ទន្លេ) អាចដើរបានយ៉ាងងាយ។ សណ្ឋាគារ និងភោជនីយដ្ឋានភាគច្រើននៅចម្ងាយ ១៥ នាទីពីគ្នា។",
+
+        budgetTitle: "ថវិកាប្រចាំថ្ងៃ",
+        budgetText: "ការចំណាយប្រហែលក្នុងមនុស្សម្នាក់ក្នុងមួយថ្ងៃនៅសៀមរាប (គិតជាដុល្លារ)។",
+
+        budgetLow: "អ្នកធ្វើដំណើរសន្សំ · ២៥–៤០ ដុល្លារ",
+        budgetLowText: "គ្រែក្នុង Hostel (៦–១០ ដុល្លារ) អាហារតាមផ្លូវ (១–៣ ដុល្លារ) តុកតុកទៅប្រាសាទ (១៥ ដុល្លារបែងចែក) សំបុត្រអង្គរប្រើចែករំលែកច្រើនថ្ងៃ។",
+
+        budgetMid: "កម្រិតមធ្យម · ៥០–៩០ ដុល្លារ",
+        budgetMidText: "ផ្ទះសំណាក់បែបបុទិក (២៥–៤៥ ដុល្លារ) អាហារក្នុងភោជនីយដ្ឋាន (៣–៨ ដុល្លារ) អ្នកបើកតុកតុកឯកជន ដំណើរកម្សាន្ត ឬថ្នាក់ចម្អិនម្ហូបមួយ។",
+
+        budgetHigh: "កម្រិតផាសុកភាព · ១២០ ដុល្លារឡើងទៅ",
+        budgetHighText: "សណ្ឋាគារ ៤ ឬ ៥ ផ្កាយ (៧០ ដុល្លារឡើងទៅ) អាហារល្អៗ ឡានឯកជនជាមួយមគ្គុទេសក៍ ការស្ប៉ា និងដំណើរទស្សនាប្រាសាទពេលថ្ងៃរះ។",
+
+        itineraryTitle: "កម្មវិធី ៣ ថ្ងៃ",
+        itineraryText: "ផែនការមានតុល្យភាពរវាងប្រាសាទ អាហារ វប្បធម៌ និងការសម្រាក។",
+
+        day1Title: "មកដល់ និងល្ងាចផ្សារចាស់",
+        day1Text: "ចូលសណ្ឋាគារ និងចាប់ផ្តើមថ្ងៃដំបូងដោយស្រាល។ រុករកផ្សារចាស់ ដើរតាមមាត់ទន្លេ និងភ្លក់អាហារខ្មែរលើកដំបូង។ បញ្ចប់យប់នៅ Pub Street ឬហាងកាហ្វេលើដំបូលស្ងប់ស្ងាត់។",
+
+        day2Title: "ថ្ងៃរះអង្គរ និងរង្វង់តូច",
+        day2Text: "ចាប់ផ្តើមមុនថ្ងៃរះសម្រាប់ទស្សនាថ្ងៃរះនៅអង្គរវត្ត។ បន្ទាប់មករុករកបាយ័ន តាព្រហ្ម និងបន្ទាយក្តីជាមួយអ្នកបើកតុកតុក។ សម្រាកញ៉ាំអាហារថ្ងៃត្រង់នៅតូបក្នុងស្រុក ហើយត្រឡប់ទៅសណ្ឋាគារសម្រាកពេលរសៀល។",
+
+        day3Title: "ភូមិអណ្តែតទឹក និងថ្នាក់ចម្អិនម្ហូប",
+        day3Text: "ធ្វើដំណើរពេលព្រឹកទៅកំពង់ឃ្លាំង ឬទន្លេសាប។ ពេលរសៀល ចូលរួមថ្នាក់ចម្អិនម្ហូបខ្មែរដើម្បីរៀនម្ហូបដូចជាអាម៉ុក និងនំស្រួយស្រស់។ បញ្ចប់ដោយអាហារលា នៅភោជនីយដ្ឋានក្នុងស្រុកដែលអាចទុកចិត្តបាន។",
+
+        etiquetteTitle: "ការគោរពវប្បធម៌",
+        etiquetteText: "កាយវិការតូចៗមានអត្ថន័យខ្លាំងនៅកម្ពុជា។",
+
+        etq1Title: "គោរពប្រាសាទ",
+        etq1Text: "បិទស្មា និងជង្គង់។ ដោះមួក និងស្បែកជើងមុនពេលចូល។ និយាយស្ងាត់ៗ ហើយមិនត្រូវប៉ះចម្លាក់ ឬព្រះសង្ឃ។",
+
+        etq2Title: "ការស្វាគមន៍សម្ពះ",
+        etq2Text: "ការឱនតិចៗជាមួយប្រអប់ដៃបិទជិតគឺជាការស្វាគមន៍គួរសម។ ការចាប់ដៃក៏ល្អ ប៉ុន្តែស្នាមញញឹមតែងតែល្អបំផុត។",
+
+        etq3Title: "ជើង និងក្បាល",
+        etq3Text: "មិនត្រូវចង្អុលជើងទៅរកមនុស្ស ឬវត្ថុសក្តិសិទ្ធិ។ ជៀសវាងប៉ះក្បាលនរណាម្នាក់ — វាជាផ្នែកសក្តិសិទ្ធិបំផុតនៃរាងកាយ។",
+
+        etq4Title: "សួរមុនពេលថតរូប",
+        etq4Text: "ត្រូវសួរការអនុញ្ញាតជានិច្ចមុនពេលថតរូបមនុស្ស ជាពិសេសព្រះសង្ឃ និងកុមារ។ ស្នាមញញឹម ឬងក់ក្បាលតូចៗជាធម្មតាទទួលបានការយល់ព្រម។",
+
+        etq5Title: "ការផ្តល់ប្រាក់ និងការចរចា",
+        etq5Text: "ការផ្តល់ប្រាក់មិនចាំបាច់ទេ ប៉ុន្តែត្រូវបានអបអរ។ ចរចាដោយគួរសមនៅផ្សារ ប៉ុន្តែកុំបង្ខំខ្លាំងពេក — តម្លៃយុត្តិធម៌ជួយសហគមន៍ទាំងមូល។",
+
+        etq6Title: "នៅតុអាហារ",
+        etq6Text: "ម្ហូបត្រូវបានចែករំលែក។ ប្រើស្លាបព្រាបម្រើ កុំដាក់ចានពេញពេក ហើយឱ្យមនុស្សចាស់ចាប់ផ្តើមមុន។ ការសាកម្ហូបទាំងអស់ដែលផ្តល់ជូនគឺជាការគួរសម។",
+
+        phrasesTitle: "ពាក្យខ្មែរមូលដ្ឋាន",
+        phrasesText: "សូម្បីតែពាក្យខ្មែរបន្តិចបន្តួចក៏ធ្វើឱ្យចិត្តកក់ក្តៅ និងបើកទ្វារ។",
+
+        phraseHelloEn: "សូស្តី",
+        phraseThanksEn: "អរគុណ",
+        phraseYesEn: "បាទ / ចាស",
+        phraseNoEn: "ទេ",
+        phraseHowMuchEn: "ថ្លៃប៉ុន្មាន?",
+        phraseDeliciousEn: "ឆ្ងាញ់ណាស់",
+        phraseSorryEn: "សុំទោស",
+        phraseByeEn: "លាហើយ",
+
+        ctaTitle: "ត្រៀមខ្លួនញ៉ាំឱ្យបានល្អ និងធ្វើដំណើរឆ្លាតវៃ?",
+        ctaText: "រកមើលភោជនីយដ្ឋានដែលបានផ្ទៀងផ្ទាត់ និងបទពិសោធន៍អាហារ ឬស្វែងយល់ពីបេតិកភណ្ឌម្ហូបខ្មែរមុនពេលអ្នកមកដល់។",
+        ctaRestaurants: "រកមើលភោជនីយដ្ឋាន",
+        ctaHeritage: "បេតិកភណ្ឌម្ហូបខ្មែរ",
+
+        footerDescription: "មគ្គុទេសក៍របស់អ្នកទៅកាន់ភោជនីយដ្ឋានល្អៗ បទពិសោធន៍ពិត និងគន្លឹះធ្វើដំណើរនៅសៀមរាប។",
+        exploreFooter: "ស្វែងរក",
+        informationFooter: "ព័ត៌មាន",
+        supportFooter: "ជំនួយ",
+        travelTips: "គន្លឹះធ្វើដំណើរ",
+        heritage: "បេតិកភណ្ឌ",
+        travelGuide: "មគ្គុទេសក៍ធ្វើដំណើរ",
+        aboutSiemReap: "អំពីសៀមរាប",
+        faq: "សំណួរដែលសួរញឹកញាប់",
+        contactUs: "ទាក់ទងយើង",
+        privacy: "គោលការណ៍ឯកជនភាព",
+        terms: "លក្ខខណ្ឌប្រើប្រាស់",
+        copyright: "© 2026 Taste Siem Reap។ រក្សាសិទ្ធិគ្រប់យ៉ាង។"
+      },
+
+      zh: {
+        navHome: "首页",
+        navRestaurants: "餐厅",
+        navExperience: "体验",
+        navAbout: "关于我们",
+
+        guideEyebrow: "您需要了解的一切",
+        guideTitle1: "您的旅行指南：",
+        guideTitle2: "暹粒",
+        guideIntro: "从抵达提示到每日预算、寺庙礼仪、交通，以及最佳用餐时间——以下是如何充分利用您的暹粒之旅。",
+
+        navBefore: "出发前",
+        navGetting: "交通出行",
+        navBudget: "每日预算",
+        navItinerary: "3日行程",
+        navEtiquette: "礼仪",
+        navPhrases: "高棉语短语",
+
+        beforeTitle: "出发前",
+        beforeText: "抵达暹粒前需要准备的实用必备事项。",
+
+        visaTitle: "签证与入境",
+        visaText: "大多数国籍可办理落地签（30美元）或通过电子签证在线申请。请携带护照照片，并确保护照有效期在6个月以上。",
+
+        moneyTitle: "货币与ATM",
+        moneyText: "柬埔寨同时使用美元和高棉瑞尔。小面额美元（1–5美元）最实用。ATM随处可见，手续费约5美元。",
+
+        simTitle: "SIM卡",
+        simText: "可在机场或便利店购买当地SIM卡。旅游套餐约5美元可用1周数据——非常适合地图和翻译。",
+
+        weatherTitle: "最佳旅行时间",
+        weatherText: "11月至3月凉爽干燥——旺季。4月至5月炎热，6月至10月是绿季，偶有阵雨。",
+
+        healthTitle: "健康与安全",
+        healthText: "饮用瓶装水，清晨和黄昏使用驱蚊剂，随身携带常用药品。暹粒对旅行者来说总体非常安全。",
+
+        appsTitle: "实用应用",
+        appsText: "Grab 用于交通，Google Maps 用于离线导航，Google Translate 用于高棉语，XE Currency 用于快速汇率换算。",
+
+        gettingTitle: "交通出行",
+        gettingText: "如何在寺庙、市场和市中心之间移动——以及典型价格。",
+
+        tukTitle: "嘟嘟车",
+        tukText: "暹粒的经典出行方式。市内2–4美元，全天游寺庙15–20美元。乘车前务必先议价。",
+
+        carTitle: "私家车 / Grab",
+        carText: "最适合较长寺庙线路或炎热天气。Grab 汽车计价可靠，市内通常4–10美元。包日约45美元起。",
+
+        bikeTitle: "自行车与电动车",
+        bikeText: "非常适合探索城市和附近寺庙。自行车租金1–3美元，电动车8–12美元。建议佩戴头盔。",
+
+        walkTitle: "步行",
+        walkText: "市中心（酒吧街、老市场、河畔）非常适合步行。大多数酒店和餐厅之间步行15分钟内可达。",
+
+        budgetTitle: "每日预算",
+        budgetText: "暹粒每人每天的大致花费（美元）。",
+
+        budgetLow: "背包客 · 25–40美元",
+        budgetLowText: "青旅床位（6–10美元），街头小吃（1–3美元），嘟嘟车去寺庙（15美元分摊），吴哥通票分多天使用。",
+
+        budgetMid: "中档 · 50–90美元",
+        budgetMidText: "精品客栈（25–45美元），餐厅用餐（3–8美元），私人嘟嘟车司机，一次游览或烹饪课。",
+
+        budgetHigh: "舒适 · 120美元以上",
+        budgetHighText: "四星或五星酒店（70美元以上），精致餐饮，带导游的私家车，水疗护理，以及日出寺庙之旅。",
+
+        itineraryTitle: "3日行程",
+        itineraryText: "寺庙、美食、文化和休息均衡搭配的计划。",
+
+        day1Title: "抵达与老市场之夜",
+        day1Text: "入住酒店，轻松度过第一天。探索老市场，沿河散步，品尝您的第一顿高棉晚餐。在老市场街或安静的屋顶酒吧结束夜晚。",
+
+        day2Title: "吴哥日出与小圈",
+        day2Text: "黎明前出发，在吴哥窟欣赏日出。然后在嘟嘟车司机陪同下探索巴戎寺、塔布茏寺和班提色玛寺。在当地小摊午餐，下午回酒店休息。",
+
+        day3Title: "水上村庄与烹饪课",
+        day3Text: "上午前往空邦克亮或洞里萨湖。下午参加高棉烹饪课，学习阿莫克和新鲜春卷等菜肴。以在值得信赖的当地餐厅的告别晚餐结束旅程。",
+
+        etiquetteTitle: "文化礼仪",
+        etiquetteText: "在柬埔寨，一些小小的举动就能产生很大的影响。",
+
+        etq1Title: "尊重寺庙",
+        etq1Text: "遮住肩膀和膝盖。进入神殿前脱帽脱鞋。说话轻声，不要触摸雕刻或僧侣。",
+
+        etq2Title: "合十问候",
+        etq2Text: "双手合十微微鞠躬是礼貌的问候。握手也可以，但微笑总是最好的。",
+
+        etq3Title: "脚与头",
+        etq3Text: "不要用脚指向人或神圣物品。避免触摸他人的头——它被认为是身体最神圣的部分。",
+
+        etq4Title: "拍照前先询问",
+        etq4Text: "拍摄人物前务必先征得同意，尤其是僧侣和儿童。一个微笑或点头通常就能获得同意。",
+
+        etq5Title: "小费与讨价还价",
+        etq5Text: "小费不是必须的，但会受欢迎。在市场礼貌讨价还价，但不要过于强硬——公平的价格有助于整个社区。",
+
+        etq6Title: "用餐时",
+        etq6Text: "菜肴是共享的。使用公勺，不要把盘子装得太满，让长辈先开始。尝试所有提供的菜肴是礼貌的。",
+
+        phrasesTitle: "基础高棉语短语",
+        phrasesText: "即使只说几个高棉语单词，也能温暖人心、打开大门。",
+
+        phraseHelloEn: "你好",
+        phraseThanksEn: "谢谢",
+        phraseYesEn: "是",
+        phraseNoEn: "不",
+        phraseHowMuchEn: "多少钱？",
+        phraseDeliciousEn: "很好吃！",
+        phraseSorryEn: "对不起 / 抱歉",
+        phraseByeEn: "再见",
+
+        ctaTitle: "准备好吃得开心、旅行聪明了吗？",
+        ctaText: "浏览我们验证过的餐厅和美食体验，或在抵达前深入了解高棉美食的遗产。",
+        ctaRestaurants: "探索餐厅",
+        ctaHeritage: "高棉美食遗产",
+
+        footerDescription: "你的暹粒旅行指南，带你发现最佳餐厅、真实体验和旅行贴士。",
+        exploreFooter: "探索",
+        informationFooter: "信息",
+        supportFooter: "支持",
+        travelTips: "旅行贴士",
+        heritage: "文化遗产",
+        travelGuide: "旅行指南",
+        aboutSiemReap: "关于暹粒",
+        faq: "常见问题",
+        contactUs: "联系我们",
+        privacy: "隐私政策",
+        terms: "使用条款",
+        copyright: "© 2026 Taste Siem Reap。版权所有。"
+      }
+    };
+
+    // ----- state -----
+    let currentLanguage =
+      localStorage.getItem("selectedLanguage") ||
+      localStorage.getItem("tasteSiemReapLanguage") ||
+      "en";
+
+    // ----- translate function -----
+    function translatePage(lang) {
+      const dict = translations[lang];
+      if (!dict) return;
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (!dict[key]) return;
+        el.textContent = dict[key];
+      });
+
+      document.documentElement.lang = lang;
+
+      const spanCurrent = document.getElementById('currentLanguage');
+      if (spanCurrent) {
+        if (lang === 'en') spanCurrent.textContent = 'EN';
+        else if (lang === 'km') spanCurrent.textContent = 'ខ្មែរ';
+        else if (lang === 'zh') spanCurrent.textContent = '中文';
+      }
+
+      document.querySelectorAll('.language-option').forEach(opt => {
+        opt.classList.toggle('active', opt.dataset.language === lang);
+      });
+
+      currentLanguage = lang;
+      localStorage.setItem('selectedLanguage', lang);
+      localStorage.setItem('tasteSiemReapLanguage', lang);
+    }
+
+    // ----- language dropdown -----
+    const langBtn = document.getElementById('languageButton');
+    const langMenu = document.getElementById('languageMenu');
+
+    langBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      langMenu.classList.toggle('show');
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.language-wrapper')) {
+        langMenu.classList.remove('show');
+      }
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') langMenu.classList.remove('show');
+    });
+
+    document.querySelectorAll('.language-option').forEach(opt => {
+      opt.addEventListener('click', function() {
+        translatePage(this.dataset.language);
+        langMenu.classList.remove('show');
+      });
+    });
+
+    // ----- mobile hamburger -----
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+
+    hamburger.addEventListener('click', function() {
+      this.classList.toggle('active');
+      mobileNav.classList.toggle('open');
+      document.body.style.overflow =
+        mobileNav.classList.contains('open') ? 'hidden' : '';
+    });
+
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', function() {
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    window.addEventListener('resize', function() {
+      if (window.innerWidth > 768) {
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // ----- smooth scroll for quick nav -----
+    document.querySelectorAll('.quick-nav a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // ----- init -----
+    translatePage(currentLanguage);
+
+    // ----- vh fix -----
+    document.documentElement.style.setProperty('--vh', window.innerHeight * 0.01 + 'px');
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function() {
+        document.documentElement.style.setProperty('--vh', window.innerHeight * 0.01 + 'px');
+      }, 100);
+    });
+  })();
+</script>
+</body>
+</html>

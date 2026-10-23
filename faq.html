@@ -1,0 +1,1498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>Taste Siem Reap · FAQ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    /* =====================================================
+       WARM MINIMAL THEME
+    ===================================================== */
+
+    :root {
+      --bg: #f8f5f0;
+      --bg-alt: #f2ede4;
+      --surface: #ffffff;
+
+      --text: #2a2620;
+      --muted: #6b6259;
+      --muted-light: #a49a8e;
+
+      --accent: #b8924a;
+      --accent-soft: #e8dcc1;
+
+      --line: #e8e3da;
+
+      --font-sans: "DM Sans", system-ui, -apple-system, sans-serif;
+      --font-serif: "Playfair Display", Georgia, serif;
+
+      --container: 1080px;
+      --gutter: 24px;
+      --radius: 10px;
+
+      --header-height: 64px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.65;
+      min-height: 100vh;
+      min-height: 100dvh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    img { display: block; width: 100%; height: auto; max-width: 100%; }
+
+    /* ============================================================
+       HEADER
+    ============================================================ */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(248, 245, 240, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .navbar {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+      height: var(--header-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    .logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 400;
+      transition: color .2s ease;
+      position: relative;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--text); }
+
+    .nav-links a.active::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -6px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .language-wrapper { position: relative; }
+
+    .language-btn {
+      padding: 6px 10px;
+      color: var(--muted);
+      background: transparent;
+      cursor: pointer;
+      transition: color .2s ease;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .language-btn:hover { color: var(--text); }
+
+    .language-btn::after {
+      content: "▾";
+      font-size: 9px;
+      opacity: 0.6;
+    }
+
+    .language-menu {
+      position: absolute;
+      right: 0;
+      top: calc(100% + 8px);
+      min-width: 140px;
+      padding: 6px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(60, 50, 40, 0.08);
+      display: none;
+      z-index: 100;
+    }
+
+    .language-menu.show { display: block; }
+
+    .language-option {
+      width: 100%;
+      background: transparent;
+      color: var(--muted);
+      padding: 8px 10px;
+      border-radius: 6px;
+      text-align: left;
+      cursor: pointer;
+      font-size: 13px;
+      transition: .15s ease;
+    }
+
+    .language-option:hover,
+    .language-option.active {
+      background: var(--bg-alt);
+      color: var(--text);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      padding: 8px;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 20px;
+      height: 1.5px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: .3s ease;
+    }
+
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(3px, 3px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(3px, -3px); }
+
+    .mobile-nav-overlay {
+      display: none;
+      position: fixed;
+      top: var(--header-height);
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--bg);
+      z-index: 999;
+      padding: 24px var(--gutter) 40px;
+      overflow-y: auto;
+    }
+
+    .mobile-nav-overlay.open { display: block; }
+
+    .mobile-nav-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .mobile-nav-links a {
+      display: block;
+      padding: 14px 0;
+      color: var(--text);
+      font-size: 16px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .mobile-nav-links a.active { color: var(--accent); }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    .faq-hero {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 96px var(--gutter) 48px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-size: 11px;
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .faq-hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(34px, 7vw, 64px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      font-weight: 500;
+      max-width: 900px;
+      margin: 0 auto;
+      color: var(--text);
+    }
+
+    .faq-hero h1 span { color: var(--accent); }
+
+    .faq-hero p {
+      max-width: 680px;
+      margin: 24px auto 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    /* ============================================================
+       CATEGORY TABS
+    ============================================================ */
+    .faq-tabs {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gutter) 40px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .faq-tab {
+      padding: 8px 16px;
+      border-radius: 6px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 500;
+      transition: .2s ease;
+      white-space: nowrap;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .faq-tab:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .faq-tab.active {
+      background: var(--text);
+      color: var(--surface);
+      border-color: var(--text);
+    }
+
+    /* ============================================================
+       MAIN
+    ============================================================ */
+    .faq-section {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 var(--gutter) 96px;
+      width: 100%;
+    }
+
+    .faq-category {
+      margin-bottom: 64px;
+      scroll-margin-top: calc(var(--header-height) + 20px);
+    }
+
+    .faq-category:last-child { margin-bottom: 0; }
+
+    .category-heading {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .category-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: var(--accent-soft);
+      display: grid;
+      place-items: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .category-heading h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(22px, 3vw, 28px);
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .category-heading h2 span { color: var(--accent); }
+
+    /* ===== accordion ===== */
+    .accordion {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .accordion-item {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: border-color .2s ease;
+    }
+
+    .accordion-item:hover { border-color: #d8d2c6; }
+
+    .accordion-item.open {
+      border-color: var(--accent);
+    }
+
+    .accordion-header {
+      width: 100%;
+      padding: 18px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      text-align: left;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 15.5px;
+      font-weight: 500;
+      line-height: 1.4;
+      cursor: pointer;
+      transition: color .2s ease;
+      background: transparent;
+      border: none;
+    }
+
+    .accordion-header:hover { color: var(--accent); }
+    .accordion-item.open .accordion-header { color: var(--accent); }
+
+    .accordion-icon {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 16px;
+      color: var(--muted-light);
+      transition: transform .3s ease, color .3s ease;
+      line-height: 1;
+    }
+
+    .accordion-item.open .accordion-icon {
+      transform: rotate(45deg);
+      color: var(--accent);
+    }
+
+    .accordion-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s ease;
+    }
+
+    .accordion-body-inner {
+      padding: 0 22px 20px;
+      color: var(--muted);
+      font-size: 14.5px;
+      line-height: 1.75;
+    }
+
+    .accordion-body-inner p { margin-bottom: 10px; }
+    .accordion-body-inner p:last-child { margin-bottom: 0; }
+
+    .accordion-body-inner strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* ===== still have questions ===== */
+    .still-questions {
+      margin-top: 64px;
+      padding: 56px 40px;
+      background: var(--bg-alt);
+      border-radius: 14px;
+      text-align: center;
+    }
+
+    .still-questions h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(24px, 3.4vw, 32px);
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+      margin-bottom: 14px;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .still-questions h2 span { color: var(--accent); }
+
+    .still-questions p {
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 520px;
+      margin: 0 auto 28px;
+      line-height: 1.7;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 22px;
+      border-radius: var(--radius);
+      font-size: 14px;
+      font-weight: 500;
+      transition: .2s ease;
+      cursor: pointer;
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--text);
+      color: var(--surface);
+    }
+
+    .btn-primary:hover {
+      background: #1a1712;
+      transform: translateY(-1px);
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 64px var(--gutter) 32px;
+      background: var(--bg-alt);
+    }
+
+    .footer-grid {
+      max-width: var(--container);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(60, 50, 40, 0.08);
+    }
+
+    .footer-brand h2 {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 500;
+      margin-bottom: 14px;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+
+    .footer-brand h2 span { color: var(--accent); }
+
+    .footer-brand p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+      max-width: 340px;
+    }
+
+    .socials {
+      display: flex;
+      gap: 8px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .social {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      color: var(--muted);
+      background: var(--surface);
+      font-size: 12px;
+      transition: .2s ease;
+    }
+
+    .social:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .footer-column h3 {
+      color: var(--muted-light);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .footer-column a {
+      display: block;
+      color: var(--text);
+      font-size: 14px;
+      margin-bottom: 10px;
+      transition: color .2s ease;
+    }
+
+    .footer-column a:hover { color: var(--accent); }
+
+    .copyright {
+      max-width: var(--container);
+      margin: 32px auto 0;
+      color: var(--muted-light);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1024px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+    }
+
+    @media (max-width: 768px) {
+      :root { --header-height: 58px; }
+
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+
+      .faq-hero { padding: 64px var(--gutter) 32px; }
+      .faq-section { padding-bottom: 64px; }
+      .faq-category { margin-bottom: 48px; }
+
+      .still-questions { padding: 40px 24px; margin-top: 48px; }
+
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    }
+
+    @media (max-width: 480px) {
+      :root { --gutter: 20px; }
+
+      .faq-hero h1 { font-size: 32px; }
+      .faq-hero p { font-size: 15px; }
+
+      .faq-tabs { padding-bottom: 32px; }
+      .faq-tab { font-size: 12px; padding: 7px 13px; }
+
+      .category-heading h2 { font-size: 20px; }
+
+      .accordion-header {
+        padding: 16px 18px;
+        font-size: 14.5px;
+      }
+
+      .accordion-body-inner {
+        padding: 0 18px 18px;
+        font-size: 14px;
+      }
+
+      .btn { padding: 11px 20px; font-size: 13px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+  <link rel="stylesheet" href="site-header.css">
+</head>
+<body>
+
+<!-- ============================================================
+     HEADER
+============================================================ -->
+<header class="site-header">
+  <nav class="navbar">
+    <a href="index.html" class="logo">
+      Taste <span>Siem Reap</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html" data-i18n="navHome">Home</a></li>
+      <li><a href="res.html" data-i18n="navRestaurants">Restaurants</a></li>
+      <li><a href="experience.html" data-i18n="navExperience">Experience</a></li>
+      <li><a href="Aboutus.html" data-i18n="navAbout">About Us</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <div class="language-wrapper" id="languageWrapper">
+        <button class="language-btn" id="languageButton" type="button" aria-label="Language">
+          <span id="currentLanguage">EN</span>
+        </button>
+        <div class="language-menu" id="languageMenu">
+          <button class="language-option active" data-language="en" type="button">🇬🇧 English</button>
+          <button class="language-option" data-language="zh" type="button">🇨🇳 中文</button>
+          <button class="language-option" data-language="km" type="button">🇰🇭 ខ្មែរ</button>
+        </div>
+      </div>
+
+      <button class="hamburger" id="hamburger" type="button" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<!-- ============================================================
+     MOBILE NAV
+============================================================ -->
+<div class="mobile-nav-overlay" id="mobileNav">
+  <ul class="mobile-nav-links">
+    <li><a href="index.html" data-i18n="navHome">Home</a></li>
+    <li><a href="res.html" data-i18n="navRestaurants">Restaurants</a></li>
+    <li><a href="experience.html" data-i18n="navExperience">Experience</a></li>
+    <li><a href="Aboutus.html" data-i18n="navAbout">About Us</a></li>
+  </ul>
+</div>
+
+<!-- ============================================================
+     HERO
+============================================================ -->
+<section class="faq-hero">
+  <div class="eyebrow" data-i18n="faqEyebrow">Got Questions?</div>
+  <h1><span data-i18n="faqTitle1">Frequently Asked</span> <span data-i18n="faqTitle2">Questions</span></h1>
+  <p data-i18n="faqIntro">Everything you need to know about Taste Siem Reap, our recommendations, food safety, prices, and traveling in Cambodia.</p>
+</section>
+
+<!-- ============================================================
+     CATEGORY TABS
+============================================================ -->
+<div class="faq-tabs">
+  <button class="faq-tab active" data-target="general" data-i18n="tabGeneral">General</button>
+  <button class="faq-tab" data-target="food" data-i18n="tabFood">Food & Restaurants</button>
+  <button class="faq-tab" data-target="prices" data-i18n="tabPrices">Prices & Payment</button>
+  <button class="faq-tab" data-target="travel" data-i18n="tabTravel">Travel & Safety</button>
+</div>
+
+<!-- ============================================================
+     MAIN CONTENT
+============================================================ -->
+<section class="faq-section">
+
+  <!-- ===== GENERAL ===== -->
+  <div class="faq-category" id="general">
+    <div class="category-heading">
+      <div class="category-icon">💬</div>
+      <h2 data-i18n="catGeneral">General <span>Questions</span></h2>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-item">
+        <button class="accordion-header" type="button">
+          <span data-i18n="g1q">What is Taste Siem Reap?</span>
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <p data-i18n="g1a">Taste Siem Reap is an independent guide to the best restaurants, cafés, food experiences, and travel tips in Siem Reap, Cambodia. We personally visit and verify every place we recommend — from street stalls to fine dining — so you can eat well and pay fairly.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header" type="button">
+          <span data-i18n="g2q">Is your information free to use?</span>
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <p data-i18n="g2a">Yes — our guides, restaurant lists, and travel tips are completely free. We don't charge restaurants to be listed. Our goal is to help travelers discover authentic Khmer food and support local businesses fairly.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header" type="button">
+          <span data-i18n="g3q">How often is the site updated?</span>
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <p data-i18n="g3a">We review and update our listings regularly — usually every few months, and immediately if a restaurant closes, moves, or significantly changes its menu or prices.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header" type="button">
+          <span data-i18n="g4q">Can I suggest a restaurant?</span>
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <p data-i18n="g4a">Absolutely! We love discovering new places. Send us a message through our <strong>Contact Us</strong> page with the restaurant name and why you recommend it. If it meets our standards, we'll add it.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FOOD & RESTAURANTS ===== -->
+  <div class="faq-category" id="food">
+    <div class="category-heading">
+      <div class="category-icon">🍜</div>
+      <h2 data-i18n="catFood">Food & <span>Restaurants</span></h2>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-item">
+        <button class="accordion-header" type="button">
+          <span data-i18n="f1q">What Khmer dishes should I try first?</span>
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <p data-i18n="f1a">Start with <strong>Amok</strong> (coconut curry steamed in banana leaf), <strong>Kuy Teav</strong> (rice noodle soup for breakfast), <strong>Lok Lak</strong> (stir-fried beef with pepper-lime dip), and <strong>Nom Banh Chok</strong> (Khmer noodles with fish gravy). These are the essentials every visitor should taste.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header" type="button">
+          <span data-i18n="f2q">Is the food safe for tourists?</span>
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <p data-i18n="f2a">Yes — the vast majority of Siem Reap's restaurants are very safe. We specifically note hygiene standards in our reviews. To be extra safe: drink bottled water, eat where locals eat, and avoid ice from unknown sources if you have a sensitive stomach.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header" type="button">
+          <span data-i18n="f3q">I'm vegetarian / vegan. Will I find food?</span>
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <p data-i18n="f3a">Absolutely. Many Khmer dishes are naturally vegetarian or easy to adapt. Look for <strong>vegetarian Amok</strong>, fresh spring rolls, vegetable stir-fries, and rice dishes. Siem Reap also has several dedicated vegan and vegetarian cafés.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header" type="button">
+          <span data-i18n="f4q">Are there good options for kids?</span>
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <p data-i18n="f4a">Yes. Most restaurants offer mild rice dishes, grilled chicken, and noodles that kids enjoy. Family-friendly cafés with play areas and Western options are also common in the Old Market and Riverside areas.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header" type="button">
+          <span data-i18n="f5q">How do I know a restaurant is hygienic?</span>
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <p data-i18n="f5a">Look for busy places with high turnover (fresh ingredients), clean tables and utensils, and food cooked fresh in front of you. We mark hygiene-verified restaurants throughout our site.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PRICES & PAYMENT ===== -->
+  <div class="faq-category" id="prices">
+    <div class="category-heading">
+      <div class="category-icon">💰</div>
+      <h2 data-i18n="catPrices">Prices & <span>Payment</span></h2>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-item">
+        <button class="accordion-header" type="button">
+          <span data-i18n="p1q">How much should a meal cost?</span>
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <p data-i18n="p1a">Street food: <strong>$1–$3</strong>. Local restaurants: <strong>$3–$6</strong> per dish. Mid-range restaurants: <strong>$6–$12</strong>. Fine dining: <strong>$15–$40+</strong>. Our site lists verified price ranges for every restaurant we recommend.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header" type="button">
+          <span data-i18n="p2q">Do I need US dollars or Cambodian Riel?</span>
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <p data-i18n="p2a">Both work — Cambodia uses US dollars and Riel side by side. <strong>Small USD bills ($1, $5, $10)</strong> are most useful. You'll often get change in Riel (roughly 4,000 Riel = $1).</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header" type="button">
+          <span data-i18n="p3q">Can I pay by card or phone?</span>
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <p data-i18n="p3a">Upscale restaurants and hotels accept cards. Smaller places and street stalls are <strong>cash only</strong>. Mobile payment (Bakong, ABA Pay, Wing) is widely used locally, but as a tourist cash is your safest bet.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header" type="button">
+          <span data-i18n="p4q">Should I tip?</span>
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <p data-i18n="p4a">Tipping is not required but appreciated. Rounding up the bill or leaving <strong>$0.50–$2</strong> for good service is a kind gesture. In upscale restaurants, 5–10% is a nice touch.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header" type="button">
+          <span data-i18n="p5q">Is bargaining okay?</span>
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <p data-i18n="p5a">At markets and street stalls — yes, bargaining is expected and friendly. Smile, stay respectful, and don't push too hard. In restaurants, prices are fixed. Use our verified price ranges as a reference.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TRAVEL & SAFETY ===== -->
+  <div class="faq-category" id="travel">
+    <div class="category-heading">
+      <div class="category-icon">🛡️</div>
+      <h2 data-i18n="catTravel">Travel & <span>Safety</span></h2>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-item">
+        <button class="accordion-header" type="button">
+          <span data-i18n="t1q">Is Siem Reap safe for travelers?</span>
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <p data-i18n="t1a">Yes — Siem Reap is generally very safe. Violent crime against tourists is rare. Use common sense: keep valuables secure, avoid isolated areas late at night, and be cautious of occasional bag-snatching by motorbike.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header" type="button">
+          <span data-i18n="t2q">Do I need a visa to visit Cambodia?</span>
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <p data-i18n="t2a">Most nationalities can get a <strong>visa on arrival</strong> (USD $30) or apply online via the official <strong>e-Visa</strong> portal. Bring a passport photo and ensure your passport is valid for at least 6 months.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header" type="button">
+          <span data-i18n="t3q">When is the best time to visit?</span>
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <p data-i18n="t3a"><strong>November to March</strong> is cool and dry — the peak season and best weather. <strong>April to May</strong> is hot (up to 38°C). <strong>June to October</strong> is the green season with afternoon showers and lush landscapes.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header" type="button">
+          <span data-i18n="t4q">How do I get around Siem Reap?</span>
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <p data-i18n="t4a">Tuk-tuks are the classic choice (<strong>$2–$4</strong> in town, <strong>$15–$20</strong> for a full temple day). Grab (ride-hailing app) is reliable and metered. Bicycles and e-bikes are great for the city and nearby temples. Most of the center is walkable.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header" type="button">
+          <span data-i18n="t5q">Do I need travel insurance?</span>
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <p data-i18n="t5a">We strongly recommend it. Medical facilities in Siem Reap are limited for serious issues — most travelers are evacuated to Bangkok. Good travel insurance covers medical, trip interruption, and lost belongings.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header" type="button">
+          <span data-i18n="t6q">What about temple etiquette?</span>
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <p data-i18n="t6a">Cover your shoulders and knees. Remove hats and shoes before entering shrines. Speak quietly, don't touch carvings or monks, and always ask before photographing people. A little respect goes a long way.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== STILL HAVE QUESTIONS ===== -->
+  <div class="still-questions">
+    <h2 data-i18n="stillTitle">Still Have <span>Questions?</span></h2>
+    <p data-i18n="stillText">Can't find what you're looking for? Send us a message and we'll get back to you as soon as we can.</p>
+    <a href="contactus.html" class="btn btn-primary" data-i18n="contactBtn">Contact Us</a>
+  </div>
+
+</section>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <h2>Taste <span>Siem Reap</span></h2>
+      <p data-i18n="footerDescription">Your guide to the best restaurants, authentic experiences and travel tips in Siem Reap, Cambodia.</p>
+      <div class="socials">
+        <span class="social">f</span>
+        <span class="social">◎</span>
+        <span class="social">♪</span>
+        <span class="social">▶</span>
+      </div>
+    </div>
+
+    <div class="footer-column">
+      <h3 data-i18n="exploreFooter">EXPLORE</h3>
+      <a href="res.html" data-i18n="navRestaurants">Restaurants</a>
+      <a href="experience.html" data-i18n="navExperience">Experience</a>
+      <a href="tip.html" data-i18n="travelTips">Travel Tips</a>
+      <a href="Aboutus.html" data-i18n="navAbout">About Us</a>
+    </div>
+
+    <div class="footer-column">
+      <h3 data-i18n="informationFooter">INFORMATION</h3>
+      <a href="hari.html" data-i18n="heritage">Heritage</a>
+      <a href="tvr.html" data-i18n="travelGuide">Travel Guide</a>
+      <a href="abtsr.html" data-i18n="aboutSiemReap">About Siem Reap</a>
+      <a href="faq.html" data-i18n="faq">FAQ</a>
+    </div>
+
+    <div class="footer-column">
+      <h3 data-i18n="supportFooter">SUPPORT</h3>
+      <a href="contactus.html" data-i18n="contactUs">Contact Us</a>
+      <a href="prv.html" data-i18n="privacy">Privacy Policy</a>
+      <a href="tou.html" data-i18n="terms">Terms of Use</a>
+    </div>
+  </div>
+
+  <div class="copyright" data-i18n="copyright">
+    © 2026 Taste Siem Reap. All rights reserved.
+  </div>
+</footer>
+
+<script>
+  (function(){
+    const translations = {
+      en: {
+        navHome: "Home",
+        navRestaurants: "Restaurants",
+        navExperience: "Experience",
+        navAbout: "About Us",
+
+        faqEyebrow: "Got Questions?",
+        faqTitle1: "Frequently Asked",
+        faqTitle2: "Questions",
+        faqIntro: "Everything you need to know about Taste Siem Reap, our recommendations, food safety, prices, and traveling in Cambodia.",
+
+        tabGeneral: "General",
+        tabFood: "Food & Restaurants",
+        tabPrices: "Prices & Payment",
+        tabTravel: "Travel & Safety",
+
+        catGeneral: "General Questions",
+        catFood: "Food & Restaurants",
+        catPrices: "Prices & Payment",
+        catTravel: "Travel & Safety",
+
+        g1q: "What is Taste Siem Reap?",
+        g1a: "Taste Siem Reap is an independent guide to the best restaurants, cafés, food experiences, and travel tips in Siem Reap, Cambodia. We personally visit and verify every place we recommend — from street stalls to fine dining — so you can eat well and pay fairly.",
+
+        g2q: "Is your information free to use?",
+        g2a: "Yes — our guides, restaurant lists, and travel tips are completely free. We don't charge restaurants to be listed. Our goal is to help travelers discover authentic Khmer food and support local businesses fairly.",
+
+        g3q: "How often is the site updated?",
+        g3a: "We review and update our listings regularly — usually every few months, and immediately if a restaurant closes, moves, or significantly changes its menu or prices.",
+
+        g4q: "Can I suggest a restaurant?",
+        g4a: "Absolutely! We love discovering new places. Send us a message through our Contact Us page with the restaurant name and why you recommend it. If it meets our standards, we'll add it.",
+
+        f1q: "What Khmer dishes should I try first?",
+        f1a: "Start with Amok (coconut curry steamed in banana leaf), Kuy Teav (rice noodle soup for breakfast), Lok Lak (stir-fried beef with pepper-lime dip), and Nom Banh Chok (Khmer noodles with fish gravy). These are the essentials every visitor should taste.",
+
+        f2q: "Is the food safe for tourists?",
+        f2a: "Yes — the vast majority of Siem Reap's restaurants are very safe. We specifically note hygiene standards in our reviews. To be extra safe: drink bottled water, eat where locals eat, and avoid ice from unknown sources if you have a sensitive stomach.",
+
+        f3q: "I'm vegetarian / vegan. Will I find food?",
+        f3a: "Absolutely. Many Khmer dishes are naturally vegetarian or easy to adapt. Look for vegetarian Amok, fresh spring rolls, vegetable stir-fries, and rice dishes. Siem Reap also has several dedicated vegan and vegetarian cafés.",
+
+        f4q: "Are there good options for kids?",
+        f4a: "Yes. Most restaurants offer mild rice dishes, grilled chicken, and noodles that kids enjoy. Family-friendly cafés with play areas and Western options are also common in the Old Market and Riverside areas.",
+
+        f5q: "How do I know a restaurant is hygienic?",
+        f5a: "Look for busy places with high turnover (fresh ingredients), clean tables and utensils, and food cooked fresh in front of you. We mark hygiene-verified restaurants throughout our site.",
+
+        p1q: "How much should a meal cost?",
+        p1a: "Street food: $1–$3. Local restaurants: $3–$6 per dish. Mid-range restaurants: $6–$12. Fine dining: $15–$40+. Our site lists verified price ranges for every restaurant we recommend.",
+
+        p2q: "Do I need US dollars or Cambodian Riel?",
+        p2a: "Both work — Cambodia uses US dollars and Riel side by side. Small USD bills ($1, $5, $10) are most useful. You'll often get change in Riel (roughly 4,000 Riel = $1).",
+
+        p3q: "Can I pay by card or phone?",
+        p3a: "Upscale restaurants and hotels accept cards. Smaller places and street stalls are cash only. Mobile payment (Bakong, ABA Pay, Wing) is widely used locally, but as a tourist cash is your safest bet.",
+
+        p4q: "Should I tip?",
+        p4a: "Tipping is not required but appreciated. Rounding up the bill or leaving $0.50–$2 for good service is a kind gesture. In upscale restaurants, 5–10% is a nice touch.",
+
+        p5q: "Is bargaining okay?",
+        p5a: "At markets and street stalls — yes, bargaining is expected and friendly. Smile, stay respectful, and don't push too hard. In restaurants, prices are fixed. Use our verified price ranges as a reference.",
+
+        t1q: "Is Siem Reap safe for travelers?",
+        t1a: "Yes — Siem Reap is generally very safe. Violent crime against tourists is rare. Use common sense: keep valuables secure, avoid isolated areas late at night, and be cautious of occasional bag-snatching by motorbike.",
+
+        t2q: "Do I need a visa to visit Cambodia?",
+        t2a: "Most nationalities can get a visa on arrival (USD $30) or apply online via the official e-Visa portal. Bring a passport photo and ensure your passport is valid for at least 6 months.",
+
+        t3q: "When is the best time to visit?",
+        t3a: "November to March is cool and dry — the peak season and best weather. April to May is hot (up to 38°C). June to October is the green season with afternoon showers and lush landscapes.",
+
+        t4q: "How do I get around Siem Reap?",
+        t4a: "Tuk-tuks are the classic choice ($2–$4 in town, $15–$20 for a full temple day). Grab (ride-hailing app) is reliable and metered. Bicycles and e-bikes are great for the city and nearby temples. Most of the center is walkable.",
+
+        t5q: "Do I need travel insurance?",
+        t5a: "We strongly recommend it. Medical facilities in Siem Reap are limited for serious issues — most travelers are evacuated to Bangkok. Good travel insurance covers medical, trip interruption, and lost belongings.",
+
+        t6q: "What about temple etiquette?",
+        t6a: "Cover your shoulders and knees. Remove hats and shoes before entering shrines. Speak quietly, don't touch carvings or monks, and always ask before photographing people. A little respect goes a long way.",
+
+        stillTitle: "Still Have Questions?",
+        stillText: "Can't find what you're looking for? Send us a message and we'll get back to you as soon as we can.",
+        contactBtn: "Contact Us",
+
+        footerDescription: "Your guide to the best restaurants, authentic experiences and travel tips in Siem Reap, Cambodia.",
+        exploreFooter: "EXPLORE",
+        informationFooter: "INFORMATION",
+        supportFooter: "SUPPORT",
+        travelTips: "Travel Tips",
+        heritage: "Heritage",
+        travelGuide: "Travel Guide",
+        aboutSiemReap: "About Siem Reap",
+        faq: "FAQ",
+        contactUs: "Contact Us",
+        privacy: "Privacy Policy",
+        terms: "Terms of Use",
+        copyright: "© 2026 Taste Siem Reap. All rights reserved."
+      },
+
+      km: {
+        navHome: "ទំព័រដើម",
+        navRestaurants: "ភោជនីយដ្ឋាន",
+        navExperience: "បទពិសោធន៍",
+        navAbout: "អំពីយើង",
+
+        faqEyebrow: "មានសំណួរ?",
+        faqTitle1: "សំណួរដែលសួរ",
+        faqTitle2: "ញឹកញាប់",
+        faqIntro: "អ្វីៗដែលអ្នកត្រូវដឹងអំពី Taste Siem Reap ការណែនាំរបស់យើង សុវត្ថិភាពអាហារ តម្លៃ និងការធ្វើដំណើរនៅកម្ពុជា។",
+
+        tabGeneral: "ទូទៅ",
+        tabFood: "អាហារ និងភោជនីយដ្ឋាន",
+        tabPrices: "តម្លៃ និងការបង់ប្រាក់",
+        tabTravel: "ធ្វើដំណើរ និងសុវត្ថិភាព",
+
+        catGeneral: "សំណួរទូទៅ",
+        catFood: "អាហារ និងភោជនីយដ្ឋាន",
+        catPrices: "តម្លៃ និងការបង់ប្រាក់",
+        catTravel: "ធ្វើដំណើរ និងសុវត្ថិភាព",
+
+        g1q: "Taste Siem Reap ជាអ្វី?",
+        g1a: "Taste Siem Reap គឺជាមគ្គុទេសក៍ឯករាជ្យទៅកាន់ភោជនីយដ្ឋាន ហាងកាហ្វេ បទពិសោធន៍អាហារ និងគន្លឹះធ្វើដំណើរល្អបំផុតនៅសៀមរាប កម្ពុជា។ យើងទៅទស្សនា និងផ្ទៀងផ្ទាត់ផ្ទាល់រាល់កន្លែងដែលយើងណែនាំ — ពីតូបតាមផ្លូវ ដល់ភោជនីយដ្ឋានល្អៗ — ដើម្បីឱ្យអ្នកញ៉ាំបានល្អ និងចំណាយយុត្តិធម៌។",
+
+        g2q: "តើព័ត៌មានរបស់អ្នកឥតគិតថ្លៃទេ?",
+        g2a: "បាទ/ចាស — មគ្គុទេសក៍ បញ្ជីភោជនីយដ្ឋាន និងគន្លឹះធ្វើដំណើររបស់យើងគឺឥតគិតថ្លៃទាំងស្រុង។ យើងមិនគិតថ្លៃភោជនីយដ្ឋានដើម្បីចុះបញ្ជីទេ។ គោលដៅរបស់យើងគឺជួយអ្នកធ្វើដំណើរឱ្យស្វែងរកអាហារខ្មែរពិតប្រាកដ និងគាំទ្រអាជីវកម្មក្នុងស្រុកដោយយុត្តិធម៌។",
+
+        g3q: "តើគេហទំព័រត្រូវបានធ្វើបច្ចុប្បន្នភាពញឹកញាប់ប៉ុណ្ណា?",
+        g3a: "យើងពិនិត្យ និងធ្វើបច្ចុប្បន្នភាពបញ្ជីរបស់យើងជាប្រចាំ — ជាធម្មតារាល់ប៉ុន្មានខែម្តង ហើយភ្លាមៗ ប្រសិនបើភោជនីយដ្ឋានបិទ ផ្លាស់ទី ឬផ្លាស់ប្តូរម៉ឺនុយ ឬតម្លៃយ៉ាងខ្លាំង។",
+
+        g4q: "តើខ្ញុំអាចស្នើភោជនីយដ្ឋានបានទេ?",
+        g4a: "ពិតប្រាកដណាស់! យើងចូលចិត្តរកឃើញកន្លែងថ្មីៗ។ ផ្ញើសារមកយើងតាមរយៈទំព័រ ទាក់ទងយើង ជាមួយឈ្មោះភោជនីយដ្ឋាន និងហេតុអ្វីអ្នកណែនាំវា។ ប្រសិនបើវាត្រូវនឹងស្តង់ដាររបស់យើង យើងនឹងបន្ថែមវា។",
+
+        f1q: "តើម្ហូបខ្មែរអ្វីដែលខ្ញុំគួរសាកមុនគេ?",
+        f1a: "ចាប់ផ្តើមជាមួយ អាម៉ុក (ការីដូងចំហុយក្នុងស្លឹកចេក) គុយទាវ (ស៊ុបគុយទាវសម្រាប់អាហារពេលព្រឹក) លុកឡាក់ (សាច់គោឆាជាមួយទឹកជ្រលក់ម្រេចក្រូចឆ្មា) និង នំបញ្ចុក (គុយទាវខ្មែរជាមួយទឹកត្រី)។ ទាំងនេះជាម្ហូបចាំបាច់ដែលអ្នកទេសចរគ្រប់រូបគួរសាក។",
+
+        f2q: "តើអាហារមានសុវត្ថិភាពសម្រាប់អ្នកទេសចរទេ?",
+        f2a: "បាទ/ចាស — ភោជនីយដ្ឋានភាគច្រើននៅសៀមរាបមានសុវត្ថិភាពខ្ពស់។ យើងកត់សម្គាល់ស្តង់ដារអនាម័យជាពិសេសនៅក្នុងការវាយតម្លៃរបស់យើង។ ដើម្បីសុវត្ថិភាពបន្ថែម៖ ផឹកទឹកសុទ្ធ ញ៉ាំកន្លែងដែលអ្នកស្រុកញ៉ាំ និងជៀសវាងទឹកកកពីប្រភពមិនស្គាល់ ប្រសិនបើអ្នកមានក្រពះរសើប។",
+
+        f3q: "ខ្ញុំជាអ្នកបួស។ តើខ្ញុំរកអាហារបានទេ?",
+        f3a: "ពិតប្រាកដណាស់។ ម្ហូបខ្មែរជាច្រើនជាបួសដោយធម្មជាតិ ឬងាយស្រួលកែសម្រួល។ រកមើល អាម៉ុកបួស នំស្រួយស្រស់ ម្ហូបឆាបន្លែ និងម្ហូបបាយ។ សៀមរាបក៏មានហាងកាហ្វេបួស និងវេជ្ជមាំងជាច្រើនផងដែរ។",
+
+        f4q: "តើមានជម្រើសល្អសម្រាប់កុមារទេ?",
+        f4a: "បាទ/ចាស។ ភោជនីយដ្ឋានភាគច្រើនផ្តល់ម្ហូបបាយស្រាលៗ សាច់មាន់អាំង និងគុយទាវដែលកុមារចូលចិត្ត។ ហាងកាហ្វេសម្រាប់គ្រួសារដែលមានកន្លែងលេង និងជម្រើសអាហារបស្ចិមប្រទេសក៏មានច្រើននៅតំបន់ផ្សារចាស់ និងមាត់ទន្លេ។",
+
+        f5q: "តើខ្ញុំដឹងថាភោជនីយដ្ឋានមានអនាម័យដូចម្តេច?",
+        f5a: "រកមើលកន្លែងដែលមានមនុស្សច្រើន និងចំណូលខ្ពស់ (គ្រឿងផ្សំស្រស់) តុ និងឧបករណ៍ស្អាត និងអាហារចម្អិនស្រស់នៅមុខអ្នក។ យើងសម្គាល់ភោជនីយដ្ឋានដែលបានផ្ទៀងផ្ទាត់អនាម័យនៅទូទាំងគេហទំព័ររបស់យើង។",
+
+        p1q: "តើអាហារមួយគួរមានតម្លៃប៉ុន្មាន?",
+        p1a: "អាហារតាមផ្លូវ៖ $1–$3។ ភោជនីយដ្ឋានក្នុងស្រុក៖ $3–$6 ក្នុងមួយម្ហូប។ ភោជនីយដ្ឋានកម្រិតមធ្យម៖ $6–$12។ អាហារល្អៗ៖ $15–$40+។ គេហទំព័ររបស់យើងផ្តល់តម្លៃដែលបានផ្ទៀងផ្ទាត់សម្រាប់រាល់ភោជនីយដ្ឋានដែលយើងណែនាំ។",
+
+        p2q: "តើខ្ញុំត្រូវការដុល្លារអាមេរិក ឬរៀលខ្មែរ?",
+        p2a: "ទាំងពីរប្រើបាន — កម្ពុជាប្រើដុល្លារអាមេរិក និងរៀលជាមួយគ្នា។ ក្រដាសប្រាក់ដុល្លារតូចៗ ($1, $5, $10) មានប្រយោជន៍បំផុត។ អ្នកនឹងទទួលបានប្រាក់អាប់ជារៀលជាញឹកញាប់ (ប្រហែល 4,000 រៀល = $1)។",
+
+        p3q: "តើខ្ញុំអាចបង់ដោយកាត ឬទូរស័ព្ទបានទេ?",
+        p3a: "ភោជនីយដ្ឋាន និងសណ្ឋាគារលំដាប់ខ្ពស់ទទួលយកកាត។ កន្លែងតូចៗ និងតូបតាមផ្លូវ ប្រើប្រាក់សុទ្ធ។ ការបង់ប្រាក់តាមទូរស័ព្ទ (Bakong, ABA Pay, Wing) ត្រូវបានប្រើច្រើនក្នុងស្រុក ប៉ុន្តែសម្រាប់អ្នកទេសចរ ប្រាក់សុទ្ធគឺសុវត្ថិភាពបំផុត។",
+
+        p4q: "តើខ្ញុំគួរផ្តល់ប្រាក់រង្វាន់ទេ?",
+        p4a: "ការផ្តល់ប្រាក់រង្វាន់មិនចាំបាច់ទេ ប៉ុន្តែត្រូវបានអបអរ។ ការបង្គត់ឡើង ឬទុក $0.50–$2 សម្រាប់សេវាកម្មល្អគឺជាទង្វើសប្បុរស។ នៅភោជនីយដ្ឋានលំដាប់ខ្ពស់ 5–10% គឺល្អ។",
+
+        p5q: "តើការចរចាបានទេ?",
+        p5a: "នៅផ្សារ និងតូបតាមផ្លូវ — បាទ/ចាស ការចរចាត្រូវបានរំពឹងទុក និងជាមិត្តភាព។ ញញឹម គោរព ហើយកុំបង្ខំខ្លាំងពេក។ នៅភោជនីយដ្ឋាន តម្លៃគឺថេរ។ ប្រើតម្លៃដែលបានផ្ទៀងផ្ទាត់របស់យើងជាឯកសារយោង។",
+
+        t1q: "តើសៀមរាបមានសុវត្ថិភាពសម្រាប់អ្នកទេសចរទេ?",
+        t1a: "បាទ/ចាស — សៀមរាបជាទូទៅមានសុវត្ថិភាពខ្ពស់។ ឧក្រិដ្ឋកម្មហិង្សាប្រឆាំងអ្នកទេសចរគឺកម្រ។ ប្រើសុភវិនិច្ឆ័យ៖ រក្សាវត្ថុមានតម្លៃឱ្យមានសុវត្ថិភាព ជៀសវាងតំបន់ដាច់ស្រយាលពេលយប់ជ្រៅ ហើយប្រុងប្រយ័ត្នចំពោះការឆក់កាបូបម្តងម្កាលដោយម៉ូតូ។",
+
+        t2q: "តើខ្ញុំត្រូវការទិដ្ឋាការដើម្បីមកកម្ពុជាទេ?",
+        t2a: "ជនជាតិភាគច្រើនអាចទទួលបានទិដ្ឋាការនៅព្រលានយន្តហោះ ($30) ឬដាក់ពាក្យតាមអ៊ីនធឺណិតតាមរយៈ e-Visa ផ្លូវការ។ នាំរូបថតលិខិតឆ្លងដែន និងធានាលិខិតឆ្លងដែនមានសុពលភាពយ៉ាងតិច 6 ខែ។",
+
+        t3q: "តើពេលវេលាល្អបំផុតក្នុងការមកទស្សនាគឺពេលណា?",
+        t3a: "ខែវិច្ឆិកាដល់ខែមីនា ត្រជាក់ និងស្ងួត — រដូវកំពូល និងអាកាសធាតុល្អបំផុត។ ខែមេសាដល់ខែឧសភា ក្តៅ (ដល់ 38°C)។ ខែមិថុនាដល់ខែតុលា ជារដូវបៃតងដែលមានភ្លៀងរសៀល និងទេសភាពបៃតងស្រស់ស្អាត។",
+
+        t4q: "តើខ្ញុំធ្វើដំណើរក្នុងសៀមរាបដូចម្តេច?",
+        t4a: "តុកតុកគឺជាជម្រើសបុរាណ ($2–$4 ក្នុងក្រុង $15–$20 សម្រាប់មួយថ្ងៃទាំងមូលនៅប្រាសាទ)។ Grab (កម្មវិធីហៅឡាន) អាចទុកចិត្តបាន និងមានតម្លៃច្បាស់លាស់។ កង់ និងកង់អគ្គិសនីល្អសម្រាប់ក្រុង និងប្រាសាទជិតៗ។ កណ្តាលក្រុងភាគច្រើនអាចដើរបាន។",
+
+        t5q: "តើខ្ញុំត្រូវការការធានារ៉ាប់រងធ្វើដំណើរទេ?",
+        t5a: "យើងសូមណែនាំយ៉ាងខ្លាំង។ គ្រឹះស្ថានពេទ្យនៅសៀមរាបមានកម្រិតសម្រាប់បញ្ហាធ្ងន់ធ្ងរ — អ្នកទេសចរភាគច្រើនត្រូវបានផ្លាស់ទៅបាងកក។ ការធានារ៉ាប់រងធ្វើដំណើរល្អគ្របដណ្តប់ការពេទ្យ ការរំខានដំណើរកម្សាន្ត និងទ្រព្យសម្បត្តិបាត់បង់។",
+
+        t6q: "ចុះអំពីការគោរពប្រាសាទ?",
+        t6a: "បិទស្មា និងជង្គង់។ ដោះមួក និងស្បែកជើងមុនពេលចូល។ និយាយស្ងាត់ៗ កុំប៉ះចម្លាក់ ឬព្រះសង្ឃ ហើយត្រូវសួរមុនពេលថតរូបមនុស្សជានិច្ច។ ការគោរពបន្តិចបន្តួចមានអត្ថន័យខ្លាំង។",
+
+        stillTitle: "នៅមានសំណួរ?",
+        stillText: "រកមិនឃើញអ្វីដែលអ្នកកំពុងរក? ផ្ញើសារមកយើង ហើយយើងនឹងឆ្លើយតបឱ្យបានឆាប់តាមដែលអាចធ្វើទៅបាន។",
+        contactBtn: "ទាក់ទងយើង",
+
+        footerDescription: "មគ្គុទេសក៍របស់អ្នកទៅកាន់ភោជនីយដ្ឋានល្អៗ បទពិសោធន៍ពិត និងគន្លឹះធ្វើដំណើរនៅសៀមរាប។",
+        exploreFooter: "ស្វែងរក",
+        informationFooter: "ព័ត៌មាន",
+        supportFooter: "ជំនួយ",
+        travelTips: "គន្លឹះធ្វើដំណើរ",
+        heritage: "បេតិកភណ្ឌ",
+        travelGuide: "មគ្គុទេសក៍ធ្វើដំណើរ",
+        aboutSiemReap: "អំពីសៀមរាប",
+        faq: "សំណួរដែលសួរញឹកញាប់",
+        contactUs: "ទាក់ទងយើង",
+        privacy: "គោលការណ៍ឯកជនភាព",
+        terms: "លក្ខខណ្ឌប្រើប្រាស់",
+        copyright: "© 2026 Taste Siem Reap។ រក្សាសិទ្ធិគ្រប់យ៉ាង។"
+      },
+
+      zh: {
+        navHome: "首页",
+        navRestaurants: "餐厅",
+        navExperience: "体验",
+        navAbout: "关于我们",
+
+        faqEyebrow: "有问题吗？",
+        faqTitle1: "常见",
+        faqTitle2: "问题",
+        faqIntro: "关于 Taste Siem Reap、我们的推荐、食品安全、价格以及在柬埔寨旅行的所有信息。",
+
+        tabGeneral: "一般",
+        tabFood: "美食与餐厅",
+        tabPrices: "价格与付款",
+        tabTravel: "旅行与安全",
+
+        catGeneral: "一般问题",
+        catFood: "美食与餐厅",
+        catPrices: "价格与付款",
+        catTravel: "旅行与安全",
+
+        g1q: "什么是 Taste Siem Reap？",
+        g1a: "Taste Siem Reap 是一个独立指南，提供柬埔寨暹粒最佳餐厅、咖啡馆、美食体验和旅行贴士。我们亲自访问并验证推荐的每个地方——从街头小摊到高级餐厅——让您吃得开心、付得公道。",
+
+        g2q: "你们的信息免费使用吗？",
+        g2a: "是的——我们的指南、餐厅列表和旅行贴士完全免费。我们不会向餐厅收取上架费。我们的目标是帮助旅行者发现正宗高棉美食，并公平支持本地商家。",
+
+        g3q: "网站多久更新一次？",
+        g3a: "我们会定期审查和更新列表——通常每几个月一次，如果餐厅关闭、搬迁或菜单/价格有重大变化，则会立即更新。",
+
+        g4q: "我可以推荐餐厅吗？",
+        g4a: "当然可以！我们喜欢发现新地方。请通过“联系我们”页面发送消息，附上餐厅名称和推荐理由。如果符合我们的标准，我们会添加它。",
+
+        f1q: "我应该先尝试哪些高棉菜？",
+        f1a: "从阿莫克（用香蕉叶蒸的椰子咖喱）、粿条（早餐米粉汤）、洛克雷克（炒牛肉配胡椒青柠蘸料）和高棉米粉（配鱼汤）开始。这些是每位游客都应该品尝的必备菜肴。",
+
+        f2q: "食物对游客安全吗？",
+        f2a: "是的——暹粒绝大多数餐厅都非常安全。我们在评价中特别标注卫生标准。为了更加安全：喝瓶装水，在本地人吃饭的地方吃，如果肠胃敏感，请避免来源不明的冰块。",
+
+        f3q: "我是素食者。能找到食物吗？",
+        f3a: "当然。许多高棉菜天然素食或容易调整。寻找素食阿莫克、新鲜春卷、蔬菜炒菜和米饭。暹粒还有几家专门的素食和纯素咖啡馆。",
+
+        f4q: "有适合孩子的选择吗？",
+        f4a: "有。大多数餐厅提供清淡的米饭、烤鸡和孩子们喜欢的面条。老市场和河畔地区也有许多适合家庭的咖啡馆，设有游乐区和西式选择。",
+
+        f5q: "我如何知道餐厅卫生？",
+        f5a: "寻找人多、周转快的餐厅（食材新鲜）、桌椅餐具干净，以及在你面前现做的食物。我们在网站中标注卫生验证的餐厅。",
+
+        p1q: "一顿饭应该花多少钱？",
+        p1a: "街头小吃：1–3美元。本地餐厅：每道菜3–6美元。中档餐厅：6–12美元。高级餐饮：15–40美元以上。我们的网站列出了我们推荐的每家餐厅的验证价格范围。",
+
+        p2q: "我需要美元还是柬埔寨瑞尔？",
+        p2a: "两者都可以——柬埔寨同时使用美元和瑞尔。小面额美元（1、5、10美元）最实用。你通常会以瑞尔找零（约4000瑞尔=1美元）。",
+
+        p3q: "我可以用卡或手机支付吗？",
+        p3a: "高档餐厅和酒店接受刷卡。小地方和街头小摊只收现金。移动支付（Bakong、ABA Pay、Wing）在本地广泛使用，但作为游客，现金是最稳妥的。",
+
+        p4q: "我应该给小费吗？",
+        p4a: "小费不是必须的，但会受欢迎。把账单凑整或留下0.50–2美元表示对良好服务的感谢。在高档餐厅，5–10%是很好的选择。",
+
+        p5q: "可以讨价还价吗？",
+        p5a: "在市场和街头小摊——可以，讨价还价是正常的、友好的。微笑、保持尊重，不要过于强硬。在餐厅，价格是固定的。请使用我们的验证价格范围作为参考。",
+
+        t1q: "暹粒对旅行者安全吗？",
+        t1a: "是的——暹粒总体非常安全。针对游客的暴力犯罪很少。使用常识：保管好贵重物品，避免深夜去偏僻地区，并注意偶尔的摩托车抢包。",
+
+        t2q: "去柬埔寨需要签证吗？",
+        t2a: "大多数国籍可以办理落地签（30美元）或通过官方电子签证门户在线申请。请携带护照照片，并确保护照有效期至少6个月。",
+
+        t3q: "最佳旅行时间是什么时候？",
+        t3a: "11月至3月凉爽干燥——旺季和最佳天气。4月至5月炎热（高达38°C）。6月至10月是绿季，午后有阵雨，景色郁郁葱葱。",
+
+        t4q: "如何在暹粒出行？",
+        t4a: "嘟嘟车是经典选择（市内2–4美元，全天游寺庙15–20美元）。Grab（叫车应用）可靠且计价。自行车和电动车适合城市和附近寺庙。市中心大部分可步行。",
+
+        t5q: "我需要旅行保险吗？",
+        t5a: "我们强烈推荐。暹粒的医疗设施对严重问题有限——大多数旅行者会被送往曼谷。好的旅行保险涵盖医疗、行程中断和物品丢失。",
+
+        t6q: "寺庙礼仪呢？",
+        t6a: "遮住肩膀和膝盖。进入神殿前脱帽脱鞋。说话轻声，不要触摸雕刻或僧侣，拍照前务必先询问。一点尊重就能产生很大影响。",
+
+        stillTitle: "还有问题？",
+        stillText: "找不到您想要的？给我们留言，我们会尽快回复您。",
+        contactBtn: "联系我们",
+
+        footerDescription: "你的暹粒旅行指南，带你发现最佳餐厅、真实体验和旅行贴士。",
+        exploreFooter: "探索",
+        informationFooter: "信息",
+        supportFooter: "支持",
+        travelTips: "旅行贴士",
+        heritage: "文化遗产",
+        travelGuide: "旅行指南",
+        aboutSiemReap: "关于暹粒",
+        faq: "常见问题",
+        contactUs: "联系我们",
+        privacy: "隐私政策",
+        terms: "使用条款",
+        copyright: "© 2026 Taste Siem Reap。版权所有。"
+      }
+    };
+
+    let currentLanguage =
+      localStorage.getItem("selectedLanguage") ||
+      localStorage.getItem("tasteSiemReapLanguage") ||
+      "en";
+
+    function translatePage(lang) {
+      const dict = translations[lang];
+      if (!dict) return;
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (!dict[key]) return;
+        el.textContent = dict[key];
+      });
+
+      document.documentElement.lang = lang;
+
+      const spanCurrent = document.getElementById('currentLanguage');
+      if (spanCurrent) {
+        if (lang === 'en') spanCurrent.textContent = 'EN';
+        else if (lang === 'km') spanCurrent.textContent = 'ខ្មែរ';
+        else if (lang === 'zh') spanCurrent.textContent = '中文';
+      }
+
+      document.querySelectorAll('.language-option').forEach(opt => {
+        opt.classList.toggle('active', opt.dataset.language === lang);
+      });
+
+      currentLanguage = lang;
+      localStorage.setItem('selectedLanguage', lang);
+      localStorage.setItem('tasteSiemReapLanguage', lang);
+
+      document.querySelectorAll('.accordion-item.open').forEach(item => {
+        const body = item.querySelector('.accordion-body');
+        body.style.maxHeight = body.scrollHeight + 'px';
+      });
+    }
+
+    const langBtn = document.getElementById('languageButton');
+    const langMenu = document.getElementById('languageMenu');
+
+    langBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      langMenu.classList.toggle('show');
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.language-wrapper')) {
+        langMenu.classList.remove('show');
+      }
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') langMenu.classList.remove('show');
+    });
+
+    document.querySelectorAll('.language-option').forEach(opt => {
+      opt.addEventListener('click', function() {
+        translatePage(this.dataset.language);
+        langMenu.classList.remove('show');
+      });
+    });
+
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+
+    hamburger.addEventListener('click', function() {
+      this.classList.toggle('active');
+      mobileNav.classList.toggle('open');
+      document.body.style.overflow =
+        mobileNav.classList.contains('open') ? 'hidden' : '';
+    });
+
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', function() {
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    window.addEventListener('resize', function() {
+      if (window.innerWidth > 768) {
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+
+    document.querySelectorAll('.accordion-item').forEach(item => {
+      const header = item.querySelector('.accordion-header');
+      const body = item.querySelector('.accordion-body');
+
+      header.addEventListener('click', function() {
+        const isOpen = item.classList.contains('open');
+
+        document.querySelectorAll('.accordion-item.open').forEach(other => {
+          if (other !== item) {
+            other.classList.remove('open');
+            other.querySelector('.accordion-body').style.maxHeight = null;
+          }
+        });
+
+        if (isOpen) {
+          item.classList.remove('open');
+          body.style.maxHeight = null;
+        } else {
+          item.classList.add('open');
+          body.style.maxHeight = body.scrollHeight + 'px';
+        }
+      });
+    });
+
+    window.addEventListener('resize', function() {
+      document.querySelectorAll('.accordion-item.open').forEach(item => {
+        const body = item.querySelector('.accordion-body');
+        body.style.maxHeight = body.scrollHeight + 'px';
+      });
+    });
+
+    document.querySelectorAll('.faq-tab').forEach(tab => {
+      tab.addEventListener('click', function() {
+        document.querySelectorAll('.faq-tab').forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+
+        const target = document.getElementById(this.dataset.target);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    translatePage(currentLanguage);
+  })();
+</script>
+</body>
+</html>

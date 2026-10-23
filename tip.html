@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>Taste Siem Reap · Travel Tips & Food Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== reset & base ===== */
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+
+    body {
+      background:
+        radial-gradient(circle at 50% 0%, rgba(168, 184, 165, 0.20), transparent 42%),
+        linear-gradient(180deg, #fdfbf7 0%, #faf7f2 50%, #f5f0e8 100%);
+      color: var(--text);
+      font-family: "DM Sans", sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+      min-height: 100dvh;
+      overflow-x: hidden;
+    }
+
+    a { color:inherit; text-decoration:none; }
+    button { font-family:inherit; cursor:pointer; border:none; background:none; }
+    img { display:block; width:100%; height:auto; max-width:100%; }
+
+    /* ===== variables ===== */
+    :root {
+      --bg: #faf7f2;
+      --bg-soft: #f2ede4;
+      --card: #ffffff;
+      --card-hover: #fffdf9;
+      --gold: #b8924a;
+      --gold-light: #d4b06a;
+      --text: #2d2a26;
+      --muted: #6b665f;
+      --muted-dark: #8a847c;
+      --border: rgba(60, 55, 48, 0.10);
+      --shadow: 0 12px 30px rgba(60, 50, 40, 0.08);
+      --radius: 20px;
+
+      --header-height: 70px;
+      --container-padding: 20px;
+    }
+
+    /* ============================================================
+       HEADER
+    ============================================================ */
+    header.site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(250, 247, 242, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      height: var(--header-height);
+      transition: height 0.3s ease;
+    }
+
+    .navbar {
+      max-width: 1200px;
+      margin: 0 auto;
+      height: 100%;
+      padding: 0 var(--container-padding);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .logo {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(20px, 2.5vw, 26px);
+      font-weight: 700;
+      letter-spacing: .3px;
+      flex-shrink: 0;
+      white-space: nowrap;
+      color: var(--text);
+    }
+
+    .logo span { color: var(--gold); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: clamp(15px, 2vw, 30px);
+      list-style: none;
+      height: var(--header-height);
+    }
+
+    .nav-links a {
+      color: var(--text);
+      font-size: clamp(12px, 1vw, 14px);
+      font-weight: 500;
+      transition: .25s ease;
+      position: relative;
+      padding: 5px 0;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--gold); }
+
+    .nav-links a.active::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 2px;
+      background: var(--gold);
+      border-radius: 10px;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .nav-action {
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      background: transparent;
+      cursor: pointer;
+      transition: .25s ease;
+      font-size: 14px;
+    }
+
+    .nav-action:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(184, 146, 74, .08);
+    }
+
+    .language-wrapper { position: relative; }
+
+    .language-btn {
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      background: transparent;
+      cursor: pointer;
+      transition: .25s ease;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .language-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(184, 146, 74, .08);
+    }
+
+    .language-menu {
+      position: absolute;
+      right: 0;
+      top: calc(100% + 10px);
+      min-width: 145px;
+      padding: 7px;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      display: none;
+      z-index: 100;
+    }
+
+    .language-menu.show { display: block; }
+
+    .language-option {
+      width: 100%;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      padding: 10px 11px;
+      border-radius: 10px;
+      text-align: left;
+      cursor: pointer;
+      font-size: 13px;
+      transition: .2s ease;
+    }
+
+    .language-option:hover,
+    .language-option.active {
+      background: rgba(184, 146, 74, .12);
+      color: var(--gold);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 8px;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: .3s ease;
+    }
+
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    .mobile-nav-overlay {
+      display: none;
+      position: fixed;
+      top: var(--header-height);
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(250, 247, 242, 0.98);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 999;
+      padding: 30px var(--container-padding);
+      overflow-y: auto;
+    }
+
+    .mobile-nav-overlay.open { display: block; }
+
+    .mobile-nav-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .mobile-nav-links a {
+      display: block;
+      padding: 16px 20px;
+      color: var(--text);
+      font-size: 18px;
+      font-weight: 500;
+      border-radius: 12px;
+      transition: .25s ease;
+      text-align: center;
+    }
+
+    .mobile-nav-links a:hover,
+    .mobile-nav-links a.active {
+      background: rgba(184, 146, 74, .12);
+      color: var(--gold);
+    }
+
+    /* ===== BIG HEADER / HERO FOR IMAGE ===== */
+    .big-header {
+      position:relative;
+      width:100%;
+      height:clamp(340px, 55vh, 620px);
+      min-height:340px;
+      overflow:hidden;
+      display:flex;
+      align-items:flex-end;
+      justify-content:center;
+      background:transparent;
+    }
+    .big-header-image {
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      z-index:1;
+      opacity:0.9;
+    }
+    .big-header-placeholder {
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(184, 146, 74, .18), transparent 55%),
+        radial-gradient(circle at 80% 70%, rgba(168, 184, 165, .3), transparent 55%),
+        linear-gradient(135deg, #f5f0e6, #ebe5d9);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:clamp(70px, 16vw, 180px);
+      opacity:0.4;
+      z-index:0;
+    }
+    .big-header-overlay {
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, rgba(45, 40, 32, .25), rgba(45, 40, 32, .65));
+      z-index:2;
+    }
+    .big-header-content {
+      position:relative;
+      z-index:3;
+      text-align:center;
+      padding:clamp(28px, 6vw, 60px) clamp(18px, 5vw, 40px);
+      max-width:1000px;
+      width:100%;
+    }
+    .big-header .eyebrow {
+      color:#f0e6c8;
+      text-transform:uppercase;
+      letter-spacing:clamp(1.5px, 0.4vw, 3px);
+      font-size:clamp(10px, 1.2vw, 13px);
+      font-weight:700;
+      margin-bottom:12px;
+      text-shadow:0 2px 12px rgba(0,0,0,.6), 0 0 8px rgba(0,0,0,.5);
+    }
+    .big-header h1 {
+      font-family:"Playfair Display",serif;
+      font-size:clamp(30px, 8vw, 72px);
+      line-height:1.08;
+      color:#ffffff;
+      text-shadow:0 4px 24px rgba(0,0,0,.6), 0 0 12px rgba(0,0,0,.5);
+      margin-bottom:12px;
+    }
+    .big-header h1 span { color:#f5d995; }
+    .big-header p {
+      color:#f0ece5;
+      font-size:clamp(13px, 1.6vw, 18px);
+      max-width:700px;
+      margin:0 auto;
+      text-shadow:0 2px 12px rgba(0,0,0,.6), 0 0 8px rgba(0,0,0,.5);
+      line-height:1.5;
+    }
+
+    /* ===== main content ===== */
+    .tips-section {
+      max-width:1200px;
+      margin:0 auto;
+      padding:clamp(36px, 6vw, 70px) clamp(16px, 4vw, 24px) clamp(50px, 8vw, 80px);
+      flex:1 0 auto;
+      width:100%;
+    }
+
+    .section-heading {
+      display:flex;
+      flex-wrap:wrap;
+      align-items:flex-end;
+      justify-content:space-between;
+      margin-bottom:clamp(20px, 4vw, 36px);
+      gap:12px;
+    }
+    .section-heading h2 {
+      font-family:"Playfair Display",serif;
+      font-size:clamp(24px, 4.5vw, 40px);
+      line-height:1.15;
+      color:var(--text);
+    }
+    .section-heading h2 span { color:var(--gold); }
+    .section-heading p {
+      color:var(--muted);
+      font-size:clamp(13px, 1.1vw, 15px);
+      max-width:600px;
+    }
+
+    /* ===== what to eat grid ===== */
+    .eat-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+      gap:clamp(16px, 3vw, 26px);
+      margin-bottom:clamp(44px, 7vw, 70px);
+    }
+    .eat-card {
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      overflow:hidden;
+      transition:transform .3s ease, background .3s ease, box-shadow .3s ease;
+      display:flex;
+      flex-direction:column;
+      height:100%;
+      box-shadow:var(--shadow);
+    }
+    @media (hover: hover) {
+      .eat-card:hover {
+        transform:translateY(-5px);
+        background:var(--card-hover);
+        box-shadow:var(--shadow);
+      }
+    }
+    .eat-image {
+      height:clamp(140px, 24vw, 200px);
+      background: linear-gradient(135deg, #f5f0e6, #ebe5d9);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:clamp(40px, 8vw, 72px);
+      border-bottom:1px solid var(--border);
+      position:relative;
+      overflow:hidden;
+      flex-shrink:0;
+    }
+    .eat-image span {
+      filter: drop-shadow(0 6px 10px rgba(140, 110, 60, .25));
+      transition: transform .3s ease;
+    }
+    @media (hover: hover) {
+      .eat-card:hover .eat-image span {
+        transform: scale(1.1);
+      }
+    }
+    .eat-tag {
+      position:absolute;
+      top:clamp(10px, 2vw, 14px);
+      left:clamp(10px, 2vw, 14px);
+      padding:clamp(5px, 0.8vw, 6px) clamp(10px, 1.6vw, 12px);
+      border-radius:999px;
+      background:rgba(255, 255, 255, 0.92);
+      color:var(--gold);
+      font-size:clamp(9px, 0.9vw, 11px);
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:1px;
+      backdrop-filter:blur(4px);
+      -webkit-backdrop-filter:blur(4px);
+      white-space:nowrap;
+      border:1px solid rgba(184, 146, 74, .3);
+    }
+    .eat-content {
+      padding:clamp(16px, 3vw, 22px);
+      flex:1;
+      display:flex;
+      flex-direction:column;
+    }
+    .eat-content h3 {
+      font-family:"Playfair Display",serif;
+      font-size:clamp(18px, 2.4vw, 23px);
+      margin-bottom:8px;
+      line-height:1.25;
+      color:var(--text);
+    }
+    .eat-content h3 .khmer-name {
+      font-size:0.78em;
+      color:var(--gold);
+      font-weight:400;
+      font-family:"DM Sans",sans-serif;
+      margin-left:4px;
+      white-space:nowrap;
+    }
+    .eat-content p {
+      color:var(--muted);
+      font-size:clamp(12.5px, 1.1vw, 14px);
+      flex:1;
+      margin-bottom:12px;
+    }
+    .eat-price {
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      color:var(--gold);
+      font-weight:600;
+      font-size:clamp(12px, 1vw, 13px);
+      background:rgba(184, 146, 74, .1);
+      padding:6px 12px;
+      border-radius:999px;
+      align-self:flex-start;
+    }
+
+    /* ===== tips section ===== */
+    .tips-block {
+      background:var(--bg-soft);
+      border:1px solid var(--border);
+      border-radius:clamp(16px, 3vw, 24px);
+      padding:clamp(22px, 5vw, 50px);
+      margin-bottom:clamp(36px, 6vw, 60px);
+    }
+    .tips-block h2 {
+      font-family:"Playfair Display",serif;
+      font-size:clamp(22px, 3.8vw, 36px);
+      margin-bottom:clamp(18px, 3vw, 28px);
+      color:var(--gold);
+      line-height:1.2;
+    }
+    .tips-block h2 span { color:var(--gold); }
+    .tips-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+      gap:clamp(18px, 3vw, 28px);
+    }
+    .tip-item {
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+    }
+    .tip-icon {
+      flex-shrink:0;
+      width:44px;
+      height:44px;
+      border-radius:50%;
+      background:#ffffff;
+      border:1px solid rgba(184, 146, 74, .3);
+      display:grid;
+      place-items:center;
+      font-size:20px;
+    }
+    .tip-text h4 {
+      font-size:clamp(14.5px, 1.4vw, 17px);
+      font-weight:600;
+      color:var(--text);
+      margin-bottom:4px;
+      line-height:1.3;
+    }
+    .tip-text p {
+      color:var(--muted);
+      font-size:clamp(12.5px, 1vw, 14px);
+    }
+
+    /* ===== trust section ===== */
+    .trust-box {
+      position:relative;
+      overflow:hidden;
+      border-radius:clamp(18px, 3vw, 26px);
+      padding:clamp(28px, 6vw, 60px) clamp(20px, 5vw, 50px);
+      background:
+        linear-gradient(120deg, rgba(184, 146, 74, .12), transparent 55%),
+        linear-gradient(200deg, rgba(168, 184, 165, .18), transparent 60%),
+        var(--card);
+      border:1px solid var(--border);
+      text-align:center;
+      box-shadow:var(--shadow);
+    }
+    .trust-box .badge {
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:7px 16px;
+      border-radius:999px;
+      background:rgba(184, 146, 74, .15);
+      border:1px solid rgba(184, 146, 74, .4);
+      color:var(--gold);
+      font-size:clamp(10px, 1vw, 13px);
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:1.2px;
+      margin-bottom:clamp(14px, 3vw, 24px);
+    }
+    .trust-box h2 {
+      font-family:"Playfair Display",serif;
+      font-size:clamp(22px, 4vw, 40px);
+      line-height:1.15;
+      max-width:820px;
+      margin:0 auto clamp(14px, 3vw, 22px);
+      color:var(--text);
+    }
+    .trust-box h2 span { color:var(--gold); }
+    .trust-box p {
+      color:var(--muted);
+      font-size:clamp(13px, 1.2vw, 16px);
+      max-width:700px;
+      margin:0 auto clamp(20px, 4vw, 32px);
+    }
+    .trust-features {
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:clamp(12px, 2vw, 28px);
+      margin-top:clamp(18px, 3vw, 30px);
+    }
+    .trust-feature {
+      display:flex;
+      align-items:center;
+      gap:8px;
+      color:var(--gold);
+      font-size:clamp(12px, 1.1vw, 14px);
+      font-weight:600;
+    }
+    .trust-feature .check {
+      width:22px;
+      height:22px;
+      border-radius:50%;
+      background:rgba(184, 146, 74, .2);
+      display:grid;
+      place-items:center;
+      font-size:12px;
+      color:var(--gold);
+      flex-shrink:0;
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer.site-footer {
+      margin-top: clamp(50px, 8vh, 110px);
+      padding: clamp(30px, 4vh, 55px) var(--container-padding) clamp(18px, 3vh, 25px);
+      background: #f0ece3;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-grid {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: clamp(20px, 4vw, 45px);
+    }
+
+    .footer-brand h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(20px, 2.2vw, 25px);
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    .footer-brand h2 span { color: var(--gold); }
+
+    .footer-brand p {
+      max-width: 350px;
+      color: var(--muted);
+      font-size: clamp(11px, 1vw, 13px);
+    }
+
+    .socials {
+      display: flex;
+      gap: 9px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .social {
+      width: clamp(30px, 3vw, 35px);
+      height: clamp(30px, 3vw, 35px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.5);
+      font-size: clamp(11px, 1vw, 13px);
+      transition: .25s ease;
+      cursor: pointer;
+    }
+
+    .social:hover {
+      color: var(--gold);
+      border-color: var(--gold);
+      background: #ffffff;
+    }
+
+    .footer-column h3 {
+      color: var(--gold);
+      font-size: clamp(10px, 0.9vw, 12px);
+      letter-spacing: 1px;
+      margin-bottom: 15px;
+    }
+
+    .footer-column a {
+      display: block;
+      color: var(--muted);
+      font-size: clamp(11px, 0.9vw, 12px);
+      margin-bottom: 9px;
+      transition: .25s ease;
+    }
+
+    .footer-column a:hover { color: var(--gold); }
+
+    .copyright {
+      max-width: 1200px;
+      margin: clamp(20px, 3vh, 40px) auto 0;
+      padding-top: clamp(14px, 2vh, 20px);
+      border-top: 1px solid var(--border);
+      color: var(--muted-dark);
+      font-size: clamp(10px, 0.8vw, 11px);
+      text-align: center;
+    }
+
+    /* ============================================================
+       RESPONSIVE BREAKPOINTS
+    ============================================================ */
+
+    @media (max-width: 1024px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      :root { --header-height: 64px; --container-padding: 16px; }
+
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .nav-action { width: 32px; height: 32px; font-size: 12px; }
+      .language-btn { width: 32px; height: 32px; font-size: 10px; }
+
+      .big-header {
+        height:clamp(300px, 45vh, 420px);
+        min-height:300px;
+      }
+      .tips-section {
+        padding-top:clamp(28px, 5vw, 48px);
+      }
+      .tip-icon {
+        width:40px;
+        height:40px;
+        font-size:18px;
+      }
+
+      .footer-grid { grid-template-columns: 1fr; gap: 25px; }
+      .mobile-nav-overlay { padding: 20px var(--container-padding) 40px; }
+      .mobile-nav-links a { font-size: 16px; padding: 14px 16px; }
+    }
+
+    @media (max-width: 600px) {
+      .big-header {
+        height:clamp(280px, 42vh, 380px);
+        min-height:280px;
+      }
+      .big-header-content {
+        padding:24px 16px 28px;
+      }
+      .eat-grid { gap:14px; }
+      .tips-grid { gap:16px; }
+      .tip-item { gap:12px; }
+      .tip-icon {
+        width:38px;
+        height:38px;
+        font-size:17px;
+      }
+      .trust-features { gap:10px 16px; }
+      .trust-feature { font-size:12px; }
+    }
+
+    @media (max-width: 480px) {
+      :root { --header-height: 58px; --container-padding: 14px; }
+      .logo { font-size: clamp(17px, 4.5vw, 20px); }
+      .nav-action { width: 28px; height: 28px; font-size: 11px; }
+      .language-btn { width: 28px; height: 28px; font-size: 9px; }
+      .hamburger span { width: 22px; height: 2px; }
+
+      .big-header {
+        height:clamp(260px, 38vh, 340px);
+        min-height:260px;
+      }
+      .big-header h1 { font-size:clamp(26px, 9vw, 34px); }
+      .big-header p { font-size:13px; }
+      .big-header .eyebrow { font-size:10px; letter-spacing:1.5px; }
+      .eat-content h3 { font-size:18px; }
+      .section-heading h2 { font-size:23px; }
+      .tips-block h2 { font-size:21px; }
+      .trust-box h2 { font-size:21px; }
+      .eat-content { padding:15px; }
+      .eat-image { height:130px; }
+
+      .language-menu { min-width: 130px; right: -10px; }
+      .language-option { font-size: 12px; padding: 8px 10px; }
+      .mobile-nav-links a { font-size: 14px; padding: 12px 14px; }
+    }
+
+    @media (max-width: 340px) {
+      .big-header h1 { font-size:24px; }
+      .big-header p { font-size:12px; }
+      .eat-content h3 { font-size:17px; }
+      .eat-tag { font-size:9px; padding:4px 9px; }
+      .tip-text h4 { font-size:14px; }
+      .tip-text p { font-size:12px; }
+      .trust-feature { font-size:11px; }
+      .trust-feature .check { width:18px; height:18px; font-size:10px; }
+    }
+
+    @media (max-height: 500px) and (orientation: landscape) {
+      .big-header {
+        height:80vh;
+        min-height:240px;
+      }
+      .big-header h1 { font-size:clamp(24px, 5vw, 40px); }
+      .big-header p { font-size:13px; }
+      .big-header-content { padding:20px 16px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration:0.01ms !important;
+        transition-duration:0.01ms !important;
+      }
+      html { scroll-behavior:auto; }
+    }
+
+    @media (min-width: 1400px) {
+      .eat-grid { grid-template-columns:repeat(3, 1fr); }
+    }
+
+    @media print {
+      body { background:#fff; color:#000; }
+      header.site-header, footer.site-footer { display:none; }
+      .big-header { height:auto; min-height:0; }
+      .big-header-overlay { display:none; }
+      .big-header-content { color:#000; }
+      .big-header h1 { color:#000; text-shadow:none; }
+    }
+  </style>
+  <link rel="stylesheet" href="site-header.css">
+</head>
+<body>
+
+<!-- ============================================================
+     HEADER
+============================================================ -->
+<header class="site-header">
+  <nav class="navbar">
+    <a href="index.html" class="logo">
+      Taste <span>Siem Reap</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html" data-i18n="navHome">Home</a></li>
+      <li><a href="res.html" data-i18n="navRestaurants">Restaurants</a></li>
+      <li><a href="experience.html" data-i18n="navExperience">Experience</a></li>
+      <li><a href="Aboutus.html" data-i18n="navAbout">About Us</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <div class="language-wrapper" id="languageWrapper">
+        <button class="language-btn" id="languageButton" type="button" aria-label="Language">
+          <span id="currentLanguage">EN</span>
+        </button>
+        <div class="language-menu" id="languageMenu">
+          <button class="language-option active" data-language="en" type="button">🇬🇧 English</button>
+          <button class="language-option" data-language="zh" type="button">🇨🇳 中文</button>
+          <button class="language-option" data-language="km" type="button">🇰🇭 ខ្មែរ</button>
+        </div>
+      </div>
+
+      <button class="hamburger" id="hamburger" type="button" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<!-- ============================================================
+     MOBILE NAV
+============================================================ -->
+<div class="mobile-nav-overlay" id="mobileNav">
+  <ul class="mobile-nav-links">
+    <li><a href="index.html" data-i18n="navHome">Home</a></li>
+    <li><a href="res.html" data-i18n="navRestaurants">Restaurants</a></li>
+    <li><a href="experience.html" data-i18n="navExperience">Experience</a></li>
+    <li><a href="Aboutus.html" data-i18n="navAbout">About Us</a></li>
+  </ul>
+</div>
+
+<!-- ===== BIG HEADER FOR IMAGE ===== -->
+<header class="big-header">
+  <div class="big-header-overlay"></div>
+  <div class="big-header-content">
+    <div class="eyebrow" data-i18n="headerEyebrow">Travel Tips · Eat Well · Pay Right</div>
+    <h1><span data-i18n="headerTitle1">Travel Smart,</span> <span data-i18n="headerTitle2">Eat Like a Local</span></h1>
+    <p data-i18n="headerText">Your essential guide to Khmer food, fair prices, and trusted restaurant recommendations in Siem Reap.</p>
+  </div>
+</header>
+
+<!-- ===== MAIN CONTENT ===== -->
+<section class="tips-section">
+
+  <!-- WHAT TO EAT -->
+  <div class="section-heading">
+    <div>
+      <h2 data-i18n="eatTitle">What You <span>Must Try</span></h2>
+      <p data-i18n="eatText">These are the essential Khmer dishes every traveler should taste. We've verified the best spots for each one.</p>
+    </div>
+  </div>
+
+  <div class="eat-grid">
+
+    <article class="eat-card">
+      <div class="eat-image"><span>🍛</span><div class="eat-tag" data-i18n="tagMustTry">Must Try</div></div>
+      <div class="eat-content">
+        <h3><span data-i18n="eatAmok">Amok</span> <span class="khmer-name">អាម៉ុក</span></h3>
+        <p data-i18n="eatAmokDesc">Cambodia's national dish. A fragrant coconut curry steamed in banana leaves with fish, lemongrass, and kaffir lime. Creamy, aromatic, unforgettable.</p>
+        <span class="eat-price">💰 $3 – $8</span>
+      </div>
+    </article>
+
+    <article class="eat-card">
+      <div class="eat-image"><span>🍜</span><div class="eat-tag" data-i18n="tagBreakfast">Breakfast</div></div>
+      <div class="eat-content">
+        <h3><span data-i18n="eatKuyTeav">Kuy Teav</span> <span class="khmer-name">គុយទាវ</span></h3>
+        <p data-i18n="eatKuyTeavDesc">The classic Cambodian breakfast. Clear pork broth with rice noodles, fresh herbs, and crispy garlic. Light, comforting, and usually under $2.</p>
+        <span class="eat-price">💰 $1 – $3</span>
+      </div>
+    </article>
+
+    <article class="eat-card">
+      <div class="eat-image"><span>🥩</span><div class="eat-tag" data-i18n="tagStreetFood">Street Food</div></div>
+      <div class="eat-content">
+        <h3><span data-i18n="eatLokLak">Lok Lak</span> <span class="khmer-name">លុកឡាក់</span></h3>
+        <p data-i18n="eatLokLakDesc">Stir-fried beef with rice, fresh salad, and a signature black pepper-lime dip. A French-Khmer fusion that's become a local favorite.</p>
+        <span class="eat-price">💰 $3 – $7</span>
+      </div>
+    </article>
+
+    <article class="eat-card">
+      <div class="eat-image"><span>🍝</span><div class="eat-tag" data-i18n="tagBreakfast">Breakfast</div></div>
+      <div class="eat-content">
+        <h3><span data-i18n="eatNomBanhChok">Nom Banh Chok</span> <span class="khmer-name">នំបញ្ចុក</span></h3>
+        <p data-i18n="eatNomBanhChokDesc">Known as "Khmer noodles." Fermented rice noodles with fresh fish gravy, banana blossoms, and herbs. A true taste of Cambodian tradition.</p>
+        <span class="eat-price">💰 $1 – $3</span>
+      </div>
+    </article>
+
+    <article class="eat-card">
+      <div class="eat-image"><span>🐟</span><div class="eat-tag" data-i18n="tagCondiment">Condiment</div></div>
+      <div class="eat-content">
+        <h3><span data-i18n="eatPrahok">Prahok</span> <span class="khmer-name">ប្រហុក</span></h3>
+        <p data-i18n="eatPrahokDesc">Fermented fish paste, the backbone of Khmer cooking. Try it in dips or stir-fries for a deep umami experience. An acquired taste worth trying.</p>
+        <span class="eat-price">💰 $2 – $5</span>
+      </div>
+    </article>
+
+    <article class="eat-card">
+      <div class="eat-image"><span>🍙</span><div class="eat-tag" data-i18n="tagFestival">Festival</div></div>
+      <div class="eat-content">
+        <h3><span data-i18n="eatNumAnsom">Num Ansom</span> <span class="khmer-name">នំអន្សម</span></h3>
+        <p data-i18n="eatNumAnsomDesc">Sticky rice cakes with banana or pork, wrapped in banana leaves. Traditionally made for festivals but available year-round at local markets.</p>
+        <span class="eat-price">💰 $1 – $3</span>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- TIPS FOR GETTING GOOD PRICES -->
+  <div class="tips-block">
+    <h2 data-i18n="priceTitle">How to Get <span>Fair Prices</span></h2>
+    <div class="tips-grid">
+
+      <div class="tip-item">
+        <div class="tip-icon">💵</div>
+        <div class="tip-text">
+          <h4 data-i18n="tip1Title">Know the Real Price</h4>
+          <p data-i18n="tip1Text">Our website lists verified price ranges for every dish and restaurant. Use them as your reference so you never overpay.</p>
+        </div>
+      </div>
+
+      <div class="tip-item">
+        <div class="tip-icon">🗣️</div>
+        <div class="tip-text">
+          <h4 data-i18n="tip2Title">Politely Negotiate</h4>
+          <p data-i18n="tip2Text">At street stalls and markets, friendly bargaining is expected. Smile, stay respectful, and don't push too hard — a fair deal benefits everyone.</p>
+        </div>
+      </div>
+
+      <div class="tip-item">
+        <div class="tip-icon">🍽️</div>
+        <div class="tip-text">
+          <h4 data-i18n="tip3Title">Eat Where Locals Eat</h4>
+          <p data-i18n="tip3Text">Restaurants full of Khmer families usually mean fresh food, authentic flavors, and honest prices. Our site highlights these hidden gems.</p>
+        </div>
+      </div>
+
+      <div class="tip-item">
+        <div class="tip-icon">⏰</div>
+        <div class="tip-text">
+          <h4 data-i18n="tip4Title">Go at Peak Hours</h4>
+          <p data-i18n="tip4Text">Lunch (11am–1pm) and dinner (6pm–8pm) mean higher turnover, fresher ingredients, and sometimes better deals on set menus.</p>
+        </div>
+      </div>
+
+      <div class="tip-item">
+        <div class="tip-icon">📱</div>
+        <div class="tip-text">
+          <h4 data-i18n="tip5Title">Use Our Verified Listings</h4>
+          <p data-i18n="tip5Text">Every restaurant on Taste Siem Reap has been checked for quality, hygiene, and fair pricing. Bookmark our recommendations before you go.</p>
+        </div>
+      </div>
+
+      <div class="tip-item">
+        <div class="tip-icon">💧</div>
+        <div class="tip-text">
+          <h4 data-i18n="tip6Title">Drink Safely & Cheaply</h4>
+          <p data-i18n="tip6Text">Bottled water costs around $0.50. Fresh coconut and sugar cane juice are $1–$2. Avoid ice from unknown sources if you have a sensitive stomach.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TRUST SECTION -->
+  <div class="trust-box">
+    <div class="badge" data-i18n="trustBadge">✓ Verified Information</div>
+    <h2 data-i18n="trustTitle">Why You Can <span>Trust Us</span></h2>
+    <p data-i18n="trustText">We've personally checked every restaurant, café, and food stall listed on Taste Siem Reap. From hygiene standards to real prices, our information is accurate, up-to-date, and designed to help you eat well without the guesswork.</p>
+    <div class="trust-features">
+      <div class="trust-feature"><span class="check">✓</span><span data-i18n="trustF1">Verified Prices</span></div>
+      <div class="trust-feature"><span class="check">✓</span><span data-i18n="trustF2">Hygiene Checked</span></div>
+      <div class="trust-feature"><span class="check">✓</span><span data-i18n="trustF3">Local Recommendations</span></div>
+      <div class="trust-feature"><span class="check">✓</span><span data-i18n="trustF4">Updated Regularly</span></div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <h2>Taste <span>Siem Reap</span></h2>
+      <p data-i18n="footerDescription">Your guide to the best restaurants, authentic experiences and travel tips in Siem Reap, Cambodia.</p>
+      <div class="socials">
+        <span class="social">f</span>
+        <span class="social">◎</span>
+        <span class="social">♪</span>
+        <span class="social">▶</span>
+      </div>
+    </div>
+
+    <div class="footer-column">
+      <h3 data-i18n="exploreFooter">EXPLORE</h3>
+      <a href="res.html" data-i18n="navRestaurants">Restaurants</a>
+      <a href="experience.html" data-i18n="navExperience">Experience</a>
+      <a href="tip.html" data-i18n="travelTips">Travel Tips</a>
+      <a href="Aboutus.html" data-i18n="navAbout">About Us</a>
+    </div>
+
+    <div class="footer-column">
+      <h3 data-i18n="informationFooter">INFORMATION</h3>
+      <a href="hari.html" data-i18n="heritage">Heritage</a>
+      <a href="tvr.html" data-i18n="travelGuide">Travel Guide</a>
+      <a href="abtsr.html" data-i18n="aboutSiemReap">About Siem Reap</a>
+      <a href="faq.html" data-i18n="faq">FAQ</a>
+    </div>
+
+    <div class="footer-column">
+      <h3 data-i18n="supportFooter">SUPPORT</h3>
+      <a href="contactus.html" data-i18n="contactUs">Contact Us</a>
+      <a href="prv.html" data-i18n="privacy">Privacy Policy</a>
+      <a href="tou.html" data-i18n="terms">Terms of Use</a>
+    </div>
+  </div>
+
+  <div class="copyright" data-i18n="copyright">
+    © 2026 Taste Siem Reap. All rights reserved.
+  </div>
+</footer>
+
+<script>
+  (function(){
+    // ----- translations -----
+    const translations = {
+      en: {
+        navHome: "Home",
+        navRestaurants: "Restaurants",
+        navExperience: "Experience",
+        navAbout: "About Us",
+
+        headerEyebrow:"Travel Tips · Eat Well · Pay Right",
+        headerTitle1:"Travel Smart,", headerTitle2:"Eat Like a Local",
+        headerText:"Your essential guide to Khmer food, fair prices, and trusted restaurant recommendations in Siem Reap.",
+
+        eatTitle:"What You Must Try",
+        eatText:"These are the essential Khmer dishes every traveler should taste. We've verified the best spots for each one.",
+
+        tagMustTry:"Must Try", tagBreakfast:"Breakfast", tagStreetFood:"Street Food",
+        tagCondiment:"Condiment", tagFestival:"Festival",
+
+        eatAmok:"Amok",
+        eatAmokDesc:"Cambodia's national dish. A fragrant coconut curry steamed in banana leaves with fish, lemongrass, and kaffir lime. Creamy, aromatic, unforgettable.",
+
+        eatKuyTeav:"Kuy Teav",
+        eatKuyTeavDesc:"The classic Cambodian breakfast. Clear pork broth with rice noodles, fresh herbs, and crispy garlic. Light, comforting, and usually under $2.",
+
+        eatLokLak:"Lok Lak",
+        eatLokLakDesc:"Stir-fried beef with rice, fresh salad, and a signature black pepper-lime dip. A French-Khmer fusion that's become a local favorite.",
+
+        eatNomBanhChok:"Nom Banh Chok",
+        eatNomBanhChokDesc:"Known as \"Khmer noodles.\" Fermented rice noodles with fresh fish gravy, banana blossoms, and herbs. A true taste of Cambodian tradition.",
+
+        eatPrahok:"Prahok",
+        eatPrahokDesc:"Fermented fish paste, the backbone of Khmer cooking. Try it in dips or stir-fries for a deep umami experience. An acquired taste worth trying.",
+
+        eatNumAnsom:"Num Ansom",
+        eatNumAnsomDesc:"Sticky rice cakes with banana or pork, wrapped in banana leaves. Traditionally made for festivals but available year-round at local markets.",
+
+        priceTitle:"How to Get Fair Prices",
+
+        tip1Title:"Know the Real Price",
+        tip1Text:"Our website lists verified price ranges for every dish and restaurant. Use them as your reference so you never overpay.",
+
+        tip2Title:"Politely Negotiate",
+        tip2Text:"At street stalls and markets, friendly bargaining is expected. Smile, stay respectful, and don't push too hard — a fair deal benefits everyone.",
+
+        tip3Title:"Eat Where Locals Eat",
+        tip3Text:"Restaurants full of Khmer families usually mean fresh food, authentic flavors, and honest prices. Our site highlights these hidden gems.",
+
+        tip4Title:"Go at Peak Hours",
+        tip4Text:"Lunch (11am–1pm) and dinner (6pm–8pm) mean higher turnover, fresher ingredients, and sometimes better deals on set menus.",
+
+        tip5Title:"Use Our Verified Listings",
+        tip5Text:"Every restaurant on Taste Siem Reap has been checked for quality, hygiene, and fair pricing. Bookmark our recommendations before you go.",
+
+        tip6Title:"Drink Safely & Cheaply",
+        tip6Text:"Bottled water costs around $0.50. Fresh coconut and sugar cane juice are $1–$2. Avoid ice from unknown sources if you have a sensitive stomach.",
+
+        trustBadge:"✓ Verified Information",
+        trustTitle:"Why You Can Trust Us",
+        trustText:"We've personally checked every restaurant, café, and food stall listed on Taste Siem Reap. From hygiene standards to real prices, our information is accurate, up-to-date, and designed to help you eat well without the guesswork.",
+
+        trustF1:"Verified Prices", trustF2:"Hygiene Checked",
+        trustF3:"Local Recommendations", trustF4:"Updated Regularly",
+
+        footerDescription: "Your guide to the best restaurants, authentic experiences and travel tips in Siem Reap, Cambodia.",
+        exploreFooter: "EXPLORE",
+        informationFooter: "INFORMATION",
+        supportFooter: "SUPPORT",
+        travelTips: "Travel Tips",
+        heritage: "Heritage",
+        travelGuide: "Travel Guide",
+        aboutSiemReap: "About Siem Reap",
+        faq: "FAQ",
+        contactUs: "Contact Us",
+        privacy: "Privacy Policy",
+        terms: "Terms of Use",
+        copyright: "© 2026 Taste Siem Reap. All rights reserved."
+      },
+
+      km: {
+        navHome: "ទំព័រដើម",
+        navRestaurants: "ភោជនីយដ្ឋាន",
+        navExperience: "បទពិសោធន៍",
+        navAbout: "អំពីយើង",
+
+        headerEyebrow:"គន្លឹះធ្វើដំណើរ · ញ៉ាំឱ្យបានល្អ · ចំណាយសមរម្យ",
+        headerTitle1:"ធ្វើដំណើរឆ្លាតវៃ,", headerTitle2:"ញ៉ាំដូចអ្នកស្រុក",
+        headerText:"ការណែនាំចាំបាច់របស់អ្នកអំពីម្ហូបខ្មែរ តម្លៃសមរម្យ និងការណែនាំភោជនីយដ្ឋានដែលអាចទុកចិត្តបាននៅសៀមរាប។",
+
+        eatTitle:"អ្វីដែលអ្នកត្រូវសាក",
+        eatText:"ទាំងនេះគឺជាម្ហូបខ្មែរចាំបាច់ដែលអ្នកធ្វើដំណើរគ្រប់រូបគួរភ្លក់។ យើងបានផ្ទៀងផ្ទាត់កន្លែងល្អបំផុតសម្រាប់ម្ហូបនីមួយៗ។",
+
+        tagMustTry:"ត្រូវសាក", tagBreakfast:"អាហារពេលព្រឹក", tagStreetFood:"អាហារតាមផ្លូវ",
+        tagCondiment:"គ្រឿងផ្សំ", tagFestival:"ពិធីបុណ្យ",
+
+        eatAmok:"អាម៉ុក",
+        eatAmokDesc:"ម្ហូបជាតិកម្ពុជា។ ការីដូងក្រអូបចំហុយក្នុងស្លឹកចេកជាមួយត្រី ស្លឹកគ្រៃ និងស្លឹកក្រូច។ រសជាតិឆ្ងាញ់ និងមិនអាចបំភ្លេចបាន។",
+
+        eatKuyTeav:"គុយទាវ",
+        eatKuyTeavDesc:"អាហារពេលព្រឹកខ្មែរបុរាណ។ ទឹកស៊ុបសាច់ជ្រូកថ្លាជាមួយគុយទាវ ជីស្រស់ និងខ្ទឹមបារាំងចៀន។ ស្រាល និងឆ្ងាញ់ក្នុងតម្លៃក្រោម $2។",
+
+        eatLokLak:"លុកឡាក់",
+        eatLokLakDesc:"សាច់គោឆាជាមួយបាយ សាឡាត់ស្រស់ និងទឹកជ្រលក់ម្រេចក្រូចឆ្មា។ ការរួមបញ្ចូលបារាំង-ខ្មែរដែលក្លាយជាម្ហូបពេញនិយម។",
+
+        eatNomBanhChok:"នំបញ្ចុក",
+        eatNomBanhChokDesc:"ត្រូវបានគេស្គាល់ថា \"គុយទាវខ្មែរ\"។ គុយទាវបង្កាត់រសជាតិជាមួយទឹកត្រីស្រស់ ផ្កាចេក និងជី។ រសជាតិប្រពៃណីខ្មែរពិតប្រាកដ។",
+
+        eatPrahok:"ប្រហុក",
+        eatPrahokDesc:"ប្រហុកត្រីដែលជាឆ្អឹងខ្នងនៃការធ្វើម្ហូបខ្មែរ។ សាកវាជាមួយទឹកជ្រលក់ ឬម្ហូបឆា សម្រាប់រសជាតិឆ្ងាញ់ជ្រៅ។ រសជាតិដែលគួរសាក។",
+
+        eatNumAnsom:"នំអន្សម",
+        eatNumAnsomDesc:"នំបាយដំណើបជាមួយផ្លែចេក ឬសាច់ជ្រូក រុំដោយស្លឹកចេក។ ធ្វើឡើងសម្រាប់ពិធីបុណ្យ ប៉ុន្តែមានលក់ពេញមួយឆ្នាំនៅផ្សារក្នុងស្រុក។",
+
+        priceTitle:"របៀបទទួលបានតម្លៃសមរម្យ",
+
+        tip1Title:"ដឹងតម្លៃពិត",
+        tip1Text:"គេហទំព័ររបស់យើងផ្តល់តម្លៃដែលបានផ្ទៀងផ្ទាត់សម្រាប់ម្ហូប និងភោជនីយដ្ឋាននីមួយៗ។ ប្រើវាជាឯកសារយោងដើម្បីកុំឱ្យអ្នកចំណាយលើស។",
+
+        tip2Title:"ចរចាដោយគួរសម",
+        tip2Text:"នៅតូបតាមផ្លូវ និងផ្សារ ការចរចាជាមិត្តភាពត្រូវបានរំពឹងទុក។ ញញឹម គោរព ហើយកុំបង្ខំខ្លាំងពេក — ការចរចាដោយយុត្តិធម៌មានប្រយោជន៍សម្រាប់អ្នកទាំងអស់គ្នា។",
+
+        tip3Title:"ញ៉ាំកន្លែងដែលអ្នកស្រុកញ៉ាំ",
+        tip3Text:"ភោជនីយដ្ឋានដែលពោរពេញទៅដោយគ្រួសារខ្មែរ ជាធម្មតាមានន័យថាអាហារស្រស់ រសជាតិពិត និងតម្លៃស្មោះត្រង់។ គេហទំព័ររបស់យើងបង្ហាញកន្លែងលាក់កំបាំងទាំងនេះ។",
+
+        tip4Title:"ទៅពេលម៉ោងច្រើនមនុស្ស",
+        tip4Text:"អាហារថ្ងៃត្រង់ (11am–1pm) និងអាហារពេលល្ងាច (6pm–8pm) មានន័យថាចំណូលច្រើន គ្រឿងផ្សំស្រស់ និងពេលខ្លះការផ្តល់ជូនល្អប្រសើរជាងមុន។",
+
+        tip5Title:"ប្រើបញ្ជីដែលបានផ្ទៀងផ្ទាត់របស់យើង",
+        tip5Text:"ភោជនីយដ្ឋានទាំងអស់នៅ Taste Siem Reap ត្រូវបានពិនិត្យគុណភាព អនាម័យ និងតម្លៃសមរម្យ។ រក្សាទុកការណែនាំរបស់យើងមុនពេលអ្នកទៅ។",
+
+        tip6Title:"ផឹកដោយសុវត្ថិភាព និងតម្លៃសមរម្យ",
+        tip6Text:"ទឹកសុទ្ធមានតម្លៃប្រហែល $0.50។ ដូងស្រស់ និងទឹកអំពៅមានតម្លៃ $1–$2។ ជៀសវាងទឹកកកពីប្រភពមិនស្គាល់ប្រសិនបើអ្នកមានក្រពះរសើប។",
+
+        trustBadge:"✓ ព័ត៌មានដែលបានផ្ទៀងផ្ទាត់",
+        trustTitle:"ហេតុអ្វីអ្នកអាចទុកចិត្តយើង",
+        trustText:"យើងបានពិនិត្យដោយខ្លួនឯងនូវភោជនីយដ្ឋាន ហាងកាហ្វេ និងតូបអាហារទាំងអស់ដែលមាននៅ Taste Siem Reap។ ពីស្តង់ដារអនាម័យដល់តម្លៃពិត ព័ត៌មានរបស់យើងមានភាពត្រឹមត្រូវ និងធ្វើបច្ចុប្បន្នភាពជាប្រចាំ ដើម្បីជួយអ្នកញ៉ាំឱ្យបានល្អដោយគ្មានការសង្ស័យ។",
+
+        trustF1:"តម្លៃដែលបានផ្ទៀងផ្ទាត់", trustF2:"ពិនិត្យអនាម័យ",
+        trustF3:"ការណែនាំក្នុងស្រុក", trustF4:"ធ្វើបច្ចុប្បន្នភាពជាប្រចាំ",
+
+        footerDescription: "មគ្គុទេសក៍របស់អ្នកទៅកាន់ភោជនីយដ្ឋានល្អៗ បទពិសោធន៍ពិត និងគន្លឹះធ្វើដំណើរនៅសៀមរាប។",
+        exploreFooter: "ស្វែងរក",
+        informationFooter: "ព័ត៌មាន",
+        supportFooter: "ជំនួយ",
+        travelTips: "គន្លឹះធ្វើដំណើរ",
+        heritage: "បេតិកភណ្ឌ",
+        travelGuide: "មគ្គុទេសក៍ធ្វើដំណើរ",
+        aboutSiemReap: "អំពីសៀមរាប",
+        faq: "សំណួរដែលសួរញឹកញាប់",
+        contactUs: "ទាក់ទងយើង",
+        privacy: "គោលការណ៍ឯកជនភាព",
+        terms: "លក្ខខណ្ឌប្រើប្រាស់",
+        copyright: "© 2026 Taste Siem Reap។ រក្សាសិទ្ធិគ្រប់យ៉ាង។"
+      },
+
+      zh: {
+        navHome: "首页",
+        navRestaurants: "餐厅",
+        navExperience: "体验",
+        navAbout: "关于我们",
+
+        headerEyebrow:"旅行贴士 · 吃得好 · 付得值",
+        headerTitle1:"聪明旅行，", headerTitle2:"像当地人一样吃",
+        headerText:"您在暹粒品尝高棉美食、获得公平价格和值得信赖的餐厅推荐的必备指南。",
+
+        eatTitle:"您必须尝试的",
+        eatText:"这些都是每位旅行者都应该品尝的高棉菜肴。我们已经验证了每道菜的最佳地点。",
+
+        tagMustTry:"必尝", tagBreakfast:"早餐", tagStreetFood:"街头美食",
+        tagCondiment:"调味品", tagFestival:"节日",
+
+        eatAmok:"阿莫克",
+        eatAmokDesc:"柬埔寨国菜。用香蕉叶蒸制的香浓椰子咖喱，配以鱼、柠檬草和泰国青柠。口感浓郁，香气扑鼻，令人难忘。",
+
+        eatKuyTeav:"粿条",
+        eatKuyTeavDesc:"经典的柬埔寨早餐。清猪肉汤配米粉、新鲜香草和脆炸蒜。清淡、舒适，通常不到2美元。",
+
+        eatLokLak:"洛克雷克",
+        eatLokLakDesc:"炒牛肉配米饭、新鲜沙拉和标志性的黑胡椒青柠蘸料。法式与高棉风味的融合，已成为当地人的最爱。",
+
+        eatNomBanhChok:"高棉米粉",
+        eatNomBanhChokDesc:"被称为“高棉面条”。发酵米粉配新鲜鱼汤、香蕉花和香草。真正的高棉传统味道。",
+
+        eatPrahok:"波罗福",
+        eatPrahokDesc:"发酵鱼酱，高棉烹饪的支柱。搭配蘸料或炒菜尝试，体验深厚的鲜味。值得一试的独特风味。",
+
+        eatNumAnsom:"Num Ansom",
+        eatNumAnsomDesc:"糯米糕，内馅为香蕉或猪肉，用香蕉叶包裹。传统上为节日制作，但当地市场全年有售。",
+
+        priceTitle:"如何获得公平价格",
+
+        tip1Title:"了解真实价格",
+        tip1Text:"我们的网站列出了每道菜和餐厅的验证价格范围。以它们为参考，避免多付钱。",
+
+        tip2Title:"礼貌地讨价还价",
+        tip2Text:"在街头小摊和市场，友好的讨价还价是正常的。微笑、保持尊重，不要过于强硬——公平的交易对大家都有利。",
+
+        tip3Title:"在本地人吃饭的地方吃",
+        tip3Text:"坐满高棉家庭的餐厅通常意味着新鲜的食物、正宗的风味和诚实的价格。我们的网站重点推荐这些隐藏的宝藏。",
+
+        tip4Title:"在高峰时段前往",
+        tip4Text:"午餐（上午11点至下午1点）和晚餐（下午6点至8点）意味着更高的周转率、更新鲜的食材，有时还有更好的套餐优惠。",
+
+        tip5Title:"使用我们的验证列表",
+        tip5Text:"Taste Siem Reap 上的每家餐厅都经过了质量、卫生和公平价格的检查。出发前收藏我们的推荐。",
+
+        tip6Title:"安全又便宜地喝水",
+        tip6Text:"瓶装水约0.50美元。新鲜椰子和甘蔗汁为1–2美元。如果肠胃敏感，请避免来源不明的冰块。",
+
+        trustBadge:"✓ 已验证信息",
+        trustTitle:"为什么您可以信任我们",
+        trustText:"我们亲自检查了 Taste Siem Reap 上列出的每家餐厅、咖啡馆和食品摊。从卫生标准到真实价格，我们的信息准确、最新，旨在帮助您无需猜测就能吃得好。",
+
+        trustF1:"已验证价格", trustF2:"卫生检查",
+        trustF3:"本地推荐", trustF4:"定期更新",
+
+        footerDescription: "你的暹粒旅行指南，带你发现最佳餐厅、真实体验和旅行贴士。",
+        exploreFooter: "探索",
+        informationFooter: "信息",
+        supportFooter: "支持",
+        travelTips: "旅行贴士",
+        heritage: "文化遗产",
+        travelGuide: "旅行指南",
+        aboutSiemReap: "关于暹粒",
+        faq: "常见问题",
+        contactUs: "联系我们",
+        privacy: "隐私政策",
+        terms: "使用条款",
+        copyright: "© 2026 Taste Siem Reap。版权所有。"
+      }
+    };
+
+    // ----- state -----
+    let currentLanguage =
+      localStorage.getItem("selectedLanguage") ||
+      localStorage.getItem("tasteSiemReapLanguage") ||
+      "en";
+
+    // ----- translate function -----
+    function translatePage(lang) {
+      const dict = translations[lang];
+      if (!dict) return;
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (!dict[key]) return;
+
+        if (el.tagName === 'H2' && el.querySelector('span')) {
+          if (key === 'eatTitle') {
+            if (lang === 'en') {
+              el.childNodes[0].textContent = 'What You ';
+              el.querySelector('span').textContent = 'Must Try';
+            } else {
+              el.textContent = dict.eatTitle;
+            }
+          } else if (key === 'priceTitle') {
+            if (lang === 'en') {
+              el.childNodes[0].textContent = 'How to Get ';
+              el.querySelector('span').textContent = 'Fair Prices';
+            } else {
+              el.textContent = dict.priceTitle;
+            }
+          } else if (key === 'trustTitle') {
+            if (lang === 'en') {
+              el.childNodes[0].textContent = 'Why You Can ';
+              el.querySelector('span').textContent = 'Trust Us';
+            } else {
+              el.textContent = dict.trustTitle;
+            }
+          } else {
+            el.textContent = dict[key];
+          }
+        } else {
+          el.textContent = dict[key];
+        }
+      });
+
+      document.documentElement.lang = lang;
+
+      const spanCurrent = document.getElementById('currentLanguage');
+      if (spanCurrent) {
+        if (lang === 'en') spanCurrent.textContent = 'EN';
+        else if (lang === 'km') spanCurrent.textContent = 'ខ្មែរ';
+        else if (lang === 'zh') spanCurrent.textContent = '中文';
+      }
+
+      document.querySelectorAll('.language-option').forEach(opt => {
+        opt.classList.toggle('active', opt.dataset.language === lang);
+      });
+
+      currentLanguage = lang;
+      localStorage.setItem('selectedLanguage', lang);
+      localStorage.setItem('tasteSiemReapLanguage', lang);
+    }
+
+    // ----- language dropdown -----
+    const langBtn = document.getElementById('languageButton');
+    const langMenu = document.getElementById('languageMenu');
+
+    langBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      langMenu.classList.toggle('show');
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.language-wrapper')) {
+        langMenu.classList.remove('show');
+      }
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') langMenu.classList.remove('show');
+    });
+
+    document.querySelectorAll('.language-option').forEach(opt => {
+      opt.addEventListener('click', function() {
+        translatePage(this.dataset.language);
+        langMenu.classList.remove('show');
+      });
+    });
+
+    // ----- mobile hamburger -----
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+
+    hamburger.addEventListener('click', function() {
+      this.classList.toggle('active');
+      mobileNav.classList.toggle('open');
+      document.body.style.overflow =
+        mobileNav.classList.contains('open') ? 'hidden' : '';
+    });
+
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', function() {
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    window.addEventListener('resize', function() {
+      if (window.innerWidth > 768) {
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // ----- init -----
+    translatePage(currentLanguage);
+
+    // ----- vh fix -----
+    document.documentElement.style.setProperty('--vh', window.innerHeight * 0.01 + 'px');
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function() {
+        document.documentElement.style.setProperty('--vh', window.innerHeight * 0.01 + 'px');
+      }, 100);
+    });
+  })();
+</script>
+</body>
+</html>

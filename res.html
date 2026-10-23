@@ -1,0 +1,1836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+    <title>Taste Siem Reap | Food & Drinks</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+    <style>
+        /* =====================================================
+           WARM MINIMAL THEME
+        ===================================================== */
+        :root {
+            --bg: #f8f5f0;
+            --bg-alt: #f2ede4;
+            --surface: #ffffff;
+
+            --text: #2a2620;
+            --muted: #6b6259;
+            --muted-light: #a49a8e;
+
+            --accent: #b8924a;
+            --accent-soft: #e8dcc1;
+
+            --line: #e8e3da;
+
+            --font-sans: "DM Sans", system-ui, -apple-system, sans-serif;
+            --font-serif: "Playfair Display", Georgia, serif;
+
+            --container: 1080px;
+            --gutter: 24px;
+            --radius: 10px;
+
+            --header-height: 64px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-sans);
+            font-size: 16px;
+            line-height: 1.65;
+            min-height: 100vh;
+            min-height: 100dvh;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        a { color: inherit; text-decoration: none; }
+        button { font-family: inherit; cursor: pointer; border: none; background: none; }
+        img { width: 100%; display: block; }
+
+        /* =========================
+           HEADER
+        ========================= */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(248, 245, 240, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .navbar {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 0 var(--gutter);
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            color: var(--text);
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+
+        .logo span { color: var(--accent); }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            font-size: 14px;
+            font-weight: 400;
+            transition: color .2s ease;
+            position: relative;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active { color: var(--text); }
+
+        .nav-links a.active::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -6px;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .language-wrapper { position: relative; }
+
+        .language-btn {
+            padding: 6px 10px;
+            color: var(--muted);
+            background: transparent;
+            cursor: pointer;
+            transition: color .2s ease;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.03em;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .language-btn:hover { color: var(--text); }
+
+        .language-btn::after {
+            content: "▾";
+            font-size: 9px;
+            opacity: 0.6;
+        }
+
+        .language-menu {
+            position: absolute;
+            right: 0;
+            top: calc(100% + 8px);
+            min-width: 140px;
+            padding: 6px;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            box-shadow: 0 8px 24px rgba(60, 50, 40, 0.08);
+            display: none;
+            z-index: 100;
+        }
+
+        .language-menu.show { display: block; }
+
+        .language-option {
+            width: 100%;
+            background: transparent;
+            color: var(--muted);
+            padding: 8px 10px;
+            border-radius: 6px;
+            text-align: left;
+            cursor: pointer;
+            font-size: 13px;
+            transition: .15s ease;
+        }
+
+        .language-option:hover,
+        .language-option.active {
+            background: var(--bg-alt);
+            color: var(--text);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            padding: 8px;
+            cursor: pointer;
+            background: transparent;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 20px;
+            height: 1.5px;
+            background: var(--text);
+            border-radius: 2px;
+            transition: .3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(3px, 3px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(3px, -3px); }
+
+        .mobile-nav-overlay {
+            display: none;
+            position: fixed;
+            top: var(--header-height);
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--bg);
+            z-index: 999;
+            padding: 24px var(--gutter) 40px;
+            overflow-y: auto;
+        }
+
+        .mobile-nav-overlay.open { display: block; }
+
+        .mobile-nav-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .mobile-nav-links a {
+            display: block;
+            padding: 14px 0;
+            color: var(--text);
+            font-size: 16px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .mobile-nav-links a.active { color: var(--accent); }
+
+        /* =========================
+           HERO
+        ========================= */
+        .hero {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 64px var(--gutter) 48px;
+            text-align: center;
+        }
+
+        .eyebrow {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-size: 11px;
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+
+        .hero h1 {
+            font-family: var(--font-serif);
+            font-size: clamp(34px, 6vw, 64px);
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            font-weight: 500;
+            max-width: 900px;
+            margin: 0 auto;
+            color: var(--text);
+        }
+
+        .hero h1 span { color: var(--accent); }
+
+        .hero p {
+            max-width: 680px;
+            margin: 20px auto 0;
+            color: var(--muted);
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        /* =========================
+           FOOD / DRINK SWITCH
+        ========================= */
+        .menu-switch {
+            max-width: var(--container);
+            margin: 0 auto 32px;
+            padding: 0 var(--gutter);
+            display: flex;
+            justify-content: center;
+        }
+
+        .switch-box {
+            display: inline-flex;
+            padding: 4px;
+            background: var(--bg-alt);
+            border-radius: 8px;
+            gap: 4px;
+        }
+
+        .switch-btn {
+            background: transparent;
+            color: var(--muted);
+            padding: 10px 22px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 14px;
+            transition: .2s ease;
+        }
+
+        .switch-btn:hover { color: var(--text); }
+
+        .switch-btn.active {
+            background: var(--surface);
+            color: var(--text);
+            box-shadow: 0 1px 3px rgba(60, 50, 40, 0.06);
+        }
+
+        .switch-btn a { color: inherit; display: block; pointer-events: none; }
+
+        /* =========================
+           FILTERS
+        ========================= */
+        .filters {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 0 var(--gutter) 32px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .filter-btn {
+            border: 1px solid var(--line);
+            background: var(--surface);
+            color: var(--muted);
+            padding: 7px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12.5px;
+            transition: .2s ease;
+            white-space: nowrap;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .filter-btn.active {
+            background: var(--text);
+            border-color: var(--text);
+            color: var(--surface);
+        }
+
+        /* =========================
+           FOOD GRID
+        ========================= */
+        .food-section {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 0 var(--gutter) 96px;
+        }
+
+        .section-heading {
+            margin-bottom: 32px;
+            max-width: 640px;
+        }
+
+        .section-heading h2 {
+            font-family: var(--font-serif);
+            font-size: clamp(26px, 3.4vw, 34px);
+            line-height: 1.15;
+            letter-spacing: -0.015em;
+            font-weight: 500;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .food-card {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: transform .2s ease, box-shadow .2s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .food-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(60, 50, 40, 0.06);
+        }
+
+        .food-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+            background: var(--bg-alt);
+        }
+
+        .food-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .4s ease;
+        }
+
+        .food-card:hover .food-image img { transform: scale(1.04); }
+
+        .food-tag {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--text);
+            font-size: 10.5px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            border: 1px solid var(--line);
+        }
+
+        .food-content {
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .food-content h3 {
+            font-family: var(--font-sans);
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text);
+            line-height: 1.35;
+        }
+
+        .food-content p {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.65;
+            flex: 1;
+            margin-bottom: 16px;
+        }
+
+        .food-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: auto;
+        }
+
+        .price {
+            color: var(--accent);
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .view-food {
+            border: 1px solid var(--line);
+            color: var(--text);
+            background: var(--surface);
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12.5px;
+            font-weight: 500;
+            transition: .2s ease;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .view-food:hover {
+            border-color: var(--text);
+            background: var(--bg-alt);
+        }
+
+        /* =========================
+           FEATURED
+        ========================= */
+        .featured {
+            max-width: var(--container);
+            margin: 0 auto 96px;
+            padding: 0 var(--gutter);
+        }
+
+        .featured-box {
+            padding: 56px 48px;
+            background: var(--bg-alt);
+            border-radius: 14px;
+            text-align: center;
+        }
+
+        .featured-box .eyebrow {
+            margin-bottom: 12px;
+        }
+
+        .featured-box h2 {
+            font-family: var(--font-serif);
+            font-size: clamp(24px, 3.4vw, 32px);
+            margin-bottom: 12px;
+            color: var(--text);
+            font-weight: 500;
+            letter-spacing: -0.015em;
+            line-height: 1.2;
+        }
+
+        .featured-box p {
+            color: var(--muted);
+            max-width: 620px;
+            margin: 0 auto;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+        footer {
+            border-top: 1px solid var(--line);
+            padding: 64px var(--gutter) 32px;
+            background: var(--bg-alt);
+        }
+
+        .footer-grid {
+            max-width: var(--container);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 48px;
+            padding-bottom: 48px;
+            border-bottom: 1px solid rgba(60, 50, 40, 0.08);
+        }
+
+        .footer-brand h2 {
+            font-family: var(--font-serif);
+            font-size: 22px;
+            font-weight: 500;
+            margin-bottom: 14px;
+            color: var(--text);
+            letter-spacing: -0.01em;
+        }
+
+        .footer-brand h2 span { color: var(--accent); }
+
+        .footer-brand p {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.65;
+            max-width: 340px;
+        }
+
+        .socials {
+            display: flex;
+            gap: 8px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .social {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--line);
+            border-radius: 50%;
+            color: var(--muted);
+            background: var(--surface);
+            font-size: 12px;
+            transition: .2s ease;
+        }
+
+        .social:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .footer-column h3 {
+            color: var(--muted-light);
+            font-size: 11px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+
+        .footer-column a {
+            display: block;
+            color: var(--text);
+            font-size: 14px;
+            margin-bottom: 10px;
+            transition: color .2s ease;
+        }
+
+        .footer-column a:hover { color: var(--accent); }
+
+        .copyright {
+            max-width: var(--container);
+            margin: 32px auto 0;
+            color: var(--muted-light);
+            font-size: 13px;
+            text-align: center;
+        }
+
+        /* =========================
+           RESTAURANT MODAL
+        ========================= */
+        .restaurant-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: rgba(42, 38, 32, 0.55);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+        }
+
+        .restaurant-modal.show { display: flex; }
+
+        .restaurant-modal-box {
+            width: min(700px, 100%);
+            max-height: 85vh;
+            overflow-y: auto;
+            background: var(--surface);
+            border-radius: 14px;
+            box-shadow: 0 30px 60px rgba(40, 32, 25, 0.25);
+            animation: modalIn .25s ease;
+        }
+
+        @keyframes modalIn {
+            from { opacity: 0; transform: translateY(15px) scale(.97); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .restaurant-modal-head {
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 24px 28px;
+            background: var(--surface);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .restaurant-modal-head h2 {
+            font-family: var(--font-serif);
+            font-size: 22px;
+            font-weight: 500;
+            color: var(--text);
+            letter-spacing: -0.01em;
+        }
+
+        .restaurant-modal-head p {
+            color: var(--muted);
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        .close-restaurant {
+            flex: 0 0 auto;
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            border: none;
+            background: transparent;
+            color: var(--muted);
+            font-size: 20px;
+            cursor: pointer;
+            transition: .2s ease;
+            display: grid;
+            place-items: center;
+        }
+
+        .close-restaurant:hover {
+            background: var(--bg-alt);
+            color: var(--text);
+        }
+
+        .restaurant-list {
+            padding: 16px 28px 28px;
+            display: grid;
+            gap: 8px;
+        }
+
+        .restaurant-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            padding: 16px;
+            border-radius: 10px;
+            background: var(--bg-alt);
+            transition: .2s ease;
+            flex-wrap: wrap;
+        }
+
+        .restaurant-item:hover {
+            background: #ebe5d9;
+        }
+
+        .restaurant-info h3 {
+            font-family: var(--font-sans);
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--text);
+        }
+
+        .restaurant-location {
+            color: var(--muted);
+            font-size: 12.5px;
+        }
+
+        .restaurant-location::before {
+            content: "📍";
+            margin-right: 4px;
+        }
+
+        .restaurant-rating {
+            text-align: right;
+            white-space: nowrap;
+        }
+
+        .stars {
+            color: var(--accent);
+            letter-spacing: 2px;
+            font-size: 13px;
+        }
+
+        .rating-number {
+            color: var(--muted-light);
+            font-size: 11.5px;
+            margin-top: 2px;
+        }
+
+        .map-btn {
+            display: inline-block;
+            margin-top: 8px;
+            color: var(--accent);
+            font-size: 12px;
+            border-bottom: 1px solid rgba(184, 146, 74, 0.35);
+        }
+
+        .map-btn:hover { color: var(--text); }
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+        @media (max-width: 1024px) {
+            .food-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+        }
+
+        @media (max-width: 768px) {
+            :root { --header-height: 58px; }
+
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+
+            .hero { padding: 48px var(--gutter) 32px; }
+            .hero h1 { font-size: 34px; }
+
+            .section-heading { margin-bottom: 24px; }
+            .food-grid { grid-template-columns: 1fr; gap: 16px; }
+            .food-image { height: 180px; }
+
+            .featured-box { padding: 40px 24px; }
+
+            .restaurant-item { flex-direction: column; align-items: flex-start; }
+            .restaurant-rating { text-align: left; width: 100%; }
+
+            .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+        }
+
+        @media (max-width: 480px) {
+            :root { --gutter: 20px; }
+
+            .hero h1 { font-size: 28px; }
+            .hero p { font-size: 15px; }
+
+            .switch-btn { padding: 9px 18px; font-size: 13px; }
+            .filter-btn { font-size: 11.5px; padding: 6px 12px; }
+
+            .food-content { padding: 20px; }
+            .food-content h3 { font-size: 15.5px; }
+            .food-content p { font-size: 13.5px; }
+
+            .restaurant-modal-head { padding: 18px 20px; }
+            .restaurant-list { padding: 12px 20px 20px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+            html { scroll-behavior: auto; }
+        }
+
+        /* ===== SECTION TOGGLE (Food / Drinks) ===== */
+        .section-panel { display: none; }
+        .section-panel.active { display: block; }
+
+        /* ===== DRINK TAG COLORS (soft pastel pills) ===== */
+        .drink-tag-natural { background: rgba(200, 225, 195, 0.9); color: #3d5a45; }
+        .drink-tag-tropical { background: rgba(250, 225, 185, 0.9); color: #7a5a20; }
+        .drink-tag-refreshing { background: rgba(200, 230, 235, 0.9); color: #2a5a68; }
+        .drink-tag-smoothie { background: rgba(225, 210, 240, 0.9); color: #5a3d78; }
+        .drink-tag-cozy { background: rgba(245, 215, 200, 0.9); color: #7a4a3a; }
+        .drink-tag-traditional { background: rgba(240, 225, 180, 0.9); color: #6b5a20; }
+        .drink-tag-modern { background: rgba(200, 220, 240, 0.9); color: #2d4a6b; }
+        .drink-tag-minimalist { background: rgba(230, 230, 235, 0.9); color: #4a4a55; }
+        .drink-tag-rustic { background: rgba(235, 215, 190, 0.9); color: #6b4a25; }
+
+        .hidden { display: none !important; }
+        .text-center { text-align: center; }
+        .w-full { width: 100%; }
+    </style>
+    <link rel="stylesheet" href="site-header.css">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            Taste <span>Siem Reap</span>
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="index.html" data-i18n="navHome">Home</a></li>
+            <li><a href="res.html" class="active" data-i18n="navRestaurants">Restaurants</a></li>
+            <li><a href="experience.html" data-i18n="navExperience">Experience</a></li>
+            <li><a href="Aboutus.html" data-i18n="navAbout">About Us</a></li>
+        </ul>
+
+        <div class="nav-actions">
+            <div class="language-wrapper" id="languageWrapper">
+                <button class="language-btn" id="languageButton" type="button" aria-label="Language">
+                    <span id="currentLanguage">EN</span>
+                </button>
+                <div class="language-menu" id="languageMenu">
+                    <button class="language-option active" data-language="en" type="button">🇬🇧 English</button>
+                    <button class="language-option" data-language="zh" type="button">🇨🇳 中文</button>
+                    <button class="language-option" data-language="km" type="button">🇰🇭 ខ្មែរ</button>
+                </div>
+            </div>
+
+            <button class="hamburger" id="hamburger" type="button" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+</header>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav-overlay" id="mobileNav">
+    <ul class="mobile-nav-links">
+        <li><a href="index.html" data-i18n="navHome">Home</a></li>
+        <li><a href="res.html" class="active" data-i18n="navRestaurants">Restaurants</a></li>
+        <li><a href="experience.html" data-i18n="navExperience">Experience</a></li>
+        <li><a href="Aboutus.html" data-i18n="navAbout">About Us</a></li>
+    </ul>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="eyebrow" data-i18n="eyebrow">Discover Food in Siem Reap</div>
+    <h1 data-i18n="heroTitle">Taste the <span>Heart</span> of Siem Reap</h1>
+    <p data-i18n="heroText">From local Khmer favourites to international cuisine — discover the best places to eat in Siem Reap.</p>
+</section>
+
+<!-- SWITCH -->
+<div class="menu-switch">
+    <div class="switch-box">
+        <button class="switch-btn" id="btnFood" type="button">
+            <span data-i18n="food">Food</span>
+        </button>
+        <button class="switch-btn active" id="btnDrink" type="button">
+            <span data-i18n="drink">Drink</span>
+        </button>
+    </div>
+</div>
+
+<!-- FOOD PANEL -->
+<div id="panelFood" class="section-panel">
+    <div class="filters">
+        <button class="filter-btn active" data-filter="all" data-i18n="all">All</button>
+        <button class="filter-btn" data-filter="main" data-i18n="mainDishes">Main Dishes</button>
+        <button class="filter-btn" data-filter="noodle" data-i18n="noodles">Noodles</button>
+        <button class="filter-btn" data-filter="rice" data-i18n="rice">Rice</button>
+        <button class="filter-btn" data-filter="snack" data-i18n="snacks">Snacks</button>
+    </div>
+
+    <section class="food-section">
+        <div class="section-heading">
+            <h2 data-i18n="popularFood">Popular Cambodian Food</h2>
+            <p data-i18n="popularFoodText">Find restaurants serving your favorite dishes.</p>
+        </div>
+
+        <div class="food-grid">
+            <article class="food-card" data-category="main">
+                <div class="food-image">
+                    <img src="fishamok.jpg" alt="Fish Amok" loading="lazy">
+                    <span class="food-tag" data-i18n="traditional">Traditional</span>
+                </div>
+                <div class="food-content">
+                    <h3>Fish Amok</h3>
+                    <p data-i18n="fishAmokText">A classic Cambodian dish made with fish, coconut milk, kroeung and fragrant spices.</p>
+                    <div class="food-bottom">
+                        <span class="price">$6 – $12</span>
+                        <button type="button" class="view-food restaurant-trigger" data-food="fish-amok">
+                            <span data-i18n="viewRestaurant">View Restaurant</span> →
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="food-card" data-category="main">
+                <div class="food-image">
+                    <img src="loklak.jpg" alt="Beef Lok Lak" loading="lazy">
+                    <span class="food-tag" data-i18n="popular">Popular</span>
+                </div>
+                <div class="food-content">
+                    <h3>Beef Lok Lak</h3>
+                    <p data-i18n="lokLakText">Tender beef served with fresh vegetables, rice and the famous Cambodian pepper-lime sauce.</p>
+                    <div class="food-bottom">
+                        <span class="price">$5 – $10</span>
+                        <button type="button" class="view-food restaurant-trigger" data-food="lok-lak">
+                            <span data-i18n="viewRestaurant">View Restaurant</span> →
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="food-card" data-category="noodle">
+                <div class="food-image">
+                    <img src="nombachjok.jpg" alt="Nom Banh Chok" loading="lazy">
+                    <span class="food-tag" data-i18n="breakfast">Breakfast</span>
+                </div>
+                <div class="food-content">
+                    <h3>Nom Banh Chok</h3>
+                    <p data-i18n="nomBanhChokText">Cambodian rice noodles served with a fresh fish-based green curry and vegetables.</p>
+                    <div class="food-bottom">
+                        <span class="price">$2 – $6</span>
+                        <button type="button" class="view-food restaurant-trigger" data-food="nom-banh-chok">
+                            <span data-i18n="viewRestaurant">View Restaurant</span> →
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="food-card" data-category="rice">
+                <div class="food-image">
+                    <img src="bay.jpg" alt="Bai Sach Chrouk" loading="lazy">
+                    <span class="food-tag" data-i18n="breakfast">Breakfast</span>
+                </div>
+                <div class="food-content">
+                    <h3>Bai Sach Chrouk</h3>
+                    <p data-i18n="baiSachText">Grilled pork marinated in garlic and coconut milk served with fragrant steamed rice.</p>
+                    <div class="food-bottom">
+                        <span class="price">$2 – $6</span>
+                        <button type="button" class="view-food restaurant-trigger" data-food="bai-sach-chrouk">
+                            <span data-i18n="viewRestaurant">View Restaurant</span> →
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="food-card" data-category="main">
+                <div class="food-image">
+                    <img src="carry.jpg" alt="Khmer Red Curry" loading="lazy">
+                    <span class="food-tag" data-i18n="traditional">Traditional</span>
+                </div>
+                <div class="food-content">
+                    <h3>Khmer Red Curry</h3>
+                    <p data-i18n="khmerCurryText">A rich Cambodian curry prepared with coconut milk, kroeung, vegetables and meat.</p>
+                    <div class="food-bottom">
+                        <span class="price">$5 – $11</span>
+                        <button type="button" class="view-food restaurant-trigger" data-food="khmer-curry">
+                            <span data-i18n="viewRestaurant">View Restaurant</span> →
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="food-card" data-category="snack">
+                <div class="food-image">
+                    <img src="lolo.jpg" alt="Grilled Skewers" loading="lazy">
+                    <span class="food-tag" data-i18n="streetFood">Street Food</span>
+                </div>
+                <div class="food-content">
+                    <h3>Grilled Skewers</h3>
+                    <p data-i18n="skewersText">Delicious Cambodian-style grilled meat skewers commonly enjoyed as a street food snack.</p>
+                    <div class="food-bottom">
+                        <span class="price">$1 – $5</span>
+                        <button type="button" class="view-food restaurant-trigger" data-food="grilled-skewers">
+                            <span data-i18n="viewRestaurant">View Restaurant</span> →
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="food-card" data-category="main">
+                <div class="food-image">
+                    <img src="prhok.jpg" alt="Prahok Ktis" loading="lazy">
+                    <span class="food-tag" data-i18n="traditional">Traditional</span>
+                </div>
+                <div class="food-content">
+                    <h3>Prahok Ktis</h3>
+                    <p data-i18n="prahokText">A creamy Cambodian dip made with fermented fish, coconut milk, pork and aromatic kroeung.</p>
+                    <div class="food-bottom">
+                        <span class="price">$4 – $9</span>
+                        <button type="button" class="view-food restaurant-trigger" data-food="prahok-ktis">
+                            <span data-i18n="viewRestaurant">View Restaurant</span> →
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="food-card" data-category="snack">
+                <div class="food-image">
+                    <img src="nam.jpg" alt="Fresh Spring Rolls" loading="lazy">
+                    <span class="food-tag" data-i18n="fresh">Fresh</span>
+                </div>
+                <div class="food-content">
+                    <h3>Fresh Spring Rolls</h3>
+                    <p data-i18n="springRollsText">Fresh vegetables, herbs and noodles wrapped in soft rice paper and served with dipping sauce.</p>
+                    <div class="food-bottom">
+                        <span class="price">$3 – $7</span>
+                        <button type="button" class="view-food restaurant-trigger" data-food="spring-rolls">
+                            <span data-i18n="viewRestaurant">View Restaurant</span> →
+                        </button>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+</div>
+
+<!-- DRINK PANEL -->
+<div id="panelDrink" class="section-panel active">
+
+    <div class="filters">
+        <button class="filter-btn active" data-filter="all" data-i18n="filterAll">All</button>
+        <button class="filter-btn" data-filter="cozy" data-i18n="filterCozy">Cozy</button>
+        <button class="filter-btn" data-filter="natural" data-i18n="filterNatural">Natural</button>
+        <button class="filter-btn" data-filter="traditional" data-i18n="filterTraditional">Traditional</button>
+        <button class="filter-btn" data-filter="modern" data-i18n="filterModern">Modern</button>
+        <button class="filter-btn" data-filter="minimalist" data-i18n="filterMinimalist">Minimalist</button>
+        <button class="filter-btn" data-filter="rustic" data-i18n="filterRustic">Rustic</button>
+    </div>
+
+    <section class="food-section">
+        <div class="section-heading">
+            <h2 data-i18n="refreshingDrinks">Refreshing Drinks in Siem Reap</h2>
+            <p data-i18n="refreshingDrinksText">Click any drink to see where you can find it in Siem Reap.</p>
+        </div>
+
+        <div class="food-grid">
+            <article class="food-card" data-category="cozy">
+                <div class="food-image">
+                    <img src="cofe.jpg" alt="The Corner Café" loading="lazy">
+                    <span class="food-tag drink-tag-cozy" data-i18n="tagCozy">Cozy</span>
+                </div>
+                <div class="food-content">
+                    <h3 data-i18n="drinkCoffee">The Corner Café</h3>
+                    <p data-i18n="drinkCoffeeDesc">Tucked-away warmth and the smell of strong coffee. A quiet corner where locals linger, the ice clinks softly, and condensed milk sweetens every slow sip. The vibe? Pure, unhurried comfort.</p>
+                    <div class="food-bottom">
+                        <span class="price">$2 – $5</span>
+                        <button type="button" class="view-food restaurant-trigger" data-drink="khmer-coffee">
+                            <span data-i18n="viewRestaurant">View Restaurant</span> →
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="food-card" data-category="natural">
+                <div class="food-image">
+                    <img src="coco.jpg" alt="The Green Escape" loading="lazy">
+                    <span class="food-tag drink-tag-natural" data-i18n="tagNatural">Natural</span>
+                </div>
+                <div class="food-content">
+                    <h3 data-i18n="drinkCoconut">The Green Escape</h3>
+                    <p data-i18n="drinkCoconutDesc">Barefoot ease under leafy shade. A young coconut cracked open, straw in hand — the vibe is fresh, earthy, and completely unplugged from the city rush.</p>
+                    <div class="food-bottom">
+                        <span class="price">$2 – $4</span>
+                        <button type="button" class="view-food restaurant-trigger" data-drink="fresh-coconut">
+                            <span data-i18n="viewRestaurant">View Restaurant</span> →
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="food-card" data-category="traditional">
+                <div class="food-image">
+                    <img src="milktea.jpg" alt="The Heritage Table" loading="lazy">
+                    <span class="food-tag drink-tag-traditional" data-i18n="tagTraditional">Traditional</span>
+                </div>
+                <div class="food-content">
+                    <h3 data-i18n="drinkTea">The Heritage Table</h3>
+                    <p data-i18n="drinkTeaDesc">Wooden chairs, old stories, and tea poured the way grandmothers did. The vibe is rooted in Khmer tradition — warm, familiar, and full of memory.</p>
+                    <div class="food-bottom">
+                        <span class="price">$2 – $4</span>
+                        <button type="button" class="view-food restaurant-trigger" data-drink="cambodian-tea">
+                            <span data-i18n="viewRestaurant">View Restaurant</span> →
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="food-card" data-category="modern">
+                <div class="food-image">
+                    <img src="mango.jpg" alt="The Bright Blend" loading="lazy">
+                    <span class="food-tag drink-tag-modern" data-i18n="tagModern">Modern</span>
+                </div>
+                <div class="food-content">
+                    <h3 data-i18n="drinkMango">The Bright Blend</h3>
+                    <p data-i18n="drinkMangoDesc">Clean lines, soft playlists, and a smoothie that looks as good as it tastes. The vibe is fresh, urban, and effortlessly stylish — Siem Reap's new café energy.</p>
+                    <div class="food-bottom">
+                        <span class="price">$2 – $5</span>
+                        <button type="button" class="view-food restaurant-trigger" data-drink="mango-smoothie">
+                            <span data-i18n="viewRestaurant">View Restaurant</span> →
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="food-card" data-category="minimalist">
+                <div class="food-image">
+                    <img src="lemon.jpg" alt="The Quiet Cup" loading="lazy">
+                    <span class="food-tag drink-tag-minimalist" data-i18n="tagMinimalist">Minimalist</span>
+                </div>
+                <div class="food-content">
+                    <h3 data-i18n="drinkLime">The Quiet Cup</h3>
+                    <p data-i18n="drinkLimeDesc">Nothing loud, nothing extra. Just a lime soda, a clean table, and space to think. The vibe is calm, minimal, and refreshingly simple.</p>
+                    <div class="food-bottom">
+                        <span class="price">$2 – $4</span>
+                        <button type="button" class="view-food restaurant-trigger" data-drink="lime-soda">
+                            <span data-i18n="viewRestaurant">View Restaurant</span> →
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="food-card" data-category="rustic">
+                <div class="food-image">
+                    <img src="pov.jpg" alt="The Street Press" loading="lazy">
+                    <span class="food-tag drink-tag-rustic" data-i18n="tagRustic">Rustic</span>
+                </div>
+                <div class="food-content">
+                    <h3 data-i18n="drinkSugarCane">The Street Press</h3>
+                    <p data-i18n="drinkSugarCaneDesc">Hands moving fast, cane stalks cracking, ice tumbling into a cup. The vibe is raw, loud, and alive — real Siem Reap street energy at its best.</p>
+                    <div class="food-bottom">
+                        <span class="price">$1 – $3</span>
+                        <button type="button" class="view-food restaurant-trigger" data-drink="sugar-cane">
+                            <span data-i18n="viewRestaurant">View Restaurant</span> →
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="food-card" data-category="modern">
+                <div class="food-image">
+                    <img src="ahvocado.jpg" alt="The Creamy Scene" loading="lazy">
+                    <span class="food-tag drink-tag-modern" data-i18n="tagModern">Modern</span>
+                </div>
+                <div class="food-content">
+                    <h3 data-i18n="drinkAvocado">The Creamy Scene</h3>
+                    <p data-i18n="drinkAvocadoDesc">A cool, creamy drink in a bright space with plants and slow music. The vibe is laid-back luxe — the kind of café you never want to leave.</p>
+                    <div class="food-bottom">
+                        <span class="price">$2 – $5</span>
+                        <button type="button" class="view-food restaurant-trigger" data-drink="avocado-smoothie">
+                            <span data-i18n="viewRestaurant">View Restaurant</span> →
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="food-card" data-category="minimalist">
+                <div class="food-image">
+                    <img src="pas.jpg" alt="The Tropical Pause" loading="lazy">
+                    <span class="food-tag drink-tag-minimalist" data-i18n="tagMinimalist">Minimalist</span>
+                </div>
+                <div class="food-content">
+                    <h3 data-i18n="drinkPassion">The Tropical Pause</h3>
+                    <p data-i18n="drinkPassionDesc">A single bright glass, a quiet moment, and a burst of tropical tang. The vibe is easy and uncomplicated — a small pause in a busy day.</p>
+                    <div class="food-bottom">
+                        <span class="price">$2 – $5</span>
+                        <button type="button" class="view-food restaurant-trigger" data-drink="passion-fruit">
+                            <span data-i18n="viewRestaurant">View Restaurant</span> →
+                        </button>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+</div>
+
+<!-- FEATURED -->
+<section class="featured">
+    <div class="featured-box">
+        <div class="eyebrow" data-i18n="exploreMore">Explore More</div>
+        <h2 data-i18n="featuredTitle">Find Your Next Cambodian Experience</h2>
+        <p data-i18n="featuredText">Explore local restaurants, traditional dishes, drinks and unique food experiences around Siem Reap.</p>
+    </div>
+</section>
+
+<!-- RESTAURANT MODAL -->
+<div class="restaurant-modal" id="restaurantModal" aria-hidden="true">
+    <div class="restaurant-modal-box" role="dialog" aria-modal="true" aria-labelledby="restaurantModalTitle">
+        <div class="restaurant-modal-head">
+            <div>
+                <h2 id="restaurantModalTitle">Restaurants to Try</h2>
+                <p id="restaurantModalSubtitle">Places in Siem Reap where you can find this.</p>
+            </div>
+            <button type="button" class="close-restaurant" id="closeRestaurant" aria-label="Close">×</button>
+        </div>
+        <div class="restaurant-list" id="restaurantList"></div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-grid">
+        <div class="footer-brand">
+            <h2>Taste <span>Siem Reap</span></h2>
+            <p data-i18n="footerDescription">Your guide to the best restaurants, authentic experiences and travel tips in Siem Reap, Cambodia.</p>
+            <div class="socials">
+                <span class="social">f</span>
+                <span class="social">◎</span>
+                <span class="social">♪</span>
+                <span class="social">▶</span>
+            </div>
+        </div>
+
+        <div class="footer-column">
+            <h3 data-i18n="exploreFooter">EXPLORE</h3>
+            <a href="res.html" data-i18n="navRestaurants">Restaurants</a>
+            <a href="experience.html" data-i18n="navExperience">Experience</a>
+            <a href="tip.html" data-i18n="travelTips">Travel Tips</a>
+            <a href="Aboutus.html" data-i18n="navAbout">About Us</a>
+        </div>
+
+        <div class="footer-column">
+            <h3 data-i18n="informationFooter">INFORMATION</h3>
+            <a href="hari.html" data-i18n="heritage">Heritage</a>
+            <a href="tvr.html" data-i18n="travelGuide">Travel Guide</a>
+            <a href="abtsr.html" data-i18n="aboutSiemReap">About Siem Reap</a>
+            <a href="faq.html" data-i18n="faq">FAQ</a>
+        </div>
+
+        <div class="footer-column">
+            <h3 data-i18n="supportFooter">SUPPORT</h3>
+            <a href="contactus.html" data-i18n="contactUs">Contact Us</a>
+            <a href="prv.html" data-i18n="privacy">Privacy Policy</a>
+            <a href="tou.html" data-i18n="terms">Terms of Use</a>
+        </div>
+    </div>
+
+    <div class="copyright" data-i18n="copyright">
+        © 2026 Taste Siem Reap. All rights reserved.
+    </div>
+</footer>
+
+<script>
+    const translations = {
+        en: {
+            navHome: "Home", navRestaurants: "Restaurants", navExperience: "Experience", navAbout: "About Us",
+            eyebrow: "Discover Food in Siem Reap",
+            heroTitle: 'Taste the <span>Heart</span> of Siem Reap',
+            heroText: "From local Khmer favourites to international cuisine — discover the best places to eat in Siem Reap.",
+            food: "Food", drink: "Drink",
+            all: "All", mainDishes: "Main Dishes", noodles: "Noodles", rice: "Rice", snacks: "Snacks",
+            popularFood: "Popular Cambodian Food",
+            popularFoodText: "Find restaurants serving your favorite dishes.",
+            traditional: "Traditional", popular: "Popular", breakfast: "Breakfast",
+            streetFood: "Street Food", fresh: "Fresh",
+            fishAmokText: "A classic Cambodian dish made with fish, coconut milk, kroeung and fragrant spices.",
+            lokLakText: "Tender beef served with fresh vegetables, rice and the famous Cambodian pepper-lime sauce.",
+            nomBanhChokText: "Cambodian rice noodles served with a fresh fish-based green curry and vegetables.",
+            baiSachText: "Grilled pork marinated in garlic and coconut milk served with fragrant steamed rice.",
+            khmerCurryText: "A rich Cambodian curry prepared with coconut milk, kroeung, vegetables and meat.",
+            skewersText: "Delicious Cambodian-style grilled meat skewers commonly enjoyed as a street food snack.",
+            prahokText: "A creamy Cambodian dip made with fermented fish, coconut milk, pork and aromatic kroeung.",
+            springRollsText: "Fresh vegetables, herbs and noodles wrapped in soft rice paper and served with dipping sauce.",
+            viewRestaurant: "View Restaurant",
+            exploreMore: "Explore More",
+            featuredTitle: "Find Your Next Cambodian Experience",
+            featuredText: "Explore local restaurants, traditional dishes, drinks and unique food experiences around Siem Reap.",
+            restaurantsToTry: "Restaurants to Try",
+            placesForDish: "Places in Siem Reap where you can find this.",
+            viewMaps: "View on Google Maps →",
+            fishAmokTitle: "Fish Amok Restaurants",
+            fishAmokSubtitle: "Restaurants in Siem Reap where you can try Fish Amok.",
+            lokLakTitle: "Beef Lok Lak Restaurants",
+            lokLakSubtitle: "Restaurants in Siem Reap where you can try Beef Lok Lak.",
+            nomBanhChokTitle: "Nom Banh Chok Restaurants",
+            nomBanhChokSubtitle: "Places to find traditional Cambodian noodles.",
+            baiSachTitle: "Bai Sach Chrouk Restaurants",
+            baiSachSubtitle: "Places to enjoy Cambodian grilled pork and rice.",
+            khmerCurryTitle: "Khmer Curry Restaurants",
+            khmerCurrySubtitle: "Restaurants serving traditional Cambodian curry.",
+            skewersTitle: "Grilled Skewer Restaurants",
+            skewersSubtitle: "Places around Siem Reap for grilled street-food style skewers.",
+            prahokTitle: "Prahok Ktis Restaurants",
+            prahokSubtitle: "Places where you can experience traditional Prahok Ktis.",
+            springRollsTitle: "Fresh Spring Roll Restaurants",
+            springRollsSubtitle: "Places serving fresh Cambodian-style spring rolls.",
+            filterAll: "All", filterCozy: "Cozy", filterNatural: "Natural", filterTraditional: "Traditional",
+            filterModern: "Modern", filterMinimalist: "Minimalist", filterRustic: "Rustic",
+            refreshingDrinks: "Refreshing Drinks in Siem Reap",
+            refreshingDrinksText: "Click any drink to see where you can find it in Siem Reap.",
+            tagCozy: "Cozy", tagNatural: "Natural", tagTraditional: "Traditional",
+            tagModern: "Modern", tagMinimalist: "Minimalist", tagRustic: "Rustic",
+            drinkCoffee: "The Corner Café",
+            drinkCoffeeDesc: "Tucked-away warmth and the smell of strong coffee. A quiet corner where locals linger, the ice clinks softly, and condensed milk sweetens every slow sip. The vibe? Pure, unhurried comfort.",
+            drinkTea: "The Heritage Table",
+            drinkTeaDesc: "Wooden chairs, old stories, and tea poured the way grandmothers did. The vibe is rooted in Khmer tradition — warm, familiar, and full of memory.",
+            drinkSugarCane: "The Street Press",
+            drinkSugarCaneDesc: "Hands moving fast, cane stalks cracking, ice tumbling into a cup. The vibe is raw, loud, and alive — real Siem Reap street energy at its best.",
+            drinkCoconut: "The Green Escape",
+            drinkCoconutDesc: "Barefoot ease under leafy shade. A young coconut cracked open, straw in hand — the vibe is fresh, earthy, and completely unplugged from the city rush.",
+            drinkMango: "The Bright Blend",
+            drinkMangoDesc: "Clean lines, soft playlists, and a smoothie that looks as good as it tastes. The vibe is fresh, urban, and effortlessly stylish — Siem Reap's new café energy.",
+            drinkPassion: "The Tropical Pause",
+            drinkPassionDesc: "A single bright glass, a quiet moment, and a burst of tropical tang. The vibe is easy and uncomplicated — a small pause in a busy day.",
+            drinkLime: "The Quiet Cup",
+            drinkLimeDesc: "Nothing loud, nothing extra. Just a lime soda, a clean table, and space to think. The vibe is calm, minimal, and refreshingly simple.",
+            drinkAvocado: "The Creamy Scene",
+            drinkAvocadoDesc: "A cool, creamy drink in a bright space with plants and slow music. The vibe is laid-back luxe — the kind of café you never want to leave.",
+            viewMap: "View on Google Maps →",
+            footerDescription: "Your guide to the best restaurants, authentic experiences and travel tips in Siem Reap, Cambodia.",
+            exploreFooter: "EXPLORE", informationFooter: "INFORMATION", supportFooter: "SUPPORT",
+            heritage: "Heritage", travelGuide: "Travel Guide", aboutSiemReap: "About Siem Reap",
+            faq: "FAQ", contactUs: "Contact Us", privacy: "Privacy Policy", terms: "Terms of Use",
+            travelTips: "Travel Tips",
+            copyright: "© 2026 Taste Siem Reap. All rights reserved."
+        },
+        zh: {
+            navHome: "首页", navRestaurants: "餐厅", navExperience: "体验", navAbout: "关于我们",
+            eyebrow: "探索暹粒美食",
+            heroTitle: '品味暹粒的<span>心脏</span>',
+            heroText: "从本地高棉美食到国际佳肴——探索暹粒最佳用餐地点。",
+            food: "美食", drink: "饮品",
+            all: "全部", mainDishes: "主菜", noodles: "面食", rice: "米饭", snacks: "小吃",
+            popularFood: "热门柬埔寨美食",
+            popularFoodText: "寻找提供您喜爱菜肴的餐厅。",
+            traditional: "传统", popular: "热门", breakfast: "早餐",
+            streetFood: "街头美食", fresh: "新鲜",
+            fishAmokText: "经典柬埔寨菜肴，由鱼、椰奶、高棉香料酱和芳香香料制成。",
+            lokLakText: "嫩牛肉搭配新鲜蔬菜、米饭以及著名的柬埔寨胡椒青柠酱。",
+            nomBanhChokText: "柬埔寨米粉配以新鲜鱼肉绿咖喱和蔬菜。",
+            baiSachText: "用大蒜和椰奶腌制的烤猪肉，搭配香喷喷的米饭。",
+            khmerCurryText: "浓郁的柬埔寨咖喱，由椰奶、高棉香料酱、蔬菜和肉类制成。",
+            skewersText: "美味的柬埔寨风味烤肉串，是当地常见的街头小吃。",
+            prahokText: "由发酵鱼、椰奶、猪肉和高棉香料酱制成的奶油风味柬埔寨蘸酱。",
+            springRollsText: "新鲜蔬菜、香草和米粉包裹在柔软的米纸中，并搭配蘸酱。",
+            viewRestaurant: "查看餐厅",
+            exploreMore: "探索更多",
+            featuredTitle: "寻找您的下一次柬埔寨体验",
+            featuredText: "探索暹粒当地餐厅、传统菜肴、饮品和独特的美食体验。",
+            restaurantsToTry: "推荐餐厅",
+            placesForDish: "您可以在暹粒的这些地方找到。",
+            viewMaps: "在 Google 地图查看 →",
+            fishAmokTitle: "鱼阿莫克餐厅",
+            fishAmokSubtitle: "暹粒可以品尝鱼阿莫克的餐厅。",
+            lokLakTitle: "牛肉 Lok Lak 餐厅",
+            lokLakSubtitle: "暹粒可以品尝牛肉 Lok Lak 的餐厅。",
+            nomBanhChokTitle: "Nom Banh Chok 餐厅",
+            nomBanhChokSubtitle: "寻找传统柬埔寨面条的地方。",
+            baiSachTitle: "Bai Sach Chrouk 餐厅",
+            baiSachSubtitle: "享用柬埔寨烤猪肉饭的地方。",
+            khmerCurryTitle: "高棉咖喱餐厅",
+            khmerCurrySubtitle: "供应传统柬埔寨咖喱的餐厅。",
+            skewersTitle: "烤串餐厅",
+            skewersSubtitle: "暹粒周边提供街头风味烤串的地方。",
+            prahokTitle: "Prahok Ktis 餐厅",
+            prahokSubtitle: "可以体验传统 Prahok Ktis 的地方。",
+            springRollsTitle: "新鲜春卷餐厅",
+            springRollsSubtitle: "供应新鲜柬埔寨风味春卷的地方。",
+            filterAll: "全部", filterCozy: "舒适", filterNatural: "天然", filterTraditional: "传统",
+            filterModern: "现代", filterMinimalist: "极简", filterRustic: "乡村",
+            refreshingDrinks: "暹粒清爽饮品",
+            refreshingDrinksText: "点击任意饮品，查看在暹粒哪里可以找到。",
+            tagCozy: "舒适", tagNatural: "天然", tagTraditional: "传统",
+            tagModern: "现代", tagMinimalist: "极简", tagRustic: "乡村",
+            drinkCoffee: "街角咖啡馆",
+            drinkCoffeeDesc: "隐藏的温暖与浓郁咖啡香气。安静的角落，当地人驻足，冰块轻响，炼乳为每一口慢慢啜饮增添甜意。氛围？纯粹、悠闲的舒适。",
+            drinkTea: "传统茶桌",
+            drinkTeaDesc: "木椅、老故事，以及祖母辈传下来的泡茶方式。氛围扎根于高棉传统——温暖、熟悉、充满回忆。",
+            drinkSugarCane: "街头压榨",
+            drinkSugarCaneDesc: "双手飞快，甘蔗噼啪作响，冰块落入杯中。氛围原始、热闹、充满活力——暹粒真实的街头能量。",
+            drinkCoconut: "绿色逃离",
+            drinkCoconutDesc: "树荫下的赤脚轻松。一颗年轻椰子敲开，吸管在手——氛围清新、质朴，完全脱离城市喧嚣。",
+            drinkMango: "明亮融合",
+            drinkMangoDesc: "干净的线条、柔和的歌单，一杯好看又好喝的冰沙。氛围清新、都市、轻松时尚——暹粒新咖啡馆能量。",
+            drinkPassion: "热带小憩",
+            drinkPassionDesc: "一杯明亮的饮品，一个安静的时刻，一阵热带酸甜。氛围轻松简单——忙碌一天中的小停顿。",
+            drinkLime: "安静一杯",
+            drinkLimeDesc: "没有喧闹，没有多余。只有一杯青柠苏打、一张干净的桌子、思考的空间。氛围平静、极简、清爽简单。",
+            drinkAvocado: "奶油场景",
+            drinkAvocadoDesc: "明亮空间里的凉爽奶油饮品，绿植与慢音乐相伴。氛围悠闲奢华——那种你不想离开的咖啡馆。",
+            viewMap: "在 Google 地图查看 →",
+            footerDescription: "你的暹粒旅行指南，带你发现最佳餐厅、真实体验和旅行贴士。",
+            exploreFooter: "探索", informationFooter: "信息", supportFooter: "支持",
+            heritage: "文化遗产", travelGuide: "旅行指南", aboutSiemReap: "关于暹粒",
+            faq: "常见问题", contactUs: "联系我们", privacy: "隐私政策", terms: "使用条款",
+            travelTips: "旅行贴士",
+            copyright: "© 2026 Taste Siem Reap。版权所有。"
+        },
+        km: {
+            navHome: "ទំព័រដើម", navRestaurants: "ភោជនីយដ្ឋាន", navExperience: "បទពិសោធន៍", navAbout: "អំពីយើង",
+            eyebrow: "ស្វែងរកអាហារនៅសៀមរាប",
+            heroTitle: 'ស្វែងយល់ពី<span>បេះដូង</span>នៃសៀមរាប',
+            heroText: "ពីម្ហូបខ្មែរក្នុងស្រុករហូតដល់ម្ហូបអន្តរជាតិ — ស្វែងរកកន្លែងញ៉ាំអាហារល្អបំផុតនៅសៀមរាប។",
+            food: "ម្ហូប", drink: "ភេសជ្ជៈ",
+            all: "ទាំងអស់", mainDishes: "ម្ហូបចម្បង", noodles: "មី", rice: "បាយ", snacks: "អាហារសម្រន់",
+            popularFood: "ម្ហូបខ្មែរពេញនិយម",
+            popularFoodText: "ស្វែងរកភោជនីយដ្ឋានដែលមានម្ហូបដែលអ្នកចូលចិត្ត។",
+            traditional: "បុរាណ", popular: "ពេញនិយម", breakfast: "អាហារពេលព្រឹក",
+            streetFood: "អាហារតាមផ្លូវ", fresh: "ស្រស់",
+            fishAmokText: "ម្ហូបខ្មែរបុរាណធ្វើពីត្រី ទឹកដោះដូង គ្រឿង និងគ្រឿងទេសក្រអូប។",
+            lokLakText: "សាច់គោទន់ៗជាមួយបន្លែស្រស់ បាយ និងទឹកជ្រលក់ម្រេចក្រូចឆ្មារខ្មែរ។",
+            nomBanhChokText: "នំបញ្ចុកខ្មែរ ជាមួយទឹកការីត្រីបៃតងស្រស់ និងបន្លែ។",
+            baiSachText: "សាច់ជ្រូកអាំងប្រឡាក់ខ្ទឹមស និងទឹកដោះដូង បម្រើជាមួយបាយក្រអូប។",
+            khmerCurryText: "ការីខ្មែរដ៏ឈ្ងុយឆ្ងាញ់ធ្វើពីទឹកដោះដូង គ្រឿង បន្លែ និងសាច់។",
+            skewersText: "សាច់អាំងជ្រក់លើឈើតាមបែបខ្មែរ ដែលពេញនិយមជាអាហារតាមផ្លូវ។",
+            prahokText: "ប្រហុកខ្ទិះធ្វើពីប្រហុក ទឹកដោះដូង សាច់ជ្រូក និងគ្រឿងក្រអូប។",
+            springRollsText: "បន្លែស្រស់ ស្លឹកជី និងមីរុំជាមួយសន្លឹកបាយទន់ៗ និងបម្រើជាមួយទឹកជ្រលក់។",
+            viewRestaurant: "មើលភោជនីយដ្ឋាន",
+            exploreMore: "ស្វែងយល់បន្ថែម",
+            featuredTitle: "ស្វែងរកបទពិសោធន៍ខ្មែរបន្ទាប់របស់អ្នក",
+            featuredText: "ស្វែងរកភោជនីយដ្ឋានក្នុងតំបន់ ម្ហូបបុរាណ ភេសជ្ជៈ និងបទពិសោធន៍អាហារពិសេសនៅជុំវិញសៀមរាប។",
+            restaurantsToTry: "ភោជនីយដ្ឋានដែលគួរសាក",
+            placesForDish: "កន្លែងនៅសៀមរាបដែលអ្នកអាចរកបាន។",
+            viewMaps: "មើលនៅលើ Google Maps →",
+            fishAmokTitle: "ភោជនីយដ្ឋាន អាម៉ុកត្រី",
+            fishAmokSubtitle: "ភោជនីយដ្ឋាននៅសៀមរាបដែលអ្នកអាចសាកល្បងអាម៉ុកត្រី។",
+            lokLakTitle: "ភោជនីយដ្ឋាន សាច់គោឡុកឡាក់",
+            lokLakSubtitle: "ភោជនីយដ្ឋាននៅសៀមរាបដែលអ្នកអាចសាកល្បងសាច់គោឡុកឡាក់។",
+            nomBanhChokTitle: "ភោជនីយដ្ឋាន នំបញ្ចុក",
+            nomBanhChokSubtitle: "កន្លែងដែលអ្នកអាចរកមីខ្មែរបុរាណ។",
+            baiSachTitle: "ភោជនីយដ្ឋាន បាយសាច់ជ្រូក",
+            baiSachSubtitle: "កន្លែងសម្រាប់ទទួលទានបាយសាច់ជ្រូកអាំងខ្មែរ។",
+            khmerCurryTitle: "ភោជនីយដ្ឋាន ការីខ្មែរ",
+            khmerCurrySubtitle: "ភោជនីយដ្ឋានដែលបម្រើការីខ្មែរបុរាណ។",
+            skewersTitle: "ភោជនីយដ្ឋាន សាច់អាំងជ្រក់",
+            skewersSubtitle: "កន្លែងនៅជុំវិញសៀមរាបសម្រាប់សាច់អាំងជ្រក់តាមបែបអាហារតាមផ្លូវ។",
+            prahokTitle: "ភោជនីយដ្ឋាន ប្រហុកខ្ទិះ",
+            prahokSubtitle: "កន្លែងដែលអ្នកអាចទទួលបទពិសោធន៍ប្រហុកខ្ទិះបុរាណ។",
+            springRollsTitle: "ភោជនីយដ្ឋាន ណំរុំស្រស់",
+            springRollsSubtitle: "កន្លែងដែលបម្រើណំរុំស្រស់តាមបែបខ្មែរ។",
+            filterAll: "ទាំងអស់", filterCozy: "កក់ក្តៅ", filterNatural: "ធម្មជាតិ", filterTraditional: "បុរាណ",
+            filterModern: "ទំនើប", filterMinimalist: "មិនិមល", filterRustic: "ជនបទ",
+            refreshingDrinks: "ភេសជ្ជៈស្រស់ស្រាយនៅសៀមរាប",
+            refreshingDrinksText: "ចុចលើភេសជ្ជៈណាមួយ ដើម្បីមើលកន្លែងដែលអ្នកអាចរកបាននៅសៀមរាប។",
+            tagCozy: "កក់ក្តៅ", tagNatural: "ធម្មជាតិ", tagTraditional: "បុរាណ",
+            tagModern: "ទំនើប", tagMinimalist: "មិនិមល", tagRustic: "ជនបទ",
+            drinkCoffee: "ហាងកាហ្វេជ្រុង",
+            drinkCoffeeDesc: "ភាពកក់ក្តៅដែលលាក់កំបាំង និងក្លិនកាហ្វេខ្លាំង។ ជ្រុងស្ងប់ស្ងាត់ដែលអ្នកស្រុកឈប់សម្រាក ទឹកកកប៉ះស្រាលៗ ហើយទឹកដោះគោផ្អែមបន្ថែមភាពផ្អែមដល់រាល់ការផឹកយឺតៗ។",
+            drinkTea: "តុបុរាណ",
+            drinkTeaDesc: "កៅអីឈើ រឿងចាស់ៗ និងតែដែលចាក់ដូចជីដូនជីតា។ បរិយាកាសចាក់ឫសក្នុងប្រពៃណីខ្មែរ — កក់ក្តៅ ស្គាល់គ្នា និងពោរពេញដោយការចងចាំ។",
+            drinkSugarCane: "ការច្របាច់តាមផ្លូវ",
+            drinkSugarCaneDesc: "ដៃផ្លាស់ប្តូរលឿន ដើមអំពៅបែក ទឹកកកធ្លាក់ចូលកែវ។ បរិយាកាសដើម ខ្លាំង និងរស់រវើក — ថាមពលតាមផ្លូវពិតរបស់សៀមរាប។",
+            drinkCoconut: "ការរត់គេចពណ៌បៃតង",
+            drinkCoconutDesc: "ភាពស្រួលជើងទទេក្រោមម្លប់ស្លឹក។ ដូងខ្ចីបំបែក ចាប់ចុងស្រូប — បរិយាកាសស្រស់ ដី និងដកចេញពីភាពរវល់ទីក្រុងទាំងស្រុង។",
+            drinkMango: "ការលាយភ្លឺ",
+            drinkMangoDesc: "ខ្សែស្អាត បញ្ជីចម្រៀងស្រាល និងស្មូតធីដែលមើលទៅស្អាតដូចរសជាតិ។ បរិយាកាសស្រស់ ទីក្រុង និងទាន់សម័យ — ថាមពលហាងកាហ្វេថ្មីរបស់សៀមរាប។",
+            drinkPassion: "ការផ្អាកត្រូពិច",
+            drinkPassionDesc: "កែវភ្លឺមួយ ពេលវេលាស្ងប់ស្ងាត់ និងរសជាតិត្រូពិចជូរផ្អែម។ បរិយាកាសស្រួល និងមិនស្មុគស្មាញ — ការផ្អាកតូចក្នុងថ្ងៃរវល់។",
+            drinkLime: "កែវស្ងប់ស្ងាត់",
+            drinkLimeDesc: "គ្មានសំឡេងខ្លាំង គ្មានអ្វីបន្ថែម។ គ្រាន់តែសូដាក្រូចឆ្មា តុស្អាត និងកន្លែងគិត។ បរិយាកាសស្ងប់ស្ងាត់ មិនិមល និងសាមញ្ញស្រស់ស្រាយ។",
+            drinkAvocado: "ឆាកក្រែម",
+            drinkAvocadoDesc: "ភេសជ្ជៈត្រជាក់ និងក្រែមក្នុងកន្លែងភ្លឺជាមួយរុក្ខជាតិ និងតន្ត្រីយឺត។ បរិយាកាសប្រណីតស្រួល — ហាងកាហ្វេដែលអ្នកមិនចង់ចាកចេញ។",
+            viewMap: "មើលលើ Google Maps →",
+            footerDescription: "មគ្គុទេសក៍របស់អ្នកទៅកាន់ភោជនីយដ្ឋានល្អៗ បទពិសោធន៍ពិត និងគន្លឹះធ្វើដំណើរនៅសៀមរាប។",
+            exploreFooter: "ស្វែងរក", informationFooter: "ព័ត៌មាន", supportFooter: "ជំនួយ",
+            heritage: "បេតិកភណ្ឌ", travelGuide: "មគ្គុទេសក៍ធ្វើដំណើរ", aboutSiemReap: "អំពីសៀមរាប",
+            faq: "សំណួរដែលសួរញឹកញាប់", contactUs: "ទាក់ទងយើង",
+            privacy: "គោលការណ៍ឯកជនភាព", terms: "លក្ខខណ្ឌប្រើប្រាស់",
+            travelTips: "គន្លឹះធ្វើដំណើរ",
+            copyright: "© 2026 Taste Siem Reap។ រក្សាសិទ្ធិគ្រប់យ៉ាង។"
+        }
+    };
+
+    const foodRestaurantData = {
+        "fish-amok": { titleKey: "fishAmokTitle", subtitleKey: "fishAmokSubtitle", restaurants: [
+            { name: "Malis Siem Reap", location: "Wat Bo Village, Siem Reap", rating: "4.8", map: "https://www.google.com/maps/search/?api=1&query=Malis+Siem+Reap" },
+            { name: "Chanrey Tree", location: "Wat Bo Road, Siem Reap", rating: "4.7", map: "https://www.google.com/maps/search/?api=1&query=Chanrey+Tree+Siem+Reap" },
+            { name: "Cuisine Wat Damnak", location: "Wat Damnak Village, Siem Reap", rating: "4.9", map: "https://www.google.com/maps/search/?api=1&query=Cuisine+Wat+Damnak+Siem+Reap" }
+        ]},
+        "lok-lak": { titleKey: "lokLakTitle", subtitleKey: "lokLakSubtitle", restaurants: [
+            { name: "Chanrey Tree", location: "Wat Bo Road, Siem Reap", rating: "4.7", map: "https://www.google.com/maps/search/?api=1&query=Chanrey+Tree+Siem+Reap" },
+            { name: "Malis Siem Reap", location: "Wat Bo Village, Siem Reap", rating: "4.8", map: "https://www.google.com/maps/search/?api=1&query=Malis+Siem+Reap" },
+            { name: "Marum", location: "Near Wat Polanka, Siem Reap", rating: "4.6", map: "https://www.google.com/maps/search/?api=1&query=Marum+Siem+Reap" }
+        ]},
+        "nom-banh-chok": { titleKey: "nomBanhChokTitle", subtitleKey: "nomBanhChokSubtitle", restaurants: [
+            { name: "Sister Srey Cafe", location: "Pokambor Avenue, Siem Reap", rating: "4.6", map: "https://www.google.com/maps/search/?api=1&query=Sister+Srey+Cafe+Siem+Reap" },
+            { name: "Tevy's Place", location: "Wat Bo Area, Siem Reap", rating: "4.7", map: "https://www.google.com/maps/search/?api=1&query=Tevys+Place+Siem+Reap" },
+            { name: "Khmer Kitchen", location: "Old Market Area, Siem Reap", rating: "4.5", map: "https://www.google.com/maps/search/?api=1&query=Khmer+Kitchen+Siem+Reap" }
+        ]},
+        "bai-sach-chrouk": { titleKey: "baiSachTitle", subtitleKey: "baiSachSubtitle", restaurants: [
+            { name: "Bayon Pastry School", location: "Slorkram, Siem Reap", rating: "4.7", map: "https://www.google.com/maps/search/?api=1&query=Bayon+Pastry+School+Siem+Reap" },
+            { name: "The Little Red Fox Espresso", location: "Old Market Area, Siem Reap", rating: "4.5", map: "https://www.google.com/maps/search/?api=1&query=Little+Red+Fox+Espresso+Siem+Reap" },
+            { name: "Brother Bong", location: "Central Siem Reap", rating: "4.6", map: "https://www.google.com/maps/search/?api=1&query=Brother+Bong+Siem+Reap" }
+        ]},
+        "khmer-curry": { titleKey: "khmerCurryTitle", subtitleKey: "khmerCurrySubtitle", restaurants: [
+            { name: "Cuisine Wat Damnak", location: "Wat Damnak Village, Siem Reap", rating: "4.9", map: "https://www.google.com/maps/search/?api=1&query=Cuisine+Wat+Damnak+Siem+Reap" },
+            { name: "Chanrey Tree", location: "Wat Bo Road, Siem Reap", rating: "4.7", map: "https://www.google.com/maps/search/?api=1&query=Chanrey+Tree+Siem+Reap" },
+            { name: "Malis Siem Reap", location: "Wat Bo Village, Siem Reap", rating: "4.8", map: "https://www.google.com/maps/search/?api=1&query=Malis+Siem+Reap" }
+        ]},
+        "grilled-skewers": { titleKey: "skewersTitle", subtitleKey: "skewersSubtitle", restaurants: [
+            { name: "Phsar Chas Food Stalls", location: "Old Market Area, Siem Reap", rating: "4.4", map: "https://www.google.com/maps/search/?api=1&query=Phsar+Chas+Siem+Reap" },
+            { name: "Made in Cambodia Market", location: "Wat Damnak Area, Siem Reap", rating: "4.5", map: "https://www.google.com/maps/search/?api=1&query=Made+in+Cambodia+Market+Siem+Reap" },
+            { name: "Angkor Night Market", location: "Night Market Area, Siem Reap", rating: "4.3", map: "https://www.google.com/maps/search/?api=1&query=Angkor+Night+Market+Siem+Reap" }
+        ]},
+        "prahok-ktis": { titleKey: "prahokTitle", subtitleKey: "prahokSubtitle", restaurants: [
+            { name: "Cuisine Wat Damnak", location: "Wat Damnak Village, Siem Reap", rating: "4.9", map: "https://www.google.com/maps/search/?api=1&query=Cuisine+Wat+Damnak+Siem+Reap" },
+            { name: "Malis Siem Reap", location: "Wat Bo Village, Siem Reap", rating: "4.8", map: "https://www.google.com/maps/search/?api=1&query=Malis+Siem+Reap" },
+            { name: "Chanrey Tree", location: "Wat Bo Road, Siem Reap", rating: "4.7", map: "https://www.google.com/maps/search/?api=1&query=Chanrey+Tree+Siem+Reap" }
+        ]},
+        "spring-rolls": { titleKey: "springRollsTitle", subtitleKey: "springRollsSubtitle", restaurants: [
+            { name: "Sister Srey Cafe", location: "Pokambor Avenue, Siem Reap", rating: "4.6", map: "https://www.google.com/maps/search/?api=1&query=Sister+Srey+Cafe+Siem+Reap" },
+            { name: "Marum", location: "Near Wat Polanka, Siem Reap", rating: "4.6", map: "https://www.google.com/maps/search/?api=1&query=Marum+Siem+Reap" },
+            { name: "Tevy's Place", location: "Wat Bo Area, Siem Reap", rating: "4.7", map: "https://www.google.com/maps/search/?api=1&query=Tevys+Place+Siem+Reap" }
+        ]}
+    };
+
+    const drinkRestaurantData = {
+        "khmer-coffee": { titleKey: "drinkCoffee", subtitleKey: "drinkCoffeeDesc", restaurants: [
+            { name: "Arom Cafe", location: "Wat Bo Road, Siem Reap", rating: "4.7", map: "https://www.google.com/maps/search/?api=1&query=Arom+Cafe+Siem+Reap" },
+            { name: "Mariko Matcha", location: "Kandal Village, Siem Reap", rating: "4.8", map: "https://www.google.com/maps/search/?api=1&query=Mariko+Matcha+Siem+Reap" },
+            { name: "The Little Red Fox Espresso", location: "Old Market Area, Siem Reap", rating: "4.5", map: "https://www.google.com/maps/search/?api=1&query=Little+Red+Fox+Espresso+Siem+Reap" }
+        ]},
+        "cambodian-tea": { titleKey: "drinkTea", subtitleKey: "drinkTeaDesc", restaurants: [
+            { name: "Fern Cafe", location: "Wat Damnak Area, Siem Reap", rating: "4.7", map: "https://www.google.com/maps/search/?api=1&query=Fern+Cafe+Siem+Reap" },
+            { name: "Arom Cafe", location: "Wat Bo Road, Siem Reap", rating: "4.7", map: "https://www.google.com/maps/search/?api=1&query=Arom+Cafe+Siem+Reap" },
+            { name: "Sister Srey Cafe", location: "Pokambor Avenue, Siem Reap", rating: "4.6", map: "https://www.google.com/maps/search/?api=1&query=Sister+Srey+Cafe+Siem+Reap" }
+        ]},
+        "sugar-cane": { titleKey: "drinkSugarCane", subtitleKey: "drinkSugarCaneDesc", restaurants: [
+            { name: "Old Market Food Stalls", location: "Old Market Area, Siem Reap", rating: "4.4", map: "https://www.google.com/maps/search/?api=1&query=Old+Market+Siem+Reap" },
+            { name: "Phsar Chas", location: "Old Market Area, Siem Reap", rating: "4.4", map: "https://www.google.com/maps/search/?api=1&query=Phsar+Chas+Siem+Reap" },
+            { name: "Made in Cambodia Market", location: "Wat Damnak Area, Siem Reap", rating: "4.5", map: "https://www.google.com/maps/search/?api=1&query=Made+in+Cambodia+Market+Siem+Reap" }
+        ]},
+        "fresh-coconut": { titleKey: "drinkCoconut", subtitleKey: "drinkCoconutDesc", restaurants: [
+            { name: "Kanmu Cafe", location: "Wat Bo Village, Siem Reap", rating: "4.8", map: "https://www.google.com/maps/search/?api=1&query=Kanmu+Cafe+Siem+Reap" },
+            { name: "Marum", location: "Wat Polanka Area, Siem Reap", rating: "4.6", map: "https://www.google.com/maps/search/?api=1&query=Marum+Siem+Reap" },
+            { name: "Sister Srey Cafe", location: "Pokambor Avenue, Siem Reap", rating: "4.6", map: "https://www.google.com/maps/search/?api=1&query=Sister+Srey+Cafe+Siem+Reap" }
+        ]},
+        "mango-smoothie": { titleKey: "drinkMango", subtitleKey: "drinkMangoDesc", restaurants: [
+            { name: "Mariko Matcha", location: "Kandal Village, Siem Reap", rating: "4.8", map: "https://www.google.com/maps/search/?api=1&query=Mariko+Matcha+Siem+Reap" },
+            { name: "Fern Cafe", location: "Wat Damnak Area, Siem Reap", rating: "4.7", map: "https://www.google.com/maps/search/?api=1&query=Fern+Cafe+Siem+Reap" },
+            { name: "Tevy's Place", location: "Wat Bo Area, Siem Reap", rating: "4.7", map: "https://www.google.com/maps/search/?api=1&query=Tevys+Place+Siem+Reap" }
+        ]},
+        "passion-fruit": { titleKey: "drinkPassion", subtitleKey: "drinkPassionDesc", restaurants: [
+            { name: "Kanmu Cafe", location: "Wat Bo Village, Siem Reap", rating: "4.8", map: "https://www.google.com/maps/search/?api=1&query=Kanmu+Cafe+Siem+Reap" },
+            { name: "Arom Cafe", location: "Wat Bo Road, Siem Reap", rating: "4.7", map: "https://www.google.com/maps/search/?api=1&query=Arom+Cafe+Siem+Reap" },
+            { name: "Sister Srey Cafe", location: "Pokambor Avenue, Siem Reap", rating: "4.6", map: "https://www.google.com/maps/search/?api=1&query=Sister+Srey+Cafe+Siem+Reap" }
+        ]},
+        "lime-soda": { titleKey: "drinkLime", subtitleKey: "drinkLimeDesc", restaurants: [
+            { name: "Fern Cafe", location: "Wat Damnak Area, Siem Reap", rating: "4.7", map: "https://www.google.com/maps/search/?api=1&query=Fern+Cafe+Siem+Reap" },
+            { name: "Kanmu Cafe", location: "Wat Bo Village, Siem Reap", rating: "4.8", map: "https://www.google.com/maps/search/?api=1&query=Kanmu+Cafe+Siem+Reap" },
+            { name: "Arom Cafe", location: "Wat Bo Road, Siem Reap", rating: "4.7", map: "https://www.google.com/maps/search/?api=1&query=Arom+Cafe+Siem+Reap" }
+        ]},
+        "avocado-smoothie": { titleKey: "drinkAvocado", subtitleKey: "drinkAvocadoDesc", restaurants: [
+            { name: "Mariko Matcha", location: "Kandal Village, Siem Reap", rating: "4.8", map: "https://www.google.com/maps/search/?api=1&query=Mariko+Matcha+Siem+Reap" },
+            { name: "Kanmu Cafe", location: "Wat Bo Village, Siem Reap", rating: "4.8", map: "https://www.google.com/maps/search/?api=1&query=Kanmu+Cafe+Siem+Reap" },
+            { name: "Fern Cafe", location: "Wat Damnak Area, Siem Reap", rating: "4.7", map: "https://www.google.com/maps/search/?api=1&query=Fern+Cafe+Siem+Reap" }
+        ]}
+    };
+
+    const languageWrapper = document.getElementById("languageWrapper");
+    const languageButton = document.getElementById("languageButton");
+    const currentLanguageSpan = document.getElementById("currentLanguage");
+    const languageMenu = document.getElementById("languageMenu");
+    const languageOptions = document.querySelectorAll(".language-option");
+
+    let currentLanguage = localStorage.getItem("selectedLanguage") || localStorage.getItem("tasteSiemReapLanguage") || "en";
+
+    const restaurantModal = document.getElementById("restaurantModal");
+    const restaurantList = document.getElementById("restaurantList");
+    const restaurantModalTitle = document.getElementById("restaurantModalTitle");
+    const restaurantModalSubtitle = document.getElementById("restaurantModalSubtitle");
+    const closeRestaurant = document.getElementById("closeRestaurant");
+
+    let currentItemKey = null;
+    let currentItemType = null;
+
+    const panelFood = document.getElementById("panelFood");
+    const panelDrink = document.getElementById("panelDrink");
+    const btnFood = document.getElementById("btnFood");
+    const btnDrink = document.getElementById("btnDrink");
+
+    function createStars(rating) {
+        const fullStars = Math.round(Number(rating));
+        return "★".repeat(fullStars) + "☆".repeat(5 - fullStars);
+    }
+
+    function changeLanguage(language) {
+        const selected = translations[language];
+        if (!selected) return;
+
+        currentLanguage = language;
+
+        document.querySelectorAll("[data-i18n]").forEach(element => {
+            const key = element.dataset.i18n;
+            if (selected[key]) {
+                element.innerHTML = selected[key];
+            }
+        });
+
+        if (language === "en") {
+            currentLanguageSpan.textContent = "EN";
+            document.documentElement.lang = "en";
+        } else if (language === "zh") {
+            currentLanguageSpan.textContent = "中文";
+            document.documentElement.lang = "zh";
+        } else if (language === "km") {
+            currentLanguageSpan.textContent = "ខ្មែរ";
+            document.documentElement.lang = "km";
+        }
+
+        languageOptions.forEach(option => {
+            option.classList.toggle("active", option.dataset.language === language);
+        });
+
+        localStorage.setItem("selectedLanguage", language);
+        localStorage.setItem("tasteSiemReapLanguage", language);
+
+        if (restaurantModal.classList.contains("show") && currentItemKey) {
+            openRestaurantModal(currentItemKey, currentItemType);
+        }
+    }
+
+    languageButton.addEventListener("click", function(event) {
+        event.stopPropagation();
+        languageMenu.classList.toggle("show");
+    });
+
+    document.addEventListener("click", function(event) {
+        if (!languageWrapper.contains(event.target)) {
+            languageMenu.classList.remove("show");
+        }
+    });
+
+    languageOptions.forEach(option => {
+        option.addEventListener("click", function() {
+            changeLanguage(this.dataset.language);
+        });
+    });
+
+    function openRestaurantModal(itemKey, itemType) {
+        let data;
+        if (itemType === "food") data = foodRestaurantData[itemKey];
+        else if (itemType === "drink") data = drinkRestaurantData[itemKey];
+
+        if (!data) return;
+
+        currentItemKey = itemKey;
+        currentItemType = itemType;
+
+        const trans = translations[currentLanguage] || translations.en;
+
+        restaurantModalTitle.textContent = trans[data.titleKey] || data.titleKey;
+        restaurantModalSubtitle.textContent = trans[data.subtitleKey] || data.subtitleKey;
+
+        restaurantList.innerHTML = "";
+
+        data.restaurants.forEach(restaurant => {
+            const item = document.createElement("div");
+            item.className = "restaurant-item";
+            item.innerHTML = `
+                <div class="restaurant-info">
+                    <h3>${restaurant.name}</h3>
+                    <div class="restaurant-location">${restaurant.location}</div>
+                    <a href="${restaurant.map}" target="_blank" rel="noopener noreferrer" class="map-btn">
+                        ${trans.viewMaps || trans.viewMap || "View on Google Maps →"}
+                    </a>
+                </div>
+                <div class="restaurant-rating">
+                    <div class="stars">${createStars(restaurant.rating)}</div>
+                    <div class="rating-number">${restaurant.rating} / 5</div>
+                </div>
+            `;
+            restaurantList.appendChild(item);
+        });
+
+        restaurantModal.classList.add("show");
+        restaurantModal.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+    }
+
+    function closeRestaurantModal() {
+        restaurantModal.classList.remove("show");
+        restaurantModal.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+        currentItemKey = null;
+        currentItemType = null;
+    }
+
+    closeRestaurant.addEventListener("click", closeRestaurantModal);
+
+    restaurantModal.addEventListener("click", event => {
+        if (event.target === restaurantModal) closeRestaurantModal();
+    });
+
+    document.addEventListener("keydown", event => {
+        if (event.key === "Escape" && restaurantModal.classList.contains("show")) {
+            closeRestaurantModal();
+        }
+    });
+
+    document.querySelectorAll(".restaurant-trigger").forEach(button => {
+        button.addEventListener("click", () => {
+            if (button.dataset.food) openRestaurantModal(button.dataset.food, "food");
+            else if (button.dataset.drink) openRestaurantModal(button.dataset.drink, "drink");
+        });
+    });
+
+    document.querySelectorAll(".filters").forEach(filterContainer => {
+        const filterButtons = filterContainer.querySelectorAll(".filter-btn");
+        const section = filterContainer.closest(".section-panel");
+        const cards = section.querySelectorAll(".food-card");
+
+        filterButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                filterButtons.forEach(btn => btn.classList.remove("active"));
+                button.classList.add("active");
+
+                const filter = button.dataset.filter;
+                cards.forEach(card => {
+                    if (filter === "all" || card.dataset.category === filter) {
+                        card.style.display = "";
+                    } else {
+                        card.style.display = "none";
+                    }
+                });
+            });
+        });
+    });
+
+    function showFood() {
+        panelFood.classList.add("active");
+        panelDrink.classList.remove("active");
+        btnFood.classList.add("active");
+        btnDrink.classList.remove("active");
+        const foodFilterContainer = panelFood.querySelector(".filters");
+        if (foodFilterContainer) {
+            const btns = foodFilterContainer.querySelectorAll(".filter-btn");
+            btns.forEach(b => b.classList.remove("active"));
+            btns[0].classList.add("active");
+            panelFood.querySelectorAll(".food-card").forEach(c => c.style.display = "");
+        }
+    }
+
+    function showDrink() {
+        panelDrink.classList.add("active");
+        panelFood.classList.remove("active");
+        btnDrink.classList.add("active");
+        btnFood.classList.remove("active");
+        const drinkFilterContainer = panelDrink.querySelector(".filters");
+        if (drinkFilterContainer) {
+            const btns = drinkFilterContainer.querySelectorAll(".filter-btn");
+            btns.forEach(b => b.classList.remove("active"));
+            btns[0].classList.add("active");
+            panelDrink.querySelectorAll(".food-card").forEach(c => c.style.display = "");
+        }
+    }
+
+    btnFood.addEventListener("click", showFood);
+    btnDrink.addEventListener("click", showDrink);
+
+    const hamburger = document.getElementById("hamburger");
+    const mobileNav = document.getElementById("mobileNav");
+
+    hamburger.addEventListener("click", function() {
+        this.classList.toggle("active");
+        mobileNav.classList.toggle("open");
+        document.body.style.overflow = mobileNav.classList.contains("open") ? "hidden" : "";
+    });
+
+    mobileNav.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", function() {
+            hamburger.classList.remove("active");
+            mobileNav.classList.remove("open");
+            document.body.style.overflow = "";
+        });
+    });
+
+    window.addEventListener("resize", function() {
+        if (window.innerWidth > 768) {
+            hamburger.classList.remove("active");
+            mobileNav.classList.remove("open");
+            document.body.style.overflow = "";
+        }
+    });
+
+    changeLanguage(currentLanguage);
+    showDrink();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>Taste Siem Reap · Privacy Policy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ===== reset & base ===== */
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.65;
+      min-height: 100vh;
+      min-height: 100dvh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    img { display: block; width: 100%; height: auto; max-width: 100%; }
+
+    /* ===== variables ===== */
+    :root {
+      --bg: #f8f5f0;
+      --bg-alt: #f2ede4;
+      --surface: #ffffff;
+
+      --text: #2a2620;
+      --muted: #6b6259;
+      --muted-light: #a49a8e;
+
+      --accent: #b8924a;
+      --accent-soft: #e8dcc1;
+
+      --line: #e8e3da;
+
+      --font-sans: "DM Sans", system-ui, -apple-system, sans-serif;
+      --font-serif: "Playfair Display", Georgia, serif;
+
+      --container: 1080px;
+      --gutter: 24px;
+      --radius: 10px;
+
+      --header-height: 64px;
+    }
+
+    /* ============================================================
+       HEADER
+    ============================================================ */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(248, 245, 240, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .navbar {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+      height: var(--header-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    .logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 400;
+      transition: color .2s ease;
+      position: relative;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--text); }
+
+    .nav-links a.active::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -6px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .language-wrapper { position: relative; }
+
+    .language-btn {
+      padding: 6px 10px;
+      color: var(--muted);
+      background: transparent;
+      cursor: pointer;
+      transition: color .2s ease;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .language-btn:hover { color: var(--text); }
+
+    .language-btn::after {
+      content: "▾";
+      font-size: 9px;
+      opacity: 0.6;
+    }
+
+    .language-menu {
+      position: absolute;
+      right: 0;
+      top: calc(100% + 8px);
+      min-width: 140px;
+      padding: 6px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(60, 50, 40, 0.08);
+      display: none;
+      z-index: 100;
+    }
+
+    .language-menu.show { display: block; }
+
+    .language-option {
+      width: 100%;
+      background: transparent;
+      color: var(--muted);
+      padding: 8px 10px;
+      border-radius: 6px;
+      text-align: left;
+      cursor: pointer;
+      font-size: 13px;
+      transition: .15s ease;
+    }
+
+    .language-option:hover,
+    .language-option.active {
+      background: var(--bg-alt);
+      color: var(--text);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      padding: 8px;
+      cursor: pointer;
+      background: transparent;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 20px;
+      height: 1.5px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: .3s ease;
+    }
+
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(3px, 3px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(3px, -3px); }
+
+    .mobile-nav-overlay {
+      display: none;
+      position: fixed;
+      top: var(--header-height);
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--bg);
+      z-index: 999;
+      padding: 24px var(--gutter) 40px;
+      overflow-y: auto;
+    }
+
+    .mobile-nav-overlay.open { display: block; }
+
+    .mobile-nav-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .mobile-nav-links a {
+      display: block;
+      padding: 14px 0;
+      color: var(--text);
+      font-size: 16px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .mobile-nav-links a.active { color: var(--accent); }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    .legal-hero {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 96px var(--gutter) 48px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-size: 11px;
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .legal-hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(34px, 7vw, 64px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      font-weight: 500;
+      max-width: 900px;
+      margin: 0 auto;
+      color: var(--text);
+    }
+
+    .legal-hero h1 span { color: var(--accent); }
+
+    .legal-hero p {
+      max-width: 680px;
+      margin: 24px auto 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .last-updated {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 24px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--text);
+      font-size: 12.5px;
+      font-weight: 500;
+    }
+
+    /* ============================================================
+       MAIN
+    ============================================================ */
+    .legal-section {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 var(--gutter) 96px;
+      width: 100%;
+    }
+
+    /* ===== intro box ===== */
+    .legal-intro {
+      background: var(--bg-alt);
+      border-radius: 12px;
+      padding: 32px;
+      margin-bottom: 40px;
+    }
+
+    .legal-intro p {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.75;
+      margin-bottom: 12px;
+    }
+
+    .legal-intro p:last-child { margin-bottom: 0; }
+    .legal-intro strong { color: var(--text); font-weight: 500; }
+    .legal-intro a { color: var(--accent); text-decoration: underline; }
+
+    /* ===== quick nav ===== */
+    .toc {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 28px;
+      margin-bottom: 48px;
+    }
+
+    .toc h2 {
+      font-family: var(--font-sans);
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text);
+    }
+
+    .toc h2 .icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 6px;
+      background: var(--accent-soft);
+      display: grid;
+      place-items: center;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+
+    .toc-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+      gap: 8px 20px;
+    }
+
+    .toc-list a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 14px;
+      padding: 6px 0;
+      transition: color .2s ease, transform .2s ease;
+    }
+
+    .toc-list a:hover {
+      color: var(--accent);
+      transform: translateX(2px);
+    }
+
+    .toc-list a::before {
+      content: "→";
+      color: var(--accent);
+      font-weight: 500;
+      font-size: 12px;
+    }
+
+    /* ===== content blocks ===== */
+    .legal-block {
+      margin-bottom: 48px;
+      scroll-margin-top: calc(var(--header-height) + 20px);
+    }
+
+    .legal-block:last-child { margin-bottom: 0; }
+
+    .legal-block h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(22px, 3vw, 28px);
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .legal-block h2 .num {
+      font-size: 0.72em;
+      color: var(--accent);
+      opacity: 0.85;
+      flex-shrink: 0;
+      font-family: var(--font-sans);
+      font-weight: 500;
+    }
+
+    .legal-block h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      margin-top: 22px;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+
+    .legal-block h3:first-of-type { margin-top: 0; }
+
+    .legal-block p {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+
+    .legal-block p:last-child { margin-bottom: 0; }
+
+    .legal-block strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .legal-block a {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+
+    .legal-block ul {
+      list-style: none;
+      margin: 14px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .legal-block ul li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .legal-block ul li::before {
+      content: "•";
+      color: var(--accent);
+      font-size: 18px;
+      line-height: 1.3;
+      flex-shrink: 0;
+      font-weight: 700;
+    }
+
+    .legal-block ul li strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* ===== contact box ===== */
+    .legal-contact {
+      margin-top: 56px;
+      padding: 48px 40px;
+      background: var(--bg-alt);
+      border-radius: 14px;
+      text-align: center;
+    }
+
+    .legal-contact h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(24px, 3.4vw, 32px);
+      line-height: 1.2;
+      letter-spacing: -0.015em;
+      margin-bottom: 14px;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .legal-contact h2 span { color: var(--accent); }
+
+    .legal-contact p {
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 560px;
+      margin: 0 auto 28px;
+      line-height: 1.7;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: var(--radius);
+      font-size: 14px;
+      font-weight: 500;
+      transition: .2s ease;
+      cursor: pointer;
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--text);
+      color: var(--surface);
+    }
+
+    .btn-primary:hover {
+      background: #1a1712;
+      transform: translateY(-1px);
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 64px var(--gutter) 32px;
+      background: var(--bg-alt);
+    }
+
+    .footer-grid {
+      max-width: var(--container);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(60, 50, 40, 0.08);
+    }
+
+    .footer-brand h2 {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 500;
+      margin-bottom: 14px;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+
+    .footer-brand h2 span { color: var(--accent); }
+
+    .footer-brand p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+      max-width: 340px;
+    }
+
+    .socials {
+      display: flex;
+      gap: 8px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .social {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      color: var(--muted);
+      background: var(--surface);
+      font-size: 12px;
+      transition: .2s ease;
+    }
+
+    .social:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .footer-column h3 {
+      color: var(--muted-light);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .footer-column a {
+      display: block;
+      color: var(--text);
+      font-size: 14px;
+      margin-bottom: 10px;
+      transition: color .2s ease;
+    }
+
+    .footer-column a:hover { color: var(--accent); }
+
+    .copyright {
+      max-width: var(--container);
+      margin: 32px auto 0;
+      color: var(--muted-light);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1024px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+    }
+
+    @media (max-width: 768px) {
+      :root { --header-height: 58px; }
+
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+
+      .legal-hero { padding: 64px var(--gutter) 32px; }
+      .legal-section { padding-bottom: 64px; }
+      .legal-intro { padding: 24px; }
+      .toc { padding: 24px; }
+      .legal-contact { padding: 40px 24px; margin-top: 40px; }
+
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    }
+
+    @media (max-width: 480px) {
+      :root { --gutter: 20px; }
+
+      .legal-hero h1 { font-size: 32px; }
+      .legal-hero p { font-size: 15px; }
+
+      .legal-block h2 { font-size: 22px; }
+      .legal-block h3 { font-size: 15px; }
+      .legal-block p { font-size: 14.5px; }
+      .legal-block ul li { font-size: 14.5px; }
+
+      .btn { padding: 11px 20px; font-size: 13px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+  <link rel="stylesheet" href="site-header.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <nav class="navbar">
+    <a href="index.html" class="logo">
+      Taste <span>Siem Reap</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html" data-i18n="navHome">Home</a></li>
+      <li><a href="res.html" data-i18n="navRestaurants">Restaurants</a></li>
+      <li><a href="experience.html" data-i18n="navExperience">Experience</a></li>
+      <li><a href="Aboutus.html" data-i18n="navAbout">About Us</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <div class="language-wrapper" id="languageWrapper">
+        <button class="language-btn" id="languageButton" type="button" aria-label="Language">
+          <span id="currentLanguage">EN</span>
+        </button>
+        <div class="language-menu" id="languageMenu">
+          <button class="language-option active" data-language="en" type="button">🇬🇧 English</button>
+          <button class="language-option" data-language="zh" type="button">🇨🇳 中文</button>
+          <button class="language-option" data-language="km" type="button">🇰🇭 ខ្មែរ</button>
+        </div>
+      </div>
+
+      <button class="hamburger" id="hamburger" type="button" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav-overlay" id="mobileNav">
+  <ul class="mobile-nav-links">
+    <li><a href="index.html" data-i18n="navHome">Home</a></li>
+    <li><a href="res.html" data-i18n="navRestaurants">Restaurants</a></li>
+    <li><a href="experience.html" data-i18n="navExperience">Experience</a></li>
+    <li><a href="Aboutus.html" data-i18n="navAbout">About Us</a></li>
+  </ul>
+</div>
+
+<!-- HERO -->
+<section class="legal-hero">
+  <div class="eyebrow" data-i18n="privacyEyebrow">Your Privacy Matters</div>
+  <h1><span data-i18n="privacyTitle1">Privacy</span> <span data-i18n="privacyTitle2">Policy</span></h1>
+  <p data-i18n="privacyIntro">How Taste Siem Reap collects, uses, and protects your personal information when you visit our website or use our contact form.</p>
+  <div class="last-updated">
+    <span>📅</span>
+    <span data-i18n="lastUpdated">Last updated: January 2026</span>
+  </div>
+</section>
+
+<!-- MAIN -->
+<section class="legal-section">
+
+  <div class="legal-intro">
+    <p data-i18n="introP1">At <strong>Taste Siem Reap</strong>, we believe your privacy should be respected. This policy explains, in plain language, what information we collect, why we collect it, and how we keep it safe.</p>
+    <p data-i18n="introP2">By using our website, you agree to the practices described here. If you have any questions or concerns, please <a href="contact.html">contact us</a> — we're happy to help.</p>
+  </div>
+
+  <div class="toc">
+    <h2><span class="icon">📋</span><span data-i18n="tocTitle">On This Page</span></h2>
+    <ul class="toc-list">
+      <li><a href="#info-we-collect" data-i18n="toc1">Information We Collect</a></li>
+      <li><a href="#how-we-use" data-i18n="toc2">How We Use Your Information</a></li>
+      <li><a href="#cookies" data-i18n="toc3">Cookies & Tracking</a></li>
+      <li><a href="#sharing" data-i18n="toc4">Sharing Your Information</a></li>
+      <li><a href="#security" data-i18n="toc5">Data Security</a></li>
+      <li><a href="#your-rights" data-i18n="toc6">Your Rights</a></li>
+      <li><a href="#children" data-i18n="toc7">Children's Privacy</a></li>
+      <li><a href="#changes" data-i18n="toc8">Changes to This Policy</a></li>
+    </ul>
+  </div>
+
+  <div class="legal-block" id="info-we-collect">
+    <h2><span class="num">01.</span><span data-i18n="b1Title">Information We Collect</span></h2>
+    <p data-i18n="b1Text">We only collect the information we actually need to serve you well. This includes:</p>
+
+    <h3 data-i18n="b1H1">Information you give us</h3>
+    <ul>
+      <li><span data-i18n="b1L1"><strong>Contact form:</strong> your name, email address, subject, and message when you send us a message.</span></li>
+      <li><span data-i18n="b1L2"><strong>Restaurant suggestions:</strong> any details you share when recommending a place.</span></li>
+    </ul>
+
+    <h3 data-i18n="b1H2">Information we collect automatically</h3>
+    <ul>
+      <li><span data-i18n="b1L3"><strong>Basic analytics:</strong> anonymized data about how visitors use our site (pages viewed, time on page, device type). We use this to improve the site.</span></li>
+      <li><span data-i18n="b1L4"><strong>Language preference:</strong> your chosen language is stored locally in your browser (localStorage) so we can show the site in your language next time.</span></li>
+    </ul>
+
+    <p data-i18n="b1Text2">We do <strong>not</strong> collect sensitive personal information, and we do not sell your data to anyone.</p>
+  </div>
+
+  <div class="legal-block" id="how-we-use">
+    <h2><span class="num">02.</span><span data-i18n="b2Title">How We Use Your Information</span></h2>
+    <p data-i18n="b2Text">Your information is used only for the following purposes:</p>
+    <ul>
+      <li><span data-i18n="b2L1"><strong>To reply to you:</strong> we use your email address to respond to messages you send us.</span></li>
+      <li><span data-i18n="b2L2"><strong>To improve the site:</strong> anonymized analytics help us understand which pages are useful and which need work.</span></li>
+      <li><span data-i18n="b2L3"><strong>To remember your preferences:</strong> so the site loads in your chosen language.</span></li>
+      <li><span data-i18n="b2L4"><strong>To keep the site safe:</strong> we may use basic tools to prevent spam or abuse of the contact form.</span></li>
+    </ul>
+    <p data-i18n="b2Text2">We will never use your data for purposes unrelated to these. We do not run advertising, and we do not send marketing emails unless you ask us to.</p>
+  </div>
+
+  <div class="legal-block" id="cookies">
+    <h2><span class="num">03.</span><span data-i18n="b3Title">Cookies & Tracking</span></h2>
+    <p data-i18n="b3Text">Taste Siem Reap uses a very light approach to cookies and local storage:</p>
+    <ul>
+      <li><span data-i18n="b3L1"><strong>Local storage (no cookie):</strong> your language preference (English, Khmer, or Chinese) is saved in your browser's localStorage — not a cookie, and never sent to our servers.</span></li>
+      <li><span data-i18n="b3L2"><strong>Analytics:</strong> if we use an analytics tool, it may set cookies to count unique visitors anonymously. You can block cookies in your browser settings if you prefer.</span></li>
+    </ul>
+    <p data-i18n="b3Text2">We do not use advertising cookies, tracking pixels, or third-party retargeting. You can clear your local storage at any time through your browser settings.</p>
+  </div>
+
+  <div class="legal-block" id="sharing">
+    <h2><span class="num">04.</span><span data-i18n="b4Title">Sharing Your Information</span></h2>
+    <p data-i18n="b4Text">We keep your information private. We do not sell, rent, or trade your personal data to anyone. Period.</p>
+    <p data-i18n="b4Text2">The only situations in which we might share information are:</p>
+    <ul>
+      <li><span data-i18n="b4L1"><strong>Service providers:</strong> trusted tools we use to run the site (for example, a contact form service like Formspree or EmailJS). These providers only see what's necessary to deliver the service.</span></li>
+      <li><span data-i18n="b4L2"><strong>Legal requirements:</strong> if required by law, we may need to disclose information to authorities. We will only do so when legally obligated.</span></li>
+    </ul>
+  </div>
+
+  <div class="legal-block" id="security">
+    <h2><span class="num">05.</span><span data-i18n="b5Title">Data Security</span></h2>
+    <p data-i18n="b5Text">We take reasonable steps to protect your information:</p>
+    <ul>
+      <li><span data-i18n="b5L1"><strong>Encrypted connections:</strong> our website uses HTTPS, so data sent through the contact form is encrypted in transit.</span></li>
+      <li><span data-i18n="b5L2"><strong>Limited collection:</strong> we don't collect more than we need, which reduces risk.</span></li>
+      <li><span data-i18n="b5L3"><strong>Trusted providers:</strong> any third-party service we use is chosen for its strong security and privacy practices.</span></li>
+    </ul>
+    <p data-i18n="b5Text2">However, no website is 100% secure. If you have sensitive information to share, please be cautious when sending it online.</p>
+  </div>
+
+  <div class="legal-block" id="your-rights">
+    <h2><span class="num">06.</span><span data-i18n="b6Title">Your Rights</span></h2>
+    <p data-i18n="b6Text">You have full control over your personal information. You can ask us to:</p>
+    <ul>
+      <li><span data-i18n="b6L1"><strong>Access:</strong> tell you what information we hold about you.</span></li>
+      <li><span data-i18n="b6L2"><strong>Correct:</strong> fix any inaccurate information.</span></li>
+      <li><span data-i18n="b6L3"><strong>Delete:</strong> remove your information from our systems.</span></li>
+      <li><span data-i18n="b6L4"><strong>Withdraw consent:</strong> ask us to stop using your information.</span></li>
+    </ul>
+    <p data-i18n="b6Text2">To exercise any of these rights, just <a href="contact.html">contact us</a>. We'll respond within a reasonable time and always aim to make it easy for you.</p>
+  </div>
+
+  <div class="legal-block" id="children">
+    <h2><span class="num">07.</span><span data-i18n="b7Title">Children's Privacy</span></h2>
+    <p data-i18n="b7Text">Our website is designed for a general audience and is not directed at children under 13. We do not knowingly collect personal information from children. If you believe a child has shared information with us, please contact us and we'll remove it promptly.</p>
+  </div>
+
+  <div class="legal-block" id="changes">
+    <h2><span class="num">08.</span><span data-i18n="b8Title">Changes to This Policy</span></h2>
+    <p data-i18n="b8Text">We may update this Privacy Policy from time to time to reflect changes in our practices, technology, or legal requirements. When we do, we'll update the "Last updated" date at the top of this page.</p>
+    <p data-i18n="b8Text2">We encourage you to review this page occasionally. Continued use of our website after changes means you accept the updated policy.</p>
+  </div>
+
+  <div class="legal-contact">
+    <h2 data-i18n="ctaTitle">Questions About Your <span>Privacy?</span></h2>
+    <p data-i18n="ctaText">If you have any questions, concerns, or requests about how we handle your data, please reach out — we're happy to help.</p>
+    <a href="contact.html" class="btn btn-primary" data-i18n="ctaBtn">Contact Us</a>
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <h2>Taste <span>Siem Reap</span></h2>
+      <p data-i18n="footerDescription">Your guide to the best restaurants, authentic experiences and travel tips in Siem Reap, Cambodia.</p>
+      <div class="socials">
+        <span class="social">f</span>
+        <span class="social">◎</span>
+        <span class="social">♪</span>
+        <span class="social">▶</span>
+      </div>
+    </div>
+
+    <div class="footer-column">
+      <h3 data-i18n="exploreFooter">EXPLORE</h3>
+      <a href="res.html" data-i18n="navRestaurants">Restaurants</a>
+      <a href="experience.html" data-i18n="navExperience">Experience</a>
+      <a href="tip.html" data-i18n="travelTips">Travel Tips</a>
+      <a href="Aboutus.html" data-i18n="navAbout">About Us</a>
+    </div>
+
+    <div class="footer-column">
+      <h3 data-i18n="informationFooter">INFORMATION</h3>
+      <a href="hari.html" data-i18n="heritage">Heritage</a>
+      <a href="tvr.html" data-i18n="travelGuide">Travel Guide</a>
+      <a href="abtsr.html" data-i18n="aboutSiemReap">About Siem Reap</a>
+      <a href="faq.html" data-i18n="faq">FAQ</a>
+    </div>
+
+    <div class="footer-column">
+      <h3 data-i18n="supportFooter">SUPPORT</h3>
+      <a href="contactus.html" data-i18n="contactUs">Contact Us</a>
+      <a href="prv.html" data-i18n="privacy">Privacy Policy</a>
+      <a href="tou.html" data-i18n="terms">Terms of Use</a>
+    </div>
+  </div>
+
+  <div class="copyright" data-i18n="copyright">
+    © 2026 Taste Siem Reap. All rights reserved.
+  </div>
+</footer>
+
+<script>
+  (function(){
+    const translations = {
+      en: {
+        navHome: "Home", navRestaurants: "Restaurants", navExperience: "Experience", navAbout: "About Us",
+        privacyEyebrow: "Your Privacy Matters", privacyTitle1: "Privacy", privacyTitle2: "Policy",
+        privacyIntro: "How Taste Siem Reap collects, uses, and protects your personal information when you visit our website or use our contact form.",
+        lastUpdated: "Last updated: January 2026",
+        introP1: "At Taste Siem Reap, we believe your privacy should be respected. This policy explains, in plain language, what information we collect, why we collect it, and how we keep it safe.",
+        introP2: "By using our website, you agree to the practices described here. If you have any questions or concerns, please contact us — we're happy to help.",
+        tocTitle: "On This Page",
+        toc1: "Information We Collect", toc2: "How We Use Your Information", toc3: "Cookies & Tracking",
+        toc4: "Sharing Your Information", toc5: "Data Security", toc6: "Your Rights",
+        toc7: "Children's Privacy", toc8: "Changes to This Policy",
+        b1Title: "Information We Collect",
+        b1Text: "We only collect the information we actually need to serve you well. This includes:",
+        b1H1: "Information you give us",
+        b1L1: "Contact form: your name, email address, subject, and message when you send us a message.",
+        b1L2: "Restaurant suggestions: any details you share when recommending a place.",
+        b1H2: "Information we collect automatically",
+        b1L3: "Basic analytics: anonymized data about how visitors use our site (pages viewed, time on page, device type). We use this to improve the site.",
+        b1L4: "Language preference: your chosen language is stored locally in your browser (localStorage) so we can show the site in your language next time.",
+        b1Text2: "We do not collect sensitive personal information, and we do not sell your data to anyone.",
+        b2Title: "How We Use Your Information",
+        b2Text: "Your information is used only for the following purposes:",
+        b2L1: "To reply to you: we use your email address to respond to messages you send us.",
+        b2L2: "To improve the site: anonymized analytics help us understand which pages are useful and which need work.",
+        b2L3: "To remember your preferences: so the site loads in your chosen language.",
+        b2L4: "To keep the site safe: we may use basic tools to prevent spam or abuse of the contact form.",
+        b2Text2: "We will never use your data for purposes unrelated to these. We do not run advertising, and we do not send marketing emails unless you ask us to.",
+        b3Title: "Cookies & Tracking",
+        b3Text: "Taste Siem Reap uses a very light approach to cookies and local storage:",
+        b3L1: "Local storage (no cookie): your language preference (English, Khmer, or Chinese) is saved in your browser's localStorage — not a cookie, and never sent to our servers.",
+        b3L2: "Analytics: if we use an analytics tool, it may set cookies to count unique visitors anonymously. You can block cookies in your browser settings if you prefer.",
+        b3Text2: "We do not use advertising cookies, tracking pixels, or third-party retargeting. You can clear your local storage at any time through your browser settings.",
+        b4Title: "Sharing Your Information",
+        b4Text: "We keep your information private. We do not sell, rent, or trade your personal data to anyone. Period.",
+        b4Text2: "The only situations in which we might share information are:",
+        b4L1: "Service providers: trusted tools we use to run the site (for example, a contact form service like Formspree or EmailJS). These providers only see what's necessary to deliver the service.",
+        b4L2: "Legal requirements: if required by law, we may need to disclose information to authorities. We will only do so when legally obligated.",
+        b5Title: "Data Security",
+        b5Text: "We take reasonable steps to protect your information:",
+        b5L1: "Encrypted connections: our website uses HTTPS, so data sent through the contact form is encrypted in transit.",
+        b5L2: "Limited collection: we don't collect more than we need, which reduces risk.",
+        b5L3: "Trusted providers: any third-party service we use is chosen for its strong security and privacy practices.",
+        b5Text2: "However, no website is 100% secure. If you have sensitive information to share, please be cautious when sending it online.",
+        b6Title: "Your Rights",
+        b6Text: "You have full control over your personal information. You can ask us to:",
+        b6L1: "Access: tell you what information we hold about you.",
+        b6L2: "Correct: fix any inaccurate information.",
+        b6L3: "Delete: remove your information from our systems.",
+        b6L4: "Withdraw consent: ask us to stop using your information.",
+        b6Text2: "To exercise any of these rights, just contact us. We'll respond within a reasonable time and always aim to make it easy for you.",
+        b7Title: "Children's Privacy",
+        b7Text: "Our website is designed for a general audience and is not directed at children under 13. We do not knowingly collect personal information from children. If you believe a child has shared information with us, please contact us and we'll remove it promptly.",
+        b8Title: "Changes to This Policy",
+        b8Text: "We may update this Privacy Policy from time to time to reflect changes in our practices, technology, or legal requirements. When we do, we'll update the \"Last updated\" date at the top of this page.",
+        b8Text2: "We encourage you to review this page occasionally. Continued use of our website after changes means you accept the updated policy.",
+        ctaTitle: "Questions About Your Privacy?",
+        ctaText: "If you have any questions, concerns, or requests about how we handle your data, please reach out — we're happy to help.",
+        ctaBtn: "Contact Us",
+        footerDescription: "Your guide to the best restaurants, authentic experiences and travel tips in Siem Reap, Cambodia.",
+        exploreFooter: "EXPLORE", informationFooter: "INFORMATION", supportFooter: "SUPPORT",
+        travelTips: "Travel Tips", heritage: "Heritage", travelGuide: "Travel Guide", aboutSiemReap: "About Siem Reap",
+        faq: "FAQ", contactUs: "Contact Us", privacy: "Privacy Policy", terms: "Terms of Use",
+        copyright: "© 2026 Taste Siem Reap. All rights reserved."
+      },
+
+      km: {
+        navHome: "ទំព័រដើម", navRestaurants: "ភោជនីយដ្ឋាន", navExperience: "បទពិសោធន៍", navAbout: "អំពីយើង",
+        privacyEyebrow: "ភាពឯកជនរបស់អ្នកមានសារៈសំខាន់",
+        privacyTitle1: "គោលការណ៍", privacyTitle2: "ឯកជនភាព",
+        privacyIntro: "របៀបដែល Taste Siem Reap ប្រមូល ប្រើប្រាស់ និងការពារព័ត៌មានផ្ទាល់ខ្លួនរបស់អ្នក នៅពេលអ្នកចូលមើលគេហទំព័ររបស់យើង ឬប្រើប្រាស់ទម្រង់ទំនាក់ទំនងរបស់យើង។",
+        lastUpdated: "ធ្វើបច្ចុប្បន្នភាពចុងក្រោយ៖ ខែមករា 2026",
+        introP1: "នៅ Taste Siem Reap យើងជឿជាក់ថាភាពឯកជនរបស់អ្នកគួរតែត្រូវបានគោរព។ គោលការណ៍នេះពន្យល់ជាភាសាសាមញ្ញ អំពីព័ត៌មានដែលយើងប្រមូល ហេតុអ្វីយើងប្រមូលវា និងរបៀបដែលយើងរក្សាវាឱ្យមានសុវត្ថិភាព។",
+        introP2: "ការប្រើប្រាស់គេហទំព័ររបស់យើង មានន័យថាអ្នកយល់ព្រមនឹងការអនុវត្តដែលបានពិពណ៌នានៅទីនេះ។ ប្រសិនបើអ្នកមានសំណួរ ឬកង្វល់ សូមទាក់ទងមកយើង — យើងរីករាយក្នុងការជួយ។",
+        tocTitle: "នៅលើទំព័រនេះ",
+        toc1: "ព័ត៌មានដែលយើងប្រមូល",
+        toc2: "របៀបដែលយើងប្រើប្រាស់ព័ត៌មានរបស់អ្នក",
+        toc3: "ខូគី និងការតាមដាន",
+        toc4: "ការចែករំលែកព័ត៌មានរបស់អ្នក",
+        toc5: "សុវត្ថិភាពទិន្នន័យ",
+        toc6: "សិទ្ធិរបស់អ្នក",
+        toc7: "ភាពឯកជនកុមារ",
+        toc8: "ការផ្លាស់ប្តូរគោលការណ៍នេះ",
+        b1Title: "ព័ត៌មានដែលយើងប្រមូល",
+        b1Text: "យើងប្រមូលតែព័ត៌មានដែលយើងត្រូវការពិតប្រាកដដើម្បីបម្រើអ្នកឱ្យបានល្អ។ រួមមាន៖",
+        b1H1: "ព័ត៌មានដែលអ្នកផ្តល់ឱ្យយើង",
+        b1L1: "ទម្រង់ទំនាក់ទំនង៖ ឈ្មោះ អាសយដ្ឋានអ៊ីមែល ចំណងជើង និងសាររបស់អ្នក នៅពេលអ្នកផ្ញើសារមកយើង។",
+        b1L2: "ការណែនាំភោជនីយដ្ឋាន៖ ព័ត៌មានលម្អិតណាមួយដែលអ្នកចែករំលែកនៅពេលណែនាំកន្លែងណាមួយ។",
+        b1H2: "ព័ត៌មានដែលយើងប្រមូលដោយស្វ័យប្រវត្តិ",
+        b1L3: "ការវិភាគមូលដ្ឋាន៖ ទិន្នន័យអនាមិកអំពីរបៀបដែលអ្នកចូលមើលប្រើប្រាស់គេហទំព័ររបស់យើង (ទំព័រដែលបានមើល ពេលវេលានៅលើទំព័រ ប្រភេទឧបករណ៍)។ យើងប្រើវាដើម្បីកែលម្អគេហទំព័រ។",
+        b1L4: "ចំណូលចិត្តភាសា៖ ភាសាដែលអ្នកជ្រើសរើសត្រូវបានរក្សាទុកក្នុងឧបករណ៍រុករករបស់អ្នក (localStorage) ដើម្បីឱ្យយើងអាចបង្ហាញគេហទំព័រជាភាសារបស់អ្នកនៅពេលក្រោយ។",
+        b1Text2: "យើងមិនប្រមូលព័ត៌មានផ្ទាល់ខ្លួនរសើបទេ ហើយយើងមិនលក់ទិន្នន័យរបស់អ្នកទៅនរណាម្នាក់ឡើយ។",
+        b2Title: "របៀបដែលយើងប្រើប្រាស់ព័ត៌មានរបស់អ្នក",
+        b2Text: "ព័ត៌មានរបស់អ្នកត្រូវបានប្រើប្រាស់សម្រាប់គោលបំណងដូចខាងក្រោមប៉ុណ្ណោះ៖",
+        b2L1: "ដើម្បីឆ្លើយតបអ្នក៖ យើងប្រើអាសយដ្ឋានអ៊ីមែលរបស់អ្នកដើម្បីឆ្លើយតបសារដែលអ្នកផ្ញើមកយើង។",
+        b2L2: "ដើម្បីកែលម្អគេហទំព័រ៖ ការវិភាគអនាមិកជួយយើងឱ្យយល់ថាតើទំព័រណាមានប្រយោជន៍ និងទំព័រណាត្រូវការកែលម្អ។",
+        b2L3: "ដើម្បីចងចាំចំណូលចិត្តរបស់អ្នក៖ ដើម្បីឱ្យគេហទំព័រផ្ទុកជាភាសាដែលអ្នកជ្រើសរើស។",
+        b2L4: "ដើម្បីរក្សាគេហទំព័រឱ្យមានសុវត្ថិភាព៖ យើងអាចប្រើឧបករណ៍មូលដ្ឋានដើម្បីការពារសារឥតបានការ ឬការប្រើប្រាស់ខុសនៃទម្រង់ទំនាក់ទំនង។",
+        b2Text2: "យើងនឹងមិនប្រើទិន្នន័យរបស់អ្នកសម្រាប់គោលបំណងដែលមិនពាក់ព័ន្ធទាំងនេះឡើយ។ យើងមិនដំណើរការការផ្សាយពាណិជ្ជកម្ម ហើយយើងមិនផ្ញើអ៊ីមែលទីផ្សារទេ លុះត្រាតែអ្នកស្នើសុំ។",
+        b3Title: "ខូគី និងការតាមដាន",
+        b3Text: "Taste Siem Reap ប្រើវិធីសាស្ត្រស្រាលបំផុតចំពោះខូគី និងការផ្ទុកក្នុងឧបករណ៍៖",
+        b3L1: "ការផ្ទុកក្នុងឧបករណ៍ (មិនមែនខូគី)៖ ចំណូលចិត្តភាសារបស់អ្នក (អង់គ្លេស ខ្មែរ ឬចិន) ត្រូវបានរក្សាទុកក្នុង localStorage របស់ឧបករណ៍រុករករបស់អ្នក — មិនមែនខូគី ហើយមិនដែលផ្ញើទៅម៉ាស៊ីនមេរបស់យើងឡើយ។",
+        b3L2: "ការវិភាគ៖ ប្រសិនបើយើងប្រើឧបករណ៍វិភាគ វាអាចកំណត់ខូគីដើម្បីរាប់អ្នកចូលមើលប្លែកៗដោយអនាមិក។ អ្នកអាចទប់ស្កាត់ខូគីនៅក្នុងការកំណត់ឧបករណ៍រុករករបស់អ្នក ប្រសិនបើអ្នកចង់។",
+        b3Text2: "យើងមិនប្រើខូគីផ្សាយពាណិជ្ជកម្ម ភិកសែលតាមដាន ឬការតាមដានឡើងវិញដោយភាគីទីបីឡើយ។ អ្នកអាចសម្អាតការផ្ទុកក្នុងឧបករណ៍របស់អ្នកបានគ្រប់ពេលតាមរយៈការកំណត់ឧបករណ៍រុករករបស់អ្នក។",
+        b4Title: "ការចែករំលែកព័ត៌មានរបស់អ្នក",
+        b4Text: "យើងរក្សាព័ត៌មានរបស់អ្នកជាឯកជន។ យើងមិនលក់ ជួល ឬដោះដូរទិន្នន័យផ្ទាល់ខ្លួនរបស់អ្នកទៅនរណាម្នាក់ឡើយ។ ចប់។",
+        b4Text2: "ស្ថានភាពតែមួយគត់ដែលយើងអាចចែករំលែកព័ត៌មានគឺ៖",
+        b4L1: "អ្នកផ្តល់សេវាកម្ម៖ ឧបករណ៍ដែលយើងទុកចិត្តដើម្បីដំណើរការគេហទំព័រ (ឧទាហរណ៍ សេវាកម្មទម្រង់ទំនាក់ទំនងដូចជា Formspree ឬ EmailJS)។ អ្នកផ្តល់សេវាកម្មទាំងនេះឃើញតែអ្វីដែលចាំបាច់ដើម្បីផ្តល់សេវាកម្មប៉ុណ្ណោះ។",
+        b4L2: "តម្រូវការផ្នែកច្បាប់៖ ប្រសិនបើច្បាប់តម្រូវ យើងអាចត្រូវបង្ហាញព័ត៌មានដល់អាជ្ញាធរ។ យើងនឹងធ្វើដូច្នេះតែនៅពេលដែលមានកាតព្វកិច្ចផ្នែកច្បាប់ប៉ុណ្ណោះ។",
+        b5Title: "សុវត្ថិភាពទិន្នន័យ",
+        b5Text: "យើងចាត់វិធានការសមស្របដើម្បីការពារព័ត៌មានរបស់អ្នក៖",
+        b5L1: "ការតភ្ជាប់ដែលបានអ៊ិនគ្រីប៖ គេហទំព័ររបស់យើងប្រើ HTTPS ដូច្នេះទិន្នន័យដែលផ្ញើតាមទម្រង់ទំនាក់ទំនងត្រូវបានអ៊ិនគ្រីបក្នុងអំឡុងពេលផ្ទេរ។",
+        b5L2: "ការប្រមូលមានកម្រិត៖ យើងមិនប្រមូលលើសពីអ្វីដែលយើងត្រូវការទេ ដែលកាត់បន្ថយហានិភ័យ។",
+        b5L3: "អ្នកផ្តល់សេវាដែលអាចទុកចិត្តបាន៖ សេវាកម្មភាគីទីបីណាមួយដែលយើងប្រើ ត្រូវបានជ្រើសរើសដោយសារសុវត្ថិភាព និងការអនុវត្តឯកជនភាពដ៏រឹងមាំរបស់វា។",
+        b5Text2: "ប៉ុន្តែ គ្មានគេហទំព័រណាមានសុវត្ថិភាព 100% ទេ។ ប្រសិនបើអ្នកមានព័ត៌មានរសើបដែលត្រូវចែករំលែក សូមប្រុងប្រយ័ត្ននៅពេលផ្ញើវាតាមអ៊ីនធឺណិត។",
+        b6Title: "សិទ្ធិរបស់អ្នក",
+        b6Text: "អ្នកមានការគ្រប់គ្រងពេញលេញលើព័ត៌មានផ្ទាល់ខ្លួនរបស់អ្នក។ អ្នកអាចស្នើឱ្យយើង៖",
+        b6L1: "ចូលមើល៖ ប្រាប់អ្នកពីព័ត៌មានដែលយើងមានអំពីអ្នក។",
+        b6L2: "កែតម្រូវ៖ កែព័ត៌មានមិនត្រឹមត្រូវណាមួយ។",
+        b6L3: "លុប៖ ដកព័ត៌មានរបស់អ្នកចេញពីប្រព័ន្ធរបស់យើង។",
+        b6L4: "ដកការយល់ព្រម៖ ស្នើឱ្យយើងឈប់ប្រើប្រាស់ព័ត៌មានរបស់អ្នក។",
+        b6Text2: "ដើម្បីអនុវត្តសិទ្ធិណាមួយក្នុងចំណោមទាំងនេះ សូមទាក់ទងមកយើងផ្ទាល់។ យើងនឹងឆ្លើយតបក្នុងរយៈពេលសមស្រប ហើយតែងតែខិតខំធ្វើឱ្យវាងាយស្រួលសម្រាប់អ្នក។",
+        b7Title: "ភាពឯកជនកុមារ",
+        b7Text: "គេហទំព័ររបស់យើងត្រូវបានរចនាឡើងសម្រាប់ទស្សនិកជនទូទៅ ហើយមិនមានគោលដៅលើកុមារអាយុក្រោម 13 ឆ្នាំឡើយ។ យើងមិនប្រមូលព័ត៌មានផ្ទាល់ខ្លួនពីកុមារដោយដឹងខ្លួនទេ។ ប្រសិនបើអ្នកជឿថាកុមារបានចែករំលែកព័ត៌មានជាមួយយើង សូមទាក់ទងមកយើង ហើយយើងនឹងដកវាចេញភ្លាមៗ។",
+        b8Title: "ការផ្លាស់ប្តូរគោលការណ៍នេះ",
+        b8Text: "យើងអាចធ្វើបច្ចុប្បន្នភាពគោលការណ៍ឯកជនភាពនេះម្តងម្កាល ដើម្បីឆ្លុះបញ្ចាំងពីការផ្លាស់ប្តូរការអនុវត្ត បច្ចេកវិទ្យា ឬតម្រូវការផ្នែកច្បាប់របស់យើង។ នៅពេលយើងធ្វើ យើងនឹងធ្វើបច្ចុប្បន្នភាពកាលបរិច្ឆេទ \"ធ្វើបច្ចុប្បន្នភាពចុងក្រោយ\" នៅផ្នែកខាងលើនៃទំព័រនេះ។",
+        b8Text2: "យើងលើកទឹកចិត្តអ្នកឱ្យពិនិត្យទំព័រនេះម្តងម្កាល។ ការប្រើប្រាស់គេហទំព័ររបស់យើងបន្តបន្ទាប់ពីការផ្លាស់ប្តូរ មានន័យថាអ្នកទទួលយកគោលការណ៍ដែលបានធ្វើបច្ចុប្បន្នភាព។",
+        ctaTitle: "សំណួរអំពីភាពឯកជនរបស់អ្នក?",
+        ctaText: "ប្រសិនបើអ្នកមានសំណួរ កង្វល់ ឬសំណើអំពីរបៀបដែលយើងគ្រប់គ្រងទិន្នន័យរបស់អ្នក សូមទាក់ទងមកយើង — យើងរីករាយក្នុងការជួយ។",
+        ctaBtn: "ទាក់ទងយើង",
+        footerDescription: "មគ្គុទេសក៍របស់អ្នកទៅកាន់ភោជនីយដ្ឋានល្អៗ បទពិសោធន៍ពិត និងគន្លឹះធ្វើដំណើរនៅសៀមរាប។",
+        exploreFooter: "ស្វែងរក", informationFooter: "ព័ត៌មាន", supportFooter: "ជំនួយ",
+        travelTips: "គន្លឹះធ្វើដំណើរ", heritage: "បេតិកភណ្ឌ", travelGuide: "មគ្គុទេសក៍ធ្វើដំណើរ",
+        aboutSiemReap: "អំពីសៀមរាប", faq: "សំណួរដែលសួរញឹកញាប់", contactUs: "ទាក់ទងយើង",
+        privacy: "គោលការណ៍ឯកជនភាព", terms: "លក្ខខណ្ឌប្រើប្រាស់",
+        copyright: "© 2026 Taste Siem Reap។ រក្សាសិទ្ធិគ្រប់យ៉ាង។"
+      },
+
+      zh: {
+        navHome: "首页", navRestaurants: "餐厅", navExperience: "体验", navAbout: "关于我们",
+        privacyEyebrow: "您的隐私很重要", privacyTitle1: "隐私", privacyTitle2: "政策",
+        privacyIntro: "Taste Siem Reap 在您访问我们的网站或使用联系表单时如何收集、使用和保护您的个人信息。",
+        lastUpdated: "最后更新：2026年1月",
+        introP1: "在 Taste Siem Reap，我们相信您的隐私应该得到尊重。本政策以通俗语言说明我们收集哪些信息、为什么收集以及如何保护它。",
+        introP2: "使用我们的网站即表示您同意此处描述的做法。如有任何疑问或顾虑，请联系我们——我们很乐意为您提供帮助。",
+        tocTitle: "本页内容",
+        toc1: "我们收集的信息", toc2: "我们如何使用您的信息", toc3: "Cookie 与跟踪",
+        toc4: "共享您的信息", toc5: "数据安全", toc6: "您的权利",
+        toc7: "儿童隐私", toc8: "本政策的变更",
+        b1Title: "我们收集的信息",
+        b1Text: "我们只收集真正需要的信息，以便更好地为您服务。包括：",
+        b1H1: "您提供给我们的信息",
+        b1L1: "联系表单：您发送消息时的姓名、电子邮箱、主题和消息内容。",
+        b1L2: "餐厅推荐：您推荐某家餐厅时分享的任何细节。",
+        b1H2: "我们自动收集的信息",
+        b1L3: "基础分析：关于访客如何使用我们网站的匿名数据（浏览的页面、停留时间、设备类型）。我们用它来改进网站。",
+        b1L4: "语言偏好：您选择的语言存储在浏览器的本地存储中（localStorage），以便下次以您的语言显示网站。",
+        b1Text2: "我们不会收集敏感个人信息，也不会将您的数据出售给任何人。",
+        b2Title: "我们如何使用您的信息",
+        b2Text: "您的信息仅用于以下目的：",
+        b2L1: "回复您：我们使用您的电子邮箱地址回复您发送给我们的消息。",
+        b2L2: "改进网站：匿名分析帮助我们了解哪些页面有用、哪些需要改进。",
+        b2L3: "记住您的偏好：以便网站以您选择的语言加载。",
+        b2L4: "保持网站安全：我们可能使用基本工具防止垃圾邮件或滥用联系表单。",
+        b2Text2: "我们绝不会将这些数据用于无关目的。我们不投放广告，也不会在您未要求的情况下发送营销邮件。",
+        b3Title: "Cookie 与跟踪",
+        b3Text: "Taste Siem Reap 对 Cookie 和本地存储采取非常轻量的方式：",
+        b3L1: "本地存储（非 Cookie）：您的语言偏好（英语、高棉语或中文）保存在浏览器的 localStorage 中——不是 Cookie，也不会发送到我们的服务器。",
+        b3L2: "分析：如果我们使用分析工具，它可能会设置 Cookie 以匿名统计独立访客。如果您愿意，可以在浏览器设置中屏蔽 Cookie。",
+        b3Text2: "我们不使用广告 Cookie、跟踪像素或第三方重定向。您可以随时通过浏览器设置清除本地存储。",
+        b4Title: "共享您的信息",
+        b4Text: "我们保护您的信息隐私。我们不会向任何人出售、出租或交换您的个人数据。就这样。",
+        b4Text2: "我们可能共享信息的唯一情况是：",
+        b4L1: "服务提供商：我们用来运行网站的受信任工具（例如 Formspree 或 EmailJS 等联系表单服务）。这些提供商只能看到提供服务所必需的内容。",
+        b4L2: "法律要求：如果法律要求，我们可能需要向当局披露信息。我们仅在法律义务要求时才这样做。",
+        b5Title: "数据安全",
+        b5Text: "我们采取合理措施保护您的信息：",
+        b5L1: "加密连接：我们的网站使用 HTTPS，因此通过联系表单发送的数据在传输过程中是加密的。",
+        b5L2: "有限收集：我们只收集所需内容，从而降低风险。",
+        b5L3: "受信任的提供商：我们使用的任何第三方服务都因其强大的安全和隐私实践而被选中。",
+        b5Text2: "然而，没有任何网站是 100% 安全的。如果您有敏感信息要分享，请在网上发送时保持谨慎。",
+        b6Title: "您的权利",
+        b6Text: "您完全掌控自己的个人信息。您可以要求我们：",
+        b6L1: "访问：告知我们持有的关于您的信息。",
+        b6L2: "更正：修正任何不准确的信息。",
+        b6L3: "删除：从我们的系统中删除您的信息。",
+        b6L4: "撤回同意：要求我们停止使用您的信息。",
+        b6Text2: "如需行使上述任何权利，请直接联系我们。我们将在合理时间内回复，并始终力求让您轻松办理。",
+        b7Title: "儿童隐私",
+        b7Text: "我们的网站面向普通受众，不针对 13 岁以下儿童。我们不会在知情的情况下收集儿童的个人信息。如果您认为有儿童与我们分享了信息，请与我们联系，我们会及时删除。",
+        b8Title: "本政策的变更",
+        b8Text: "我们可能会不时更新本隐私政策，以反映我们的做法、技术或法律要求的变化。更新时，我们会更新本页顶部的“最后更新”日期。",
+        b8Text2: "我们鼓励您偶尔查看本页。变更后继续使用我们的网站即表示您接受更新后的政策。",
+        ctaTitle: "对您的隐私有疑问？",
+        ctaText: "如果您对我们处理数据的方式有任何疑问、顾虑或请求，请与我们联系——我们很乐意为您提供帮助。",
+        ctaBtn: "联系我们",
+        footerDescription: "你的暹粒旅行指南，带你发现最佳餐厅、真实体验和旅行贴士。",
+        exploreFooter: "探索", informationFooter: "信息", supportFooter: "支持",
+        travelTips: "旅行贴士", heritage: "文化遗产", travelGuide: "旅行指南", aboutSiemReap: "关于暹粒",
+        faq: "常见问题", contactUs: "联系我们", privacy: "隐私政策", terms: "使用条款",
+        copyright: "© 2026 Taste Siem Reap。版权所有。"
+      }
+    };
+
+    let currentLanguage =
+      localStorage.getItem("selectedLanguage") ||
+      localStorage.getItem("tasteSiemReapLanguage") ||
+      "en";
+
+    function translatePage(lang) {
+      const dict = translations[lang];
+      if (!dict) return;
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (!dict[key]) return;
+        el.textContent = dict[key];
+      });
+
+      document.documentElement.lang = lang;
+
+      const spanCurrent = document.getElementById('currentLanguage');
+      if (spanCurrent) {
+        if (lang === 'en') spanCurrent.textContent = 'EN';
+        else if (lang === 'km') spanCurrent.textContent = 'ខ្មែរ';
+        else if (lang === 'zh') spanCurrent.textContent = '中文';
+      }
+
+      document.querySelectorAll('.language-option').forEach(opt => {
+        opt.classList.toggle('active', opt.dataset.language === lang);
+      });
+
+      currentLanguage = lang;
+      localStorage.setItem('selectedLanguage', lang);
+      localStorage.setItem('tasteSiemReapLanguage', lang);
+    }
+
+    const langBtn = document.getElementById('languageButton');
+    const langMenu = document.getElementById('languageMenu');
+
+    langBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      langMenu.classList.toggle('show');
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.language-wrapper')) {
+        langMenu.classList.remove('show');
+      }
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') langMenu.classList.remove('show');
+    });
+
+    document.querySelectorAll('.language-option').forEach(opt => {
+      opt.addEventListener('click', function() {
+        translatePage(this.dataset.language);
+        langMenu.classList.remove('show');
+      });
+    });
+
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+
+    hamburger.addEventListener('click', function() {
+      this.classList.toggle('active');
+      mobileNav.classList.toggle('open');
+      document.body.style.overflow =
+        mobileNav.classList.contains('open') ? 'hidden' : '';
+    });
+
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', function() {
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    window.addEventListener('resize', function() {
+      if (window.innerWidth > 768) {
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+
+    document.querySelectorAll('.toc-list a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    translatePage(currentLanguage);
+  })();
+</script>
+</body>
+</html>

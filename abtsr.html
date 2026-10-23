@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>Taste Siem Reap · About Siem Reap</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    /* =====================================================
+       WARM MINIMAL THEME
+    ===================================================== */
+
+    :root {
+      --bg: #f8f5f0;
+      --bg-alt: #f2ede4;
+      --surface: #ffffff;
+
+      --text: #2a2620;
+      --muted: #6b6259;
+      --muted-light: #a49a8e;
+
+      --accent: #b8924a;
+      --accent-soft: #e8dcc1;
+
+      --line: #e8e3da;
+
+      --font-sans: "DM Sans", system-ui, -apple-system, sans-serif;
+      --font-serif: "Playfair Display", Georgia, serif;
+
+      --container: 1080px;
+      --gutter: 24px;
+      --radius: 10px;
+
+      --header-height: 64px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.65;
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; width: 100%; height: auto; max-width: 100%; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+    /* =====================================================
+       HEADER
+    ===================================================== */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(248, 245, 240, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .navbar {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+      height: var(--header-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    .logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 400;
+      transition: color .2s ease;
+      position: relative;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--text); }
+
+    .nav-links a.active::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -6px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .language-wrapper { position: relative; }
+
+    .language-btn {
+      padding: 6px 10px;
+      color: var(--muted);
+      background: transparent;
+      cursor: pointer;
+      transition: color .2s ease;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .language-btn:hover { color: var(--text); }
+
+    .language-btn::after {
+      content: "▾";
+      font-size: 9px;
+      opacity: 0.6;
+    }
+
+    .language-menu {
+      position: absolute;
+      right: 0;
+      top: calc(100% + 8px);
+      min-width: 140px;
+      padding: 6px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(60, 50, 40, 0.08);
+      display: none;
+      z-index: 100;
+    }
+
+    .language-menu.show { display: block; }
+
+    .language-option {
+      width: 100%;
+      background: transparent;
+      color: var(--muted);
+      padding: 8px 10px;
+      border-radius: 6px;
+      text-align: left;
+      cursor: pointer;
+      font-size: 13px;
+      transition: .15s ease;
+    }
+
+    .language-option:hover,
+    .language-option.active {
+      background: var(--bg-alt);
+      color: var(--text);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      padding: 8px;
+      cursor: pointer;
+      background: transparent;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 20px;
+      height: 1.5px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: .3s ease;
+    }
+
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(3px, 3px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(3px, -3px); }
+
+    .mobile-nav-overlay {
+      display: none;
+      position: fixed;
+      top: var(--header-height);
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--bg);
+      z-index: 999;
+      padding: 24px var(--gutter) 40px;
+      overflow-y: auto;
+    }
+
+    .mobile-nav-overlay.open { display: block; }
+
+    .mobile-nav-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .mobile-nav-links a {
+      display: block;
+      padding: 14px 0;
+      color: var(--text);
+      font-size: 16px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .mobile-nav-links a.active { color: var(--accent); }
+
+    /* =====================================================
+       HERO
+    ===================================================== */
+
+    .about-hero {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 96px var(--gutter) 64px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-size: 11px;
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .about-hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(34px, 7vw, 64px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      font-weight: 500;
+      max-width: 900px;
+      margin: 0 auto;
+      color: var(--text);
+    }
+
+    .about-hero h1 span { color: var(--accent); }
+
+    .about-hero p {
+      max-width: 680px;
+      margin: 24px auto 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    /* =====================================================
+       STATS
+    ===================================================== */
+
+    .stats-bar {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gutter) 64px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+    }
+
+    .stat {
+      text-align: center;
+      padding: 28px 16px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      transition: border-color .2s ease;
+    }
+
+    .stat:hover { border-color: var(--accent-soft); }
+
+    .stat-value {
+      font-family: var(--font-serif);
+      font-size: clamp(26px, 4vw, 34px);
+      color: var(--accent);
+      line-height: 1.1;
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+
+    .stat-label {
+      color: var(--muted);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* =====================================================
+       MAIN
+    ===================================================== */
+
+    .about-section {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gutter) 96px;
+    }
+
+    .section-block { margin-bottom: 96px; }
+    .section-block:last-child { margin-bottom: 0; }
+
+    .section-heading {
+      margin-bottom: 40px;
+      max-width: 640px;
+    }
+
+    .section-heading h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(28px, 3.6vw, 40px);
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .section-heading h2 span { color: var(--accent); }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    /* ===== STORY ===== */
+
+    .story-text {
+      background: var(--bg-alt);
+      border-radius: var(--radius);
+      padding: 48px;
+    }
+
+    .story-text p {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.75;
+      margin-bottom: 18px;
+    }
+
+    .story-text p:last-child { margin-bottom: 0; }
+
+    .story-text strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* ===== HIGHLIGHTS ===== */
+
+    .highlight-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .highlight-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .highlight-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(60, 50, 40, 0.06);
+    }
+
+    .highlight-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      background: var(--accent-soft);
+      display: grid;
+      place-items: center;
+      font-size: 22px;
+    }
+
+    .highlight-card h3 {
+      font-family: var(--font-sans);
+      font-size: 17px;
+      font-weight: 600;
+      line-height: 1.3;
+      color: var(--text);
+      letter-spacing: -0.005em;
+    }
+
+    .highlight-card p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    .highlight-meta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      background: var(--bg-alt);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 500;
+      align-self: flex-start;
+      margin-top: 4px;
+    }
+
+    /* ===== NEIGHBORHOODS ===== */
+
+    .neighborhoods {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .neighborhood {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      transition: border-color .2s ease;
+    }
+
+    .neighborhood:hover { border-color: var(--accent-soft); }
+
+    .neighborhood h4 {
+      font-family: var(--font-sans);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .neighborhood p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* ===== TIMELINE ===== */
+
+    .timeline {
+      position: relative;
+      padding-left: 36px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 10px;
+      top: 8px;
+      bottom: 8px;
+      width: 1px;
+      background: var(--line);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 32px;
+    }
+
+    .timeline-item:last-child { margin-bottom: 0; }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -30px;
+      top: 6px;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px var(--bg);
+    }
+
+    .timeline-year {
+      font-family: var(--font-sans);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
+
+    .timeline-item h4 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+      line-height: 1.4;
+    }
+
+    .timeline-item p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    /* ===== CTA ===== */
+
+    .cta-box {
+      background: var(--bg-alt);
+      border-radius: 16px;
+      padding: 64px 48px;
+      text-align: center;
+    }
+
+    .cta-box h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(26px, 4vw, 38px);
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+      max-width: 720px;
+      margin: 0 auto 16px;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .cta-box h2 span { color: var(--accent); }
+
+    .cta-box p {
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 620px;
+      margin: 0 auto 28px;
+      line-height: 1.7;
+    }
+
+    .cta-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 22px;
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: var(--radius);
+      transition: .2s ease;
+      white-space: nowrap;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--text);
+      color: var(--surface);
+    }
+
+    .btn-primary:hover {
+      background: #1a1712;
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border-color: var(--line);
+    }
+
+    .btn-secondary:hover {
+      background: var(--surface);
+      border-color: var(--text);
+    }
+
+    /* =====================================================
+       FOOTER
+    ===================================================== */
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 64px var(--gutter) 32px;
+      background: var(--bg-alt);
+    }
+
+    .footer-grid {
+      max-width: var(--container);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(60, 50, 40, 0.08);
+    }
+
+    .footer-brand h2 {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 500;
+      margin-bottom: 14px;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+
+    .footer-brand h2 span { color: var(--accent); }
+
+    .footer-brand p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+      max-width: 340px;
+    }
+
+    .socials {
+      display: flex;
+      gap: 8px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .social {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      color: var(--muted);
+      background: var(--surface);
+      font-size: 12px;
+      transition: .2s ease;
+    }
+
+    .social:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .footer-column h3 {
+      color: var(--muted-light);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .footer-column a {
+      display: block;
+      color: var(--text);
+      font-size: 14px;
+      margin-bottom: 10px;
+      transition: color .2s ease;
+    }
+
+    .footer-column a:hover { color: var(--accent); }
+
+    .copyright {
+      max-width: var(--container);
+      margin: 32px auto 0;
+      color: var(--muted-light);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    /* =====================================================
+       RESPONSIVE
+    ===================================================== */
+
+    @media (max-width: 1024px) {
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+      }
+      .story-text { padding: 40px; }
+    }
+
+    @media (max-width: 768px) {
+      :root { --header-height: 58px; }
+
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+
+      .about-hero { padding: 64px var(--gutter) 48px; }
+
+      .stats-bar {
+        grid-template-columns: repeat(2, 1fr);
+        padding-bottom: 48px;
+      }
+
+      .about-section { padding-bottom: 64px; }
+      .section-block { margin-bottom: 64px; }
+
+      .story-text { padding: 32px 24px; }
+
+      .cta-box { padding: 48px 28px; }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      :root { --gutter: 20px; }
+
+      .about-hero h1 { font-size: 32px; }
+      .about-hero p { font-size: 15px; }
+
+      .stat-value { font-size: 24px; }
+
+      .highlight-card { padding: 24px 20px; }
+      .neighborhood { padding: 20px; }
+
+      .timeline { padding-left: 28px; }
+      .timeline-item::before { left: -24px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+  <link rel="stylesheet" href="site-header.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <nav class="navbar">
+    <a href="index.html" class="logo">
+      Taste <span>Siem Reap</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html" data-i18n="navHome">Home</a></li>
+      <li><a href="res.html" data-i18n="navRestaurants">Restaurants</a></li>
+      <li><a href="experience.html" data-i18n="navExperience">Experience</a></li>
+      <li><a href="Aboutus.html" data-i18n="navAbout">About Us</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <div class="language-wrapper" id="languageWrapper">
+        <button class="language-btn" id="languageButton" type="button" aria-label="Language">
+          <span id="currentLanguage">EN</span>
+        </button>
+        <div class="language-menu" id="languageMenu">
+          <button class="language-option active" data-language="en" type="button">🇬🇧 English</button>
+          <button class="language-option" data-language="zh" type="button">🇨🇳 中文</button>
+          <button class="language-option" data-language="km" type="button">🇰🇭 ខ្មែរ</button>
+        </div>
+      </div>
+
+      <button class="hamburger" id="hamburger" type="button" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav-overlay" id="mobileNav">
+  <ul class="mobile-nav-links">
+    <li><a href="index.html" data-i18n="navHome">Home</a></li>
+    <li><a href="res.html" data-i18n="navRestaurants">Restaurants</a></li>
+    <li><a href="experience.html" data-i18n="navExperience">Experience</a></li>
+    <li><a href="Aboutus.html" data-i18n="navAbout">About Us</a></li>
+  </ul>
+</div>
+
+<!-- HERO -->
+<section class="about-hero">
+  <div class="eyebrow" data-i18n="aboutEyebrow">Gateway to Angkor</div>
+  <h1><span data-i18n="aboutTitle1">About</span> <span data-i18n="aboutTitle2">Siem Reap</span></h1>
+  <p data-i18n="aboutIntro">A small riverside city that became the beating heart of Cambodian tourism — home to Angkor Wat, a vibrant food scene, and some of the warmest people in Southeast Asia.</p>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat">
+    <div class="stat-value">~250K</div>
+    <div class="stat-label" data-i18n="statPopulation">Population</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value">11th</div>
+    <div class="stat-label" data-i18n="statCentury">Angkor Built (Century)</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value">1,000+</div>
+    <div class="stat-label" data-i18n="statTemples">Temples Nearby</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value">2M+</div>
+    <div class="stat-label" data-i18n="statVisitors">Visitors per Year</div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<section class="about-section">
+
+  <!-- STORY -->
+  <div class="section-block">
+    <div class="section-heading">
+      <h2 data-i18n="storyTitle">A City <span>Reborn</span></h2>
+      <p data-i18n="storyText">Siem Reap's journey from a quiet provincial town to a world-class destination.</p>
+    </div>
+
+    <div class="story-text">
+      <p data-i18n="storyP1">Siem Reap literally means <strong>"Siam Defeated"</strong> — a name given in the 18th century after a Khmer victory over the Siamese army. For most of its history, it was a modest town on the Siem Reap River, quietly sitting beside the ruins of what was once the largest pre-industrial city in the world.</p>
+      <p data-i18n="storyP2">That all changed in the early 20th century, when French explorers "rediscovered" the temples of <strong>Angkor Wat</strong> and the surrounding archaeological park. Restoration work, then tourism, gradually transformed the town — but the real boom came after the 1990s, following decades of conflict.</p>
+      <p data-i18n="storyP3">Today, Siem Reap is a thriving city of around 250,000 people that welcomes over <strong>2 million visitors a year</strong>. It balances ancient heritage with modern comforts: boutique hotels, world-class restaurants, night markets, and a food scene that ranges from $1 street noodles to award-winning fine dining.</p>
+      <p data-i18n="storyP4">But what makes Siem Reap truly special isn't just the temples. It's the people — their resilience, their warmth, and their deep pride in sharing Khmer culture with the world.</p>
+    </div>
+  </div>
+
+  <!-- HIGHLIGHTS -->
+  <div class="section-block">
+    <div class="section-heading">
+      <h2 data-i18n="highlightsTitle">What Makes Siem Reap <span>Special</span></h2>
+      <p data-i18n="highlightsText">The elements that define a visit to this remarkable city.</p>
+    </div>
+
+    <div class="highlight-grid">
+      <article class="highlight-card">
+        <div class="highlight-icon">🛕</div>
+        <h3 data-i18n="angkorTitle">Angkor Wat & Temples</h3>
+        <p data-i18n="angkorText">The largest religious monument in the world and a UNESCO World Heritage Site. Over 1,000 temples spread across 400 square kilometers, from the iconic Angkor Wat to the jungle-swallowed Ta Prohm.</p>
+        <span class="highlight-meta">🌟 UNESCO Site</span>
+      </article>
+
+      <article class="highlight-card">
+        <div class="highlight-icon">🍜</div>
+        <h3 data-i18n="foodTitle">Khmer Food Scene</h3>
+        <p data-i18n="foodText">From street-side Kuy Teav at dawn to refined Amok in colonial-style restaurants. Siem Reap is the best place in Cambodia to explore authentic Khmer cuisine — including Khmer Rouge survivor recipes and modern fusion.</p>
+        <span class="highlight-meta">🍽️ Food Capital</span>
+      </article>
+
+      <article class="highlight-card">
+        <div class="highlight-icon">🌊</div>
+        <h3 data-i18n="tonleTitle">Tonle Sap Lake</h3>
+        <p data-i18n="tonleText">The largest freshwater lake in Southeast Asia. Its unique flood cycle reverses the flow of the Tonle Sap River each year — home to floating villages, bird sanctuaries, and one of the world's richest freshwater fisheries.</p>
+        <span class="highlight-meta">💧 Natural Wonder</span>
+      </article>
+
+      <article class="highlight-card">
+        <div class="highlight-icon">🎨</div>
+        <h3 data-i18n="cultureTitle">Arts & Crafts</h3>
+        <p data-i18n="cultureText">Siem Reap is a hub for traditional Khmer crafts — silk weaving, stone carving, lacquerware, and shadow puppetry. Visit workshops in the Artisans Angkor complex or the night market for handmade souvenirs.</p>
+        <span class="highlight-meta">🎭 Living Heritage</span>
+      </article>
+
+      <article class="highlight-card">
+        <div class="highlight-icon">🌿</div>
+        <h3 data-i18n="natureTitle">Nature & Countryside</h3>
+        <p data-i18n="natureText">Beyond the temples lies rice paddies, lotus fields, and stilted villages. Cycling tours, cooking classes in rural homes, and sunset boat rides offer a quieter side of Siem Reap that most visitors miss.</p>
+        <span class="highlight-meta">🚲 Rural Escape</span>
+      </article>
+
+      <article class="highlight-card">
+        <div class="highlight-icon">🌙</div>
+        <h3 data-i18n="nightTitle">Night Markets & Pub Street</h3>
+        <p data-i18n="nightText">After sunset, the city comes alive. Pub Street offers bars and live music, while the Angkor Night Market and Made in Cambodia Market sell everything from silk scarves to spicy dried mango — all at fair, negotiable prices.</p>
+        <span class="highlight-meta">🎶 Evening Energy</span>
+      </article>
+    </div>
+  </div>
+
+  <!-- NEIGHBORHOODS -->
+  <div class="section-block">
+    <div class="section-heading">
+      <h2 data-i18n="hoodsTitle">Neighborhoods & <span>Areas</span></h2>
+      <p data-i18n="hoodsText">Where to stay, eat, and explore around the city.</p>
+    </div>
+
+    <div class="neighborhoods">
+      <div class="neighborhood">
+        <h4>🏛️ Old Market Area</h4>
+        <p data-i18n="hood1Text">The historic heart of Siem Reap. Psychedelic temples, French-colonial shophouses, the covered market, and easy walking access to Pub Street and the river.</p>
+      </div>
+      <div class="neighborhood">
+        <h4>🌃 Pub Street & Nightlife</h4>
+        <p data-i18n="hood2Text">The backpacker and nightlife hub — bars, restaurants, live music, and late-night food. Great for atmosphere, though not the quietest place to sleep.</p>
+      </div>
+      <div class="neighborhood">
+        <h4>🌾 Riverside & Wat Bo</h4>
+        <p data-i18n="hood3Text">Quieter, leafy streets along the Siem Reap River. Home to boutique hotels, cafés, and many of the city's best Khmer restaurants.</p>
+      </div>
+      <div class="neighborhood">
+        <h4>🌳 Charles de Gaulle</h4>
+        <p data-i18n="hood4Text">The tree-lined boulevard leading to Angkor. Luxury resorts, fine dining, and the closest access to the temple park entrance.</p>
+      </div>
+      <div class="neighborhood">
+        <h4>🎨 Kandal Village</h4>
+        <p data-i18n="hood5Text">A small, trendy neighborhood with artisan boutiques, specialty coffee, and design-forward restaurants. Perfect for a slow afternoon.</p>
+      </div>
+      <div class="neighborhood">
+        <h4>🚤 Tonle Sap Edge</h4>
+        <p data-i18n="hood6Text">The floating villages and stilted communities around Kompong Khleang and Kompong Phluk — a 30–60 minute drive from the city center.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIMELINE -->
+  <div class="section-block">
+    <div class="section-heading">
+      <h2 data-i18n="timelineTitle">A Brief <span>History</span></h2>
+      <p data-i18n="timelineText">Key moments in the story of Siem Reap and the Angkor region.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-year">802 AD</div>
+        <h4 data-i18n="tl1Title">The Khmer Empire Begins</h4>
+        <p data-i18n="tl1Text">Jayavarman II unifies the Khmer kingdoms and establishes the Angkorian Empire, which would rule much of Southeast Asia for over 600 years.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">1113 – 1150 AD</div>
+        <h4 data-i18n="tl2Title">Angkor Wat Is Built</h4>
+        <p data-i18n="tl2Text">King Suryavarman II commissions Angkor Wat — the largest religious monument in the world — dedicated to the Hindu god Vishnu. It later becomes a Buddhist temple.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">1431 AD</div>
+        <h4 data-i18n="tl3Title">The Fall of Angkor</h4>
+        <p data-i18n="tl3Text">After repeated Siamese invasions, the Khmer capital moves south to Phnom Penh. Angkor is gradually abandoned to the jungle, though monks continue to tend its temples.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">1860s</div>
+        <h4 data-i18n="tl4Title">French Rediscovery</h4>
+        <p data-i18n="tl4Text">French explorer Henri Mouhot brings global attention to the Angkor ruins. Restoration work begins, and Siem Reap begins to grow as a base for visitors.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">1975 – 1979</div>
+        <h4 data-i18n="tl5Title">The Khmer Rouge Years</h4>
+        <p data-i18n="tl5Text">A devastating period for Cambodia. Cities are emptied, temples are damaged, and millions lose their lives. Siem Reap, like the rest of the country, suffers deeply.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">1992</div>
+        <h4 data-i18n="tl6Title">UNESCO World Heritage</h4>
+        <p data-i18n="tl6Text">Angkor is declared a UNESCO World Heritage Site. International restoration begins, and Siem Reap slowly reopens to tourism.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">2000s – Today</div>
+        <h4 data-i18n="tl7Title">A Modern Tourism Hub</h4>
+        <p data-i18n="tl7Text">Siem Reap becomes one of Southeast Asia's top destinations, attracting millions of visitors a year and building a thriving food, art, and hospitality scene.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-box">
+    <h2 data-i18n="ctaTitle">Come Taste <span>Siem Reap</span></h2>
+    <p data-i18n="ctaText">Whether you're here for the temples, the food, or the people — this city will stay with you. Start with our restaurant guide and travel tips.</p>
+    <div class="cta-buttons">
+      <a href="res.html" class="btn btn-primary" data-i18n="ctaRestaurants">Explore Restaurants</a>
+      <a href="tvr.html" class="btn btn-secondary" data-i18n="ctaGuide">Travel Guide</a>
+    </div>
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <h2>Taste <span>Siem Reap</span></h2>
+      <p data-i18n="footerDescription">Your guide to the best restaurants, authentic experiences and travel tips in Siem Reap, Cambodia.</p>
+      <div class="socials">
+        <span class="social">f</span>
+        <span class="social">◎</span>
+        <span class="social">♪</span>
+        <span class="social">▶</span>
+      </div>
+    </div>
+
+    <div class="footer-column">
+      <h3 data-i18n="exploreFooter">EXPLORE</h3>
+      <a href="res.html" data-i18n="navRestaurants">Restaurants</a>
+      <a href="experience.html" data-i18n="navExperience">Experience</a>
+      <a href="tip.html" data-i18n="travelTips">Travel Tips</a>
+      <a href="Aboutus.html" data-i18n="navAbout">About Us</a>
+    </div>
+
+    <div class="footer-column">
+      <h3 data-i18n="informationFooter">INFORMATION</h3>
+      <a href="hari.html" data-i18n="heritage">Heritage</a>
+      <a href="tvr.html" data-i18n="travelGuide">Travel Guide</a>
+      <a href="abtsr.html" data-i18n="aboutSiemReap">About Siem Reap</a>
+      <a href="faq.html" data-i18n="faq">FAQ</a>
+    </div>
+
+    <div class="footer-column">
+      <h3 data-i18n="supportFooter">SUPPORT</h3>
+      <a href="contactus.html" data-i18n="contactUs">Contact Us</a>
+      <a href="prv.html" data-i18n="privacy">Privacy Policy</a>
+      <a href="tou.html" data-i18n="terms">Terms of Use</a>
+    </div>
+  </div>
+
+  <div class="copyright" data-i18n="copyright">
+    © 2026 Taste Siem Reap. All rights reserved.
+  </div>
+</footer>
+
+<script>
+  (function(){
+    const translations = {
+      en: {
+        navHome: "Home",
+        navRestaurants: "Restaurants",
+        navExperience: "Experience",
+        navAbout: "About Us",
+
+        aboutEyebrow: "Gateway to Angkor",
+        aboutTitle1: "About",
+        aboutTitle2: "Siem Reap",
+        aboutIntro: "A small riverside city that became the beating heart of Cambodian tourism — home to Angkor Wat, a vibrant food scene, and some of the warmest people in Southeast Asia.",
+
+        statPopulation: "Population",
+        statCentury: "Angkor Built (Century)",
+        statTemples: "Temples Nearby",
+        statVisitors: "Visitors per Year",
+
+        storyTitle: "A City Reborn",
+        storyText: "Siem Reap's journey from a quiet provincial town to a world-class destination.",
+
+        storyP1: "Siem Reap literally means \"Siam Defeated\" — a name given in the 18th century after a Khmer victory over the Siamese army. For most of its history, it was a modest town on the Siem Reap River, quietly sitting beside the ruins of what was once the largest pre-industrial city in the world.",
+        storyP2: "That all changed in the early 20th century, when French explorers \"rediscovered\" the temples of Angkor Wat and the surrounding archaeological park. Restoration work, then tourism, gradually transformed the town — but the real boom came after the 1990s, following decades of conflict.",
+        storyP3: "Today, Siem Reap is a thriving city of around 250,000 people that welcomes over 2 million visitors a year. It balances ancient heritage with modern comforts: boutique hotels, world-class restaurants, night markets, and a food scene that ranges from $1 street noodles to award-winning fine dining.",
+        storyP4: "But what makes Siem Reap truly special isn't just the temples. It's the people — their resilience, their warmth, and their deep pride in sharing Khmer culture with the world.",
+
+        highlightsTitle: "What Makes Siem Reap Special",
+        highlightsText: "The elements that define a visit to this remarkable city.",
+
+        angkorTitle: "Angkor Wat & Temples",
+        angkorText: "The largest religious monument in the world and a UNESCO World Heritage Site. Over 1,000 temples spread across 400 square kilometers, from the iconic Angkor Wat to the jungle-swallowed Ta Prohm.",
+
+        foodTitle: "Khmer Food Scene",
+        foodText: "From street-side Kuy Teav at dawn to refined Amok in colonial-style restaurants. Siem Reap is the best place in Cambodia to explore authentic Khmer cuisine — including Khmer Rouge survivor recipes and modern fusion.",
+
+        tonleTitle: "Tonle Sap Lake",
+        tonleText: "The largest freshwater lake in Southeast Asia. Its unique flood cycle reverses the flow of the Tonle Sap River each year — home to floating villages, bird sanctuaries, and one of the world's richest freshwater fisheries.",
+
+        cultureTitle: "Arts & Crafts",
+        cultureText: "Siem Reap is a hub for traditional Khmer crafts — silk weaving, stone carving, lacquerware, and shadow puppetry. Visit workshops in the Artisans Angkor complex or the night market for handmade souvenirs.",
+
+        natureTitle: "Nature & Countryside",
+        natureText: "Beyond the temples lies rice paddies, lotus fields, and stilted villages. Cycling tours, cooking classes in rural homes, and sunset boat rides offer a quieter side of Siem Reap that most visitors miss.",
+
+        nightTitle: "Night Markets & Pub Street",
+        nightText: "After sunset, the city comes alive. Pub Street offers bars and live music, while the Angkor Night Market and Made in Cambodia Market sell everything from silk scarves to spicy dried mango — all at fair, negotiable prices.",
+
+        hoodsTitle: "Neighborhoods & Areas",
+        hoodsText: "Where to stay, eat, and explore around the city.",
+
+        hood1Text: "The historic heart of Siem Reap. Psychedelic temples, French-colonial shophouses, the covered market, and easy walking access to Pub Street and the river.",
+        hood2Text: "The backpacker and nightlife hub — bars, restaurants, live music, and late-night food. Great for atmosphere, though not the quietest place to sleep.",
+        hood3Text: "Quieter, leafy streets along the Siem Reap River. Home to boutique hotels, cafés, and many of the city's best Khmer restaurants.",
+        hood4Text: "The tree-lined boulevard leading to Angkor. Luxury resorts, fine dining, and the closest access to the temple park entrance.",
+        hood5Text: "A small, trendy neighborhood with artisan boutiques, specialty coffee, and design-forward restaurants. Perfect for a slow afternoon.",
+        hood6Text: "The floating villages and stilted communities around Kompong Khleang and Kompong Phluk — a 30–60 minute drive from the city center.",
+
+        timelineTitle: "A Brief History",
+        timelineText: "Key moments in the story of Siem Reap and the Angkor region.",
+
+        tl1Title: "The Khmer Empire Begins",
+        tl1Text: "Jayavarman II unifies the Khmer kingdoms and establishes the Angkorian Empire, which would rule much of Southeast Asia for over 600 years.",
+
+        tl2Title: "Angkor Wat Is Built",
+        tl2Text: "King Suryavarman II commissions Angkor Wat — the largest religious monument in the world — dedicated to the Hindu god Vishnu. It later becomes a Buddhist temple.",
+
+        tl3Title: "The Fall of Angkor",
+        tl3Text: "After repeated Siamese invasions, the Khmer capital moves south to Phnom Penh. Angkor is gradually abandoned to the jungle, though monks continue to tend its temples.",
+
+        tl4Title: "French Rediscovery",
+        tl4Text: "French explorer Henri Mouhot brings global attention to the Angkor ruins. Restoration work begins, and Siem Reap begins to grow as a base for visitors.",
+
+        tl5Title: "The Khmer Rouge Years",
+        tl5Text: "A devastating period for Cambodia. Cities are emptied, temples are damaged, and millions lose their lives. Siem Reap, like the rest of the country, suffers deeply.",
+
+        tl6Title: "UNESCO World Heritage",
+        tl6Text: "Angkor is declared a UNESCO World Heritage Site. International restoration begins, and Siem Reap slowly reopens to tourism.",
+
+        tl7Title: "A Modern Tourism Hub",
+        tl7Text: "Siem Reap becomes one of Southeast Asia's top destinations, attracting millions of visitors a year and building a thriving food, art, and hospitality scene.",
+
+        ctaTitle: "Come Taste Siem Reap",
+        ctaText: "Whether you're here for the temples, the food, or the people — this city will stay with you. Start with our restaurant guide and travel tips.",
+        ctaRestaurants: "Explore Restaurants",
+        ctaGuide: "Travel Guide",
+
+        footerDescription: "Your guide to the best restaurants, authentic experiences and travel tips in Siem Reap, Cambodia.",
+        exploreFooter: "EXPLORE",
+        informationFooter: "INFORMATION",
+        supportFooter: "SUPPORT",
+        travelTips: "Travel Tips",
+        heritage: "Heritage",
+        travelGuide: "Travel Guide",
+        aboutSiemReap: "About Siem Reap",
+        faq: "FAQ",
+        contactUs: "Contact Us",
+        privacy: "Privacy Policy",
+        terms: "Terms of Use",
+        copyright: "© 2026 Taste Siem Reap. All rights reserved."
+      },
+
+      km: {
+        navHome: "ទំព័រដើម",
+        navRestaurants: "ភោជនីយដ្ឋាន",
+        navExperience: "បទពិសោធន៍",
+        navAbout: "អំពីយើង",
+
+        aboutEyebrow: "ច្រកចូលទៅអង្គរ",
+        aboutTitle1: "អំពី",
+        aboutTitle2: "សៀមរាប",
+        aboutIntro: "ទីក្រុងតូចមួយនៅមាត់ទន្លេ ដែលបានក្លាយជាបេះដូងនៃទេសចរណ៍កម្ពុជា — ជាទីកន្លែងនៃអង្គរវត្ត ឈុតឆាកអាហារដ៏រស់រវើក និងប្រជាជនដ៏កក់ក្តៅបំផុតនៅអាស៊ីអាគ្នេយ៍។",
+
+        statPopulation: "ចំនួនប្រជាជន",
+        statCentury: "សតវត្សសាងសង់អង្គរ",
+        statTemples: "ប្រាសាទក្បែរនោះ",
+        statVisitors: "អ្នកទេសចរក្នុងមួយឆ្នាំ",
+
+        storyTitle: "ទីក្រុងដែលរស់ឡើងវិញ",
+        storyText: "ដំណើររបស់សៀមរាបពីទីក្រុងខេត្តស្ងប់ស្ងាត់ទៅជាគោលដៅលំដាប់ពិភពលោក។",
+
+        storyP1: "សៀមរាបមានន័យថា \"សៀមចាញ់\" — ឈ្មោះដែលបានដាក់នៅសតវត្សទី ១៨ បន្ទាប់ពីជ័យជម្នះខ្មែរលើកងទ័ពសៀម។ សម្រាប់ប្រវត្តិសាស្ត្រភាគច្រើន វាគឺជាទីក្រុងតូចមួយនៅមាត់ទន្លេសៀមរាប ដែលស្ថិតនៅជាប់នឹងប្រាសាទបុរាណដែលធ្លាប់ជាទីក្រុងធំបំផុតមុនយុគសម័យឧស្សាហកម្ម។",
+        storyP2: "អ្វីៗបានផ្លាស់ប្តូរនៅដើមសតវត្សទី ២០ នៅពេលអ្នករុករកជនជាតិបារាំង \"រកឃើញឡើងវិញ\" ប្រាសាទអង្គរវត្ត និងឧទ្យានបុរាណវិទ្យាជុំវិញ។ ការជួសជុល បន្ទាប់មកទេសចរណ៍ បានផ្លាស់ប្តូរទីក្រុងបន្តិចម្តងៗ — ប៉ុន្តែការរីកចម្រើនពិតប្រាកដបានមកបន្ទាប់ពីទសវត្សរ៍ ១៩៩០ បន្ទាប់ពីទសវត្សរ៍នៃជម្លោះ។",
+        storyP3: "សព្វថ្ងៃនេះ សៀមរាបគឺជាទីក្រុងដ៏រីកចម្រើនដែលមានប្រជាជនប្រហែល ២៥០,០០០ នាក់ ហើយស្វាគមន៍អ្នកទេសចរជាង ២ លាននាក់ក្នុងមួយឆ្នាំ។ វាមានតុល្យភាពរវាងបេតិកភណ្ឌបុរាណ និងភាពងាយស្រួលទំនើប៖ សណ្ឋាគារបុទិក ភោជនីយដ្ឋានលំដាប់ពិភពលោក ផ្សាររាត្រី និងឈុតឆាកអាហារដែលមានចាប់ពីគុយទាវតម្លៃ ១ ដុល្លារ ដល់អាហារល្អៗដែលឈ្នះពានរង្វាន់។",
+        storyP4: "ប៉ុន្តែអ្វីដែលធ្វើឱ្យសៀមរាបពិសេសពិតប្រាកដ មិនត្រឹមតែជាប្រាសាទទេ។ វាគឺជាប្រជាជន — ភាពធន់ ភាពកក់ក្តៅ និងមោទនភាពជ្រៅរបស់ពួកគេក្នុងការចែករំលែកវប្បធម៌ខ្មែរជាមួយពិភពលោក។",
+
+        highlightsTitle: "អ្វីដែលធ្វើឱ្យសៀមរាបពិសេស",
+        highlightsText: "ធាតុផ្សំដែលកំណត់ការមកទស្សនាទីក្រុងដ៏អស្ចារ្យនេះ។",
+
+        angkorTitle: "អង្គរវត្ត និងប្រាសាទ",
+        angkorText: "វិមានសាសនាធំបំផុតនៅក្នុងពិភពលោក និងជាតំបន់បេតិកភណ្ឌពិភពលោករបស់យូណេស្កូ។ ប្រាសាទជាង ១,០០០ ខ្ទង់រាយប៉ាយលើផ្ទៃដី ៤០០ គីឡូម៉ែត្រការ៉េ ពីអង្គរវត្តដ៏ល្បីល្បាញ ដល់តាព្រហ្មដែលព្រៃគ្របដណ្តប់។",
+
+        foodTitle: "ឈុតឆាកអាហារខ្មែរ",
+        foodText: "ពីគុយទាវតាមផ្លូវពេលព្រឹក ដល់អាម៉ុកដ៏ឆ្ងាញ់ក្នុងភោជនីយដ្ឋានបែបអាណានិគម។ សៀមរាបគឺជាកន្លែងល្អបំផុតនៅកម្ពុជាសម្រាប់ស្វែងយល់ម្ហូបខ្មែរពិតប្រាកដ — រួមទាំងរូបមន្តអ្នករស់រានមានជីវិតពីខ្មែរក្រហម និងការរួមបញ្ចូលទំនើប។",
+
+        tonleTitle: "បឹងទន្លេសាប",
+        tonleText: "បឹងទឹកសាបធំបំផុតនៅអាស៊ីអាគ្នេយ៍។ វដ្តទឹកជំនន់ពិសេសរបស់វាបញ្ច្រាស់លំហូរទន្លេទន្លេសាបជារៀងរាល់ឆ្នាំ — ជាទីកន្លែងនៃភូមិអណ្តែតទឹក ដែនជម្រកសត្វស្លាប និងជាតំបន់នេសាទទឹកសាបដ៏សម្បូរបែបបំផុតក្នុងពិភពលោក។",
+
+        cultureTitle: "សិល្បៈ និងសិប្បកម្ម",
+        cultureText: "សៀមរាបគឺជាមជ្ឈមណ្ឌលសិប្បកម្មប្រពៃណីខ្មែរ — ត្បាញសូត្រ ឆ្លាក់ថ្ម សិប្បកម្មខ្នើយ និងស្រមោល។ ទស្សនាសិប្បកម្មនៅ Artisans Angkor ឬផ្សាររាត្រីសម្រាប់វត្ថុអនុស្សាវរីយ៍ធ្វើដោយដៃ។",
+
+        natureTitle: "ធម្មជាតិ និងជនបទ",
+        natureText: "លើសពីប្រាសាទ មានស្រែ ចម្ការផ្កាឈូក និងភូមិជើងសសរ។ ដំណើរជិះកង់ ថ្នាក់ចម្អិនម្ហូបក្នុងផ្ទះជនបទ និងដំណើរទូកពេលល្ងាច ផ្តល់នូវផ្នែកស្ងប់ស្ងាត់នៃសៀមរាបដែលអ្នកទេសចរភាគច្រើនមិនបានឃើញ។",
+
+        nightTitle: "ផ្សាររាត្រី និងផ្លូវ Pub Street",
+        nightText: "បន្ទាប់ពីថ្ងៃលិច ទីក្រុងមានជីវិតរស់រវើក។ Pub Street ផ្តល់បារនិងតន្ត្រីផ្ទាល់ ខណៈផ្សាររាត្រីអង្គរ និងផ្សារ Made in Cambodia លក់អ្វីៗពីក្រមាសូត្រ ដល់ស្វាយចន្ទីស្ងួតហឹរ — ទាំងអស់ក្នុងតម្លៃយុត្តិធម៌ និងអាចចរចាបាន។",
+
+        hoodsTitle: "សង្កាត់ និងតំបន់",
+        hoodsText: "កន្លែងស្នាក់នៅ ញ៉ាំ និងរុករកជុំវិញទីក្រុង។",
+
+        hood1Text: "បេះដូងប្រវត្តិសាស្ត្រនៃសៀមរាប។ ប្រាសាទចាស់ ផ្ទះបែបអាណានិគមបារាំង ផ្សារគ្របដណ្តប់ និងចម្ងាយដើរទៅ Pub Street និងមាត់ទន្លេ។",
+        hood2Text: "មជ្ឈមណ្ឌលអ្នកធ្វើដំណើរសន្សំ និងជីវិតពេលយប់ — បារ ភោជនីយដ្ឋាន តន្ត្រីផ្ទាល់ និងអាហារពេលយប់។ ល្អសម្រាប់បរិយាកាស ប៉ុន្តែមិនមែនជាកន្លែងស្ងប់ស្ងាត់បំផុតសម្រាប់គេង។",
+        hood3Text: "ផ្លូវស្ងប់ស្ងាត់ និងមានដើមឈើនៅតាមមាត់ទន្លេសៀមរាប។ ជាទីកន្លែងនៃសណ្ឋាគារបុទិក ហាងកាហ្វេ និងភោជនីយដ្ឋានខ្មែរល្អៗជាច្រើន។",
+        hood4Text: "មហាវិថីមានដើមឈើនាំទៅអង្គរ។ រមណីយដ្ឋានប្រណិត អាហារល្អៗ និងចម្ងាយជិតបំផុតទៅច្រកចូលឧទ្យានប្រាសាទ។",
+        hood5Text: "សង្កាត់តូច ទំនើប ជាមួយហាងលក់វត្ថុសិល្បៈ កាហ្វេពិសេស និងភោជនីយដ្ឋានរចនាទំនើប។ ល្អសម្រាប់រសៀលយឺតៗ។",
+        hood6Text: "ភូមិអណ្តែតទឹក និងសហគមន៍ជើងសសរនៅជុំវិញកំពង់ឃ្លាំង និងកំពង់ភ្លុក — ចម្ងាយ ៣០–៦០ នាទីពីកណ្តាលក្រុង។",
+
+        timelineTitle: "ប្រវត្តិសង្ខេប",
+        timelineText: "ព្រឹត្តិការណ៍សំខាន់ៗក្នុងរឿងរបស់សៀមរាប និងតំបន់អង្គរ។",
+
+        tl1Title: "ចក្រភពខ្មែរចាប់ផ្តើម",
+        tl1Text: "ព្រះបាទជ័យវរ្ម័នទី ២ បង្រួបបង្រួមនគរខ្មែរ និងបង្កើតចក្រភពអង្គរ ដែលនឹងគ្រប់គ្រងអាស៊ីអាគ្នេយ៍ភាគច្រើនអស់រយៈពេលជាង ៦០០ ឆ្នាំ។",
+
+        tl2Title: "អង្គរវត្តត្រូវបានសាងសង់",
+        tl2Text: "ព្រះបាទសូរ្យវរ្ម័នទី ២ បញ្ជាឱ្យសាងសង់អង្គរវត្ត — វិមានសាសនាធំបំផុតក្នុងពិភពលោក — ឧទ្ទិសដល់ព្រះវិស្ណុ។ ក្រោយមកវាក្លាយជាវត្តពុទ្ធសាសនា។",
+
+        tl3Title: "ការដួលរលំនៃអង្គរ",
+        tl3Text: "បន្ទាប់ពីការឈ្លានពានសៀមជាច្រើនលើក រាជធានីខ្មែរផ្លាស់ទៅភ្នំពេញខាងត្បូង។ អង្គរត្រូវបានបោះបង់ចោលបន្តិចម្តងៗទៅព្រៃ ទោះបីជាព្រះសង្ឃនៅតែថែរក្សាប្រាសាទរបស់វា។",
+
+        tl4Title: "ការរកឃើញឡើងវិញដោយបារាំង",
+        tl4Text: "អ្នករុករកជនជាតិបារាំង ហង់រី មូហូ នាំយកការយកចិត្តទុកដាក់ពិភពលោកមកកាន់ប្រាសាទអង្គរ។ ការជួសជុលចាប់ផ្តើម ហើយសៀមរាបចាប់ផ្តើមរីកចម្រើនជាមូលដ្ឋានសម្រាប់អ្នកទេសចរ។",
+
+        tl5Title: "ឆ្នាំខ្មែរក្រហម",
+        tl5Text: "សម័យកាលដ៏អាក្រក់សម្រាប់កម្ពុជា។ ទីក្រុងត្រូវបានបោសសំអាត ប្រាសាទត្រូវបានខូចខាត ហើយមនុស្សរាប់លាននាក់បាត់បង់ជីវិត។ សៀមរាប ដូចប្រទេសដទៃ រងទុក្ខយ៉ាងខ្លាំង។",
+
+        tl6Title: "បេតិកភណ្ឌពិភពលោកយូណេស្កូ",
+        tl6Text: "អង្គរត្រូវបានប្រកាសជាតំបន់បេតិកភណ្ឌពិភពលោករបស់យូណេស្កូ។ ការជួសជុលអន្តរជាតិចាប់ផ្តើម ហើយសៀមរាបបើកឡើងវិញបន្តិចម្តងៗសម្រាប់ទេសចរណ៍។",
+
+        tl7Title: "មជ្ឈមណ្ឌលទេសចរណ៍ទំនើប",
+        tl7Text: "សៀមរាបក្លាយជាគោលដៅកំពូលមួយនៅអាស៊ីអាគ្នេយ៍ ទាក់ទាញអ្នកទេសចររាប់លាននាក់ក្នុងមួយឆ្នាំ និងកសាងឈុតឆាកអាហារ សិល្បៈ និងបដិសណ្ឋារកិច្ចដ៏រីកចម្រើន។",
+
+        ctaTitle: "មកភ្លក់សៀមរាប",
+        ctaText: "មិនថាអ្នកមកសម្រាប់ប្រាសាទ អាហារ ឬប្រជាជន — ទីក្រុងនេះនឹងនៅជាប់ក្នុងចិត្តអ្នក។ ចាប់ផ្តើមជាមួយមគ្គុទេសក៍ភោជនីយដ្ឋាន និងគន្លឹះធ្វើដំណើររបស់យើង។",
+        ctaRestaurants: "រកមើលភោជនីយដ្ឋាន",
+        ctaGuide: "មគ្គុទេសក៍ធ្វើដំណើរ",
+
+        footerDescription: "មគ្គុទេសក៍របស់អ្នកទៅកាន់ភោជនីយដ្ឋានល្អៗ បទពិសោធន៍ពិត និងគន្លឹះធ្វើដំណើរនៅសៀមរាប។",
+        exploreFooter: "ស្វែងរក",
+        informationFooter: "ព័ត៌មាន",
+        supportFooter: "ជំនួយ",
+        travelTips: "គន្លឹះធ្វើដំណើរ",
+        heritage: "បេតិកភណ្ឌ",
+        travelGuide: "មគ្គុទេសក៍ធ្វើដំណើរ",
+        aboutSiemReap: "អំពីសៀមរាប",
+        faq: "សំណួរដែលសួរញឹកញាប់",
+        contactUs: "ទាក់ទងយើង",
+        privacy: "គោលការណ៍ឯកជនភាព",
+        terms: "លក្ខខណ្ឌប្រើប្រាស់",
+        copyright: "© 2026 Taste Siem Reap។ រក្សាសិទ្ធិគ្រប់យ៉ាង។"
+      },
+
+      zh: {
+        navHome: "首页",
+        navRestaurants: "餐厅",
+        navExperience: "体验",
+        navAbout: "关于我们",
+
+        aboutEyebrow: "通往吴哥的门户",
+        aboutTitle1: "关于",
+        aboutTitle2: "暹粒",
+        aboutIntro: "一座河畔小城，成为柬埔寨旅游业的跳动心脏——吴哥窟的故乡、充满活力的美食场景，以及东南亚最热情的人民。",
+
+        statPopulation: "人口",
+        statCentury: "吴哥建造（世纪）",
+        statTemples: "附近寺庙",
+        statVisitors: "年游客量",
+
+        storyTitle: "重生的城市",
+        storyText: "暹粒从一个安静的省城走向世界级目的地的旅程。",
+
+        storyP1: "暹粒字面意思是“击败暹罗”——这个名字是在18世纪高棉军队战胜暹罗军队后命名的。在其历史的大部分时间里，它是暹粒河畔的一座小城，静静地坐落在曾经是世界上最大的前工业城市的废墟旁。",
+        storyP2: "这一切在20世纪初发生了变化，法国探险家“重新发现”了吴哥窟及周边考古公园的寺庙。修复工作、然后是旅游业，逐渐改变了这座城市——但真正的繁荣是在1990年代之后，在数十年冲突之后。",
+        storyP3: "如今，暹粒是一座拥有约25万人口的繁荣城市，每年接待超过200万游客。它在古老遗产与现代舒适之间取得平衡：精品酒店、世界级餐厅、夜市，以及从1美元街头面条到屡获殊荣的高级餐饮的美食场景。",
+        storyP4: "但让暹粒真正特别的不仅仅是寺庙。而是人民——他们的坚韧、热情，以及与世界分享高棉文化的深深自豪。",
+
+        highlightsTitle: "是什么让暹粒如此特别",
+        highlightsText: "定义这次非凡城市之旅的元素。",
+
+        angkorTitle: "吴哥窟与寺庙",
+        angkorText: "世界上最大的宗教纪念碑，也是联合国教科文组织世界遗产。超过1000座寺庙分布在400平方公里范围内，从标志性的吴哥窟到被丛林吞噬的塔布茏寺。",
+
+        foodTitle: "高棉美食场景",
+        foodText: "从黎明时分的街头粿条到殖民风格餐厅中的精致阿莫克。暹粒是柬埔寨探索正宗高棉美食的最佳地点——包括红色高棉幸存者的食谱和现代融合菜。",
+
+        tonleTitle: "洞里萨湖",
+        tonleText: "东南亚最大的淡水湖。其独特的洪水周期每年逆转洞里萨河的流向——这里有水上村庄、鸟类保护区和世界上最丰富的淡水渔业之一。",
+
+        cultureTitle: "艺术与手工艺",
+        cultureText: "暹粒是高棉传统手工艺的中心——丝绸编织、石雕、漆器和皮影戏。参观 Artisans Angkor 综合体的工坊或夜市，购买手工纪念品。",
+
+        natureTitle: "自然与乡村",
+        natureText: "寺庙之外是稻田、荷塘和高脚屋村庄。自行车之旅、乡村家庭烹饪课和日落游船，提供大多数游客错过暹粒更安静的一面。",
+
+        nightTitle: "夜市与酒吧街",
+        nightText: "日落后，城市活跃起来。酒吧街提供酒吧和现场音乐，而吴哥夜市和 Made in Cambodia 市场出售从丝绸围巾到辣芒果干的一切——价格公道，可以讨价还价。",
+
+        hoodsTitle: "街区与区域",
+        hoodsText: "在城市周围住宿、用餐和探索的地方。",
+
+        hood1Text: "暹粒的历史中心。古老寺庙、法式殖民店屋、有盖市场，步行即可到达酒吧街和河畔。",
+        hood2Text: "背包客和夜生活中心——酒吧、餐厅、现场音乐和深夜美食。气氛极佳，但不是最安静的睡眠之地。",
+        hood3Text: "暹粒河沿岸较安静、绿树成荫的街道。精品酒店、咖啡馆和许多城市最好的高棉餐厅的所在地。",
+        hood4Text: "通往吴哥的林荫大道。豪华度假村、精致餐饮，以及距离寺庙公园入口最近的地方。",
+        hood5Text: "一个小而时尚的街区，有手工艺精品店、特色咖啡和设计感餐厅。非常适合悠闲的下午。",
+        hood6Text: "空邦克亮和空邦鲁周围的水上村庄和高脚屋社区——距离市中心30–60分钟车程。",
+
+        timelineTitle: "简史",
+        timelineText: "暹粒和吴哥地区故事中的关键时刻。",
+
+        tl1Title: "高棉帝国开始",
+        tl1Text: "阇耶跋摩二世统一高棉诸国，建立吴哥帝国，统治东南亚大部分地区超过600年。",
+
+        tl2Title: "吴哥窟建成",
+        tl2Text: "苏利耶跋摩二世下令建造吴哥窟——世界上最大的宗教纪念碑——献给印度教神毗湿奴。后来成为佛教寺庙。",
+
+        tl3Title: "吴哥的衰落",
+        tl3Text: "在多次暹罗入侵后，高棉首都南迁至金边。吴哥逐渐被遗弃给丛林，尽管僧侣继续照料其寺庙。",
+
+        tl4Title: "法国重新发现",
+        tl4Text: "法国探险家亨利·穆奥让全球关注吴哥遗址。修复工作开始，暹粒开始作为游客基地发展。",
+
+        tl5Title: "红色高棉时期",
+        tl5Text: "柬埔寨的毁灭性时期。城市被清空，寺庙被破坏，数百万人丧生。暹粒像全国其他地方一样深受其害。",
+
+        tl6Title: "联合国教科文组织世界遗产",
+        tl6Text: "吴哥被宣布为联合国教科文组织世界遗产。国际修复开始，暹粒慢慢重新向旅游业开放。",
+
+        tl7Title: "现代旅游中心",
+        tl7Text: "暹粒成为东南亚顶级目的地之一，每年吸引数百万游客，并建立繁荣的美食、艺术和酒店业。",
+
+        ctaTitle: "来品尝暹粒",
+        ctaText: "无论您是为寺庙、美食还是人民而来——这座城市都会留在您心中。从我们的餐厅指南和旅行贴士开始。",
+        ctaRestaurants: "探索餐厅",
+        ctaGuide: "旅行指南",
+
+        footerDescription: "你的暹粒旅行指南，带你发现最佳餐厅、真实体验和旅行贴士。",
+        exploreFooter: "探索",
+        informationFooter: "信息",
+        supportFooter: "支持",
+        travelTips: "旅行贴士",
+        heritage: "文化遗产",
+        travelGuide: "旅行指南",
+        aboutSiemReap: "关于暹粒",
+        faq: "常见问题",
+        contactUs: "联系我们",
+        privacy: "隐私政策",
+        terms: "使用条款",
+        copyright: "© 2026 Taste Siem Reap。版权所有。"
+      }
+    };
+
+    let currentLanguage =
+      localStorage.getItem("selectedLanguage") ||
+      localStorage.getItem("tasteSiemReapLanguage") ||
+      "en";
+
+    function translatePage(lang) {
+      const dict = translations[lang];
+      if (!dict) return;
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (!dict[key]) return;
+        el.textContent = dict[key];
+      });
+
+      document.documentElement.lang = lang;
+
+      const spanCurrent = document.getElementById('currentLanguage');
+      if (spanCurrent) {
+        if (lang === 'en') spanCurrent.textContent = 'EN';
+        else if (lang === 'km') spanCurrent.textContent = 'ខ្មែរ';
+        else if (lang === 'zh') spanCurrent.textContent = '中文';
+      }
+
+      document.querySelectorAll('.language-option').forEach(opt => {
+        opt.classList.toggle('active', opt.dataset.language === lang);
+      });
+
+      currentLanguage = lang;
+      localStorage.setItem('selectedLanguage', lang);
+      localStorage.setItem('tasteSiemReapLanguage', lang);
+    }
+
+    const langBtn = document.getElementById('languageButton');
+    const langMenu = document.getElementById('languageMenu');
+
+    langBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      langMenu.classList.toggle('show');
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.language-wrapper')) {
+        langMenu.classList.remove('show');
+      }
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') langMenu.classList.remove('show');
+    });
+
+    document.querySelectorAll('.language-option').forEach(opt => {
+      opt.addEventListener('click', function() {
+        translatePage(this.dataset.language);
+        langMenu.classList.remove('show');
+      });
+    });
+
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+
+    hamburger.addEventListener('click', function() {
+      this.classList.toggle('active');
+      mobileNav.classList.toggle('open');
+      document.body.style.overflow =
+        mobileNav.classList.contains('open') ? 'hidden' : '';
+    });
+
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', function() {
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    window.addEventListener('resize', function() {
+      if (window.innerWidth > 768) {
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+
+    translatePage(currentLanguage);
+  })();
+</script>
+</body>
+</html>

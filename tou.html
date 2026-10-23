@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>Taste Siem Reap · Terms of Use</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== reset & base ===== */
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+
+    body {
+      background:
+        radial-gradient(circle at 50% 0%, rgba(168, 184, 165, 0.20), transparent 42%),
+        linear-gradient(180deg, #fdfbf7 0%, #faf7f2 50%, #f5f0e8 100%);
+      color: var(--text);
+      font-family: "DM Sans", sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+      min-height: 100dvh;
+      overflow-x: hidden;
+    }
+
+    a { color:inherit; text-decoration:none; }
+    button { font-family:inherit; cursor:pointer; border:none; background:none; }
+    img { display:block; width:100%; height:auto; max-width:100%; }
+
+    /* ===== variables ===== */
+    :root {
+      --bg: #faf7f2;
+      --bg-soft: #f2ede4;
+      --card: #ffffff;
+      --card-hover: #fffdf9;
+      --gold: #b8924a;
+      --gold-light: #d4b06a;
+      --text: #2d2a26;
+      --muted: #6b665f;
+      --muted-dark: #8a847c;
+      --border: rgba(60, 55, 48, 0.10);
+      --shadow: 0 12px 30px rgba(60, 50, 40, 0.08);
+      --radius: 20px;
+
+      --header-height: 70px;
+      --container-padding: 20px;
+    }
+
+    /* ============================================================
+       HEADER
+    ============================================================ */
+    header.site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(250, 247, 242, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      height: var(--header-height);
+      transition: height 0.3s ease;
+    }
+
+    .navbar {
+      max-width: 1200px;
+      margin: 0 auto;
+      height: 100%;
+      padding: 0 var(--container-padding);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .logo {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(20px, 2.5vw, 26px);
+      font-weight: 700;
+      letter-spacing: .3px;
+      flex-shrink: 0;
+      white-space: nowrap;
+      color: var(--text);
+    }
+
+    .logo span { color: var(--gold); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: clamp(15px, 2vw, 30px);
+      list-style: none;
+      height: var(--header-height);
+    }
+
+    .nav-links a {
+      color: var(--text);
+      font-size: clamp(12px, 1vw, 14px);
+      font-weight: 500;
+      transition: .25s ease;
+      position: relative;
+      padding: 5px 0;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--gold); }
+
+    .nav-links a.active::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 2px;
+      background: var(--gold);
+      border-radius: 10px;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .nav-action {
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      background: transparent;
+      cursor: pointer;
+      transition: .25s ease;
+      font-size: 14px;
+    }
+
+    .nav-action:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(184, 146, 74, .08);
+    }
+
+    .language-wrapper { position: relative; }
+
+    .language-btn {
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      background: transparent;
+      cursor: pointer;
+      transition: .25s ease;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .language-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(184, 146, 74, .08);
+    }
+
+    .language-menu {
+      position: absolute;
+      right: 0;
+      top: calc(100% + 10px);
+      min-width: 145px;
+      padding: 7px;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      display: none;
+      z-index: 100;
+    }
+
+    .language-menu.show { display: block; }
+
+    .language-option {
+      width: 100%;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      padding: 10px 11px;
+      border-radius: 10px;
+      text-align: left;
+      cursor: pointer;
+      font-size: 13px;
+      transition: .2s ease;
+    }
+
+    .language-option:hover,
+    .language-option.active {
+      background: rgba(184, 146, 74, .12);
+      color: var(--gold);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 8px;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: .3s ease;
+    }
+
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    .mobile-nav-overlay {
+      display: none;
+      position: fixed;
+      top: var(--header-height);
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(250, 247, 242, 0.98);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 999;
+      padding: 30px var(--container-padding);
+      overflow-y: auto;
+    }
+
+    .mobile-nav-overlay.open { display: block; }
+
+    .mobile-nav-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .mobile-nav-links a {
+      display: block;
+      padding: 16px 20px;
+      color: var(--text);
+      font-size: 18px;
+      font-weight: 500;
+      border-radius: 12px;
+      transition: .25s ease;
+      text-align: center;
+    }
+
+    .mobile-nav-links a:hover,
+    .mobile-nav-links a.active {
+      background: rgba(184, 146, 74, .12);
+      color: var(--gold);
+    }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    .legal-hero {
+      max-width:1200px;
+      margin:0 auto;
+      padding:clamp(80px, 12vw, 120px) clamp(16px, 4vw, 24px) clamp(24px, 4vw, 48px);
+      text-align:center;
+    }
+    .eyebrow {
+      color:var(--gold);
+      text-transform:uppercase;
+      letter-spacing:clamp(2px, 0.4vw, 3px);
+      font-size:clamp(10px, 1.2vw, 12px);
+      font-weight:700;
+      margin-bottom:14px;
+    }
+    .legal-hero h1 {
+      font-family:"Playfair Display",serif;
+      font-size:clamp(32px, 9vw, 72px);
+      line-height:1.08;
+      max-width:900px;
+      margin:0 auto;
+      color:var(--text);
+    }
+    .legal-hero h1 span { color:var(--gold); }
+    .legal-hero p {
+      max-width:720px;
+      margin:clamp(16px, 3vw, 24px) auto 0;
+      color:var(--muted);
+      font-size:clamp(14px, 1.4vw, 16px);
+      padding:0 clamp(4px, 2vw, 8px);
+    }
+    .last-updated {
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      margin-top:clamp(16px, 3vw, 22px);
+      padding:7px 16px;
+      border-radius:999px;
+      background:rgba(184, 146, 74, .1);
+      border:1px solid rgba(184, 146, 74, .3);
+      color:var(--gold);
+      font-size:clamp(11px, 0.95vw, 13px);
+      font-weight:500;
+    }
+
+    /* ============================================================
+       MAIN
+    ============================================================ */
+    .legal-section {
+      max-width:900px;
+      margin:0 auto;
+      padding:0 clamp(16px, 4vw, 24px) clamp(60px, 8vw, 80px);
+      flex:1 0 auto;
+      width:100%;
+    }
+
+    /* ===== intro box ===== */
+    .legal-intro {
+      background:var(--bg-soft);
+      border:1px solid var(--border);
+      border-radius:clamp(16px, 3vw, 22px);
+      padding:clamp(22px, 4vw, 34px);
+      margin-bottom:clamp(32px, 5vw, 48px);
+    }
+    .legal-intro p {
+      color:var(--muted);
+      font-size:clamp(13.5px, 1.15vw, 15.5px);
+      line-height:1.75;
+      margin-bottom:12px;
+    }
+    .legal-intro p:last-child { margin-bottom:0; }
+    .legal-intro strong {
+      color:var(--gold);
+      font-weight:600;
+    }
+
+    /* ===== quick nav ===== */
+    .toc {
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:clamp(16px, 3vw, 20px);
+      padding:clamp(20px, 3.5vw, 28px);
+      margin-bottom:clamp(32px, 5vw, 48px);
+      box-shadow:var(--shadow);
+    }
+    .toc h2 {
+      font-family:"Playfair Display",serif;
+      font-size:clamp(17px, 1.9vw, 21px);
+      margin-bottom:14px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color:var(--text);
+    }
+    .toc h2 .icon {
+      width:34px;
+      height:34px;
+      border-radius:9px;
+      background:#f5efe3;
+      border:1px solid rgba(184, 146, 74, .3);
+      display:grid;
+      place-items:center;
+      font-size:16px;
+      flex-shrink:0;
+    }
+    .toc-list {
+      list-style:none;
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+      gap:8px 20px;
+    }
+    .toc-list a {
+      display:flex;
+      align-items:center;
+      gap:8px;
+      color:var(--muted);
+      font-size:clamp(13px, 1.05vw, 14px);
+      padding:6px 0;
+      transition:color .25s ease, transform .25s ease;
+    }
+    .toc-list a:hover {
+      color:var(--gold);
+      transform:translateX(3px);
+    }
+    .toc-list a::before {
+      content:"→";
+      color:var(--gold);
+      font-weight:600;
+      font-size:12px;
+      transition:transform .25s ease;
+    }
+
+    /* ===== content blocks ===== */
+    .legal-block {
+      margin-bottom:clamp(32px, 5vw, 48px);
+      scroll-margin-top:calc(var(--header-height) + 20px);
+    }
+    .legal-block:last-child { margin-bottom:0; }
+
+    .legal-block h2 {
+      font-family:"Playfair Display",serif;
+      font-size:clamp(20px, 3vw, 28px);
+      line-height:1.2;
+      margin-bottom:clamp(14px, 2.5vw, 20px);
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding-bottom:12px;
+      border-bottom:1px solid var(--border);
+      color:var(--text);
+    }
+    .legal-block h2 .num {
+      font-size:0.7em;
+      color:var(--gold);
+      opacity:0.75;
+      flex-shrink:0;
+      font-family:"DM Sans",sans-serif;
+      font-weight:700;
+    }
+
+    .legal-block h3 {
+      font-size:clamp(15px, 1.35vw, 17px);
+      font-weight:600;
+      color:var(--gold);
+      margin-top:clamp(16px, 2.5vw, 22px);
+      margin-bottom:10px;
+      line-height:1.35;
+    }
+    .legal-block h3:first-of-type { margin-top:0; }
+
+    .legal-block p {
+      color:var(--muted);
+      font-size:clamp(13.5px, 1.1vw, 15px);
+      line-height:1.8;
+      margin-bottom:14px;
+    }
+    .legal-block p:last-child { margin-bottom:0; }
+    .legal-block strong {
+      color:var(--text);
+      font-weight:600;
+    }
+
+    .legal-block ul {
+      list-style:none;
+      margin:14px 0;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .legal-block ul li {
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+      color:var(--muted);
+      font-size:clamp(13.5px, 1.1vw, 15px);
+      line-height:1.65;
+    }
+    .legal-block ul li::before {
+      content:"•";
+      color:var(--gold);
+      font-size:20px;
+      line-height:1.2;
+      flex-shrink:0;
+      font-weight:700;
+    }
+    .legal-block ul li strong {
+      color:var(--text);
+      font-weight:600;
+    }
+
+    /* ===== highlight callout ===== */
+    .callout {
+      background:rgba(184, 146, 74, .08);
+      border-left:4px solid var(--gold);
+      border-radius:0 clamp(12px, 2vw, 16px) clamp(12px, 2vw, 16px) 0;
+      padding:clamp(16px, 2.5vw, 22px) clamp(18px, 3vw, 26px);
+      margin:18px 0;
+    }
+    .callout p {
+      color:var(--text);
+      font-size:clamp(13.5px, 1.1vw, 15px);
+      line-height:1.7;
+      margin:0;
+    }
+    .callout strong { color:var(--gold); }
+
+    /* ===== contact box ===== */
+    .legal-contact {
+      margin-top:clamp(36px, 5vw, 50px);
+      padding:clamp(24px, 4vw, 40px);
+      background:
+        linear-gradient(120deg, rgba(184, 146, 74, .12), transparent 55%),
+        linear-gradient(200deg, rgba(168, 184, 165, .18), transparent 60%),
+        var(--card);
+      border:1px solid var(--border);
+      border-radius:clamp(16px, 3vw, 22px);
+      text-align:center;
+      box-shadow:var(--shadow);
+    }
+    .legal-contact h2 {
+      font-family:"Playfair Display",serif;
+      font-size:clamp(20px, 3vw, 28px);
+      line-height:1.2;
+      margin-bottom:12px;
+      color:var(--text);
+    }
+    .legal-contact h2 span { color:var(--gold); }
+    .legal-contact p {
+      color:var(--muted);
+      font-size:clamp(13px, 1.05vw, 14.5px);
+      max-width:600px;
+      margin:0 auto 20px;
+    }
+    .btn {
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:12px 26px;
+      border-radius:999px;
+      font-size:clamp(13px, 1.05vw, 14.5px);
+      font-weight:600;
+      transition:.25s ease;
+      cursor:pointer;
+      border:1px solid transparent;
+    }
+    .btn-primary {
+      background:var(--gold);
+      color:#ffffff;
+    }
+    .btn-primary:hover {
+      background:var(--gold-light);
+      transform:translateY(-2px);
+      box-shadow:0 8px 20px rgba(184, 146, 74, .3);
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer.site-footer {
+      margin-top: clamp(50px, 8vh, 110px);
+      padding: clamp(30px, 4vh, 55px) var(--container-padding) clamp(18px, 3vh, 25px);
+      background: #f0ece3;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-grid {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: clamp(20px, 4vw, 45px);
+    }
+
+    .footer-brand h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(20px, 2.2vw, 25px);
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    .footer-brand h2 span { color: var(--gold); }
+
+    .footer-brand p {
+      max-width: 350px;
+      color: var(--muted);
+      font-size: clamp(11px, 1vw, 13px);
+    }
+
+    .socials {
+      display: flex;
+      gap: 9px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .social {
+      width: clamp(30px, 3vw, 35px);
+      height: clamp(30px, 3vw, 35px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.5);
+      font-size: clamp(11px, 1vw, 13px);
+      transition: .25s ease;
+      cursor: pointer;
+    }
+
+    .social:hover {
+      color: var(--gold);
+      border-color: var(--gold);
+      background: #ffffff;
+    }
+
+    .footer-column h3 {
+      color: var(--gold);
+      font-size: clamp(10px, 0.9vw, 12px);
+      letter-spacing: 1px;
+      margin-bottom: 15px;
+    }
+
+    .footer-column a {
+      display: block;
+      color: var(--muted);
+      font-size: clamp(11px, 0.9vw, 12px);
+      margin-bottom: 9px;
+      transition: .25s ease;
+    }
+
+    .footer-column a:hover { color: var(--gold); }
+
+    .copyright {
+      max-width: 1200px;
+      margin: clamp(20px, 3vh, 40px) auto 0;
+      padding-top: clamp(14px, 2vh, 20px);
+      border-top: 1px solid var(--border);
+      color: var(--muted-dark);
+      font-size: clamp(10px, 0.8vw, 11px);
+      text-align: center;
+    }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1024px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      :root { --header-height: 64px; --container-padding: 16px; }
+
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .nav-action { width: 32px; height: 32px; font-size: 12px; }
+      .language-btn { width: 32px; height: 32px; font-size: 10px; }
+
+      .footer-grid { grid-template-columns: 1fr; gap: 25px; }
+      .mobile-nav-overlay { padding: 20px var(--container-padding) 40px; }
+      .mobile-nav-links a { font-size: 16px; padding: 14px 16px; }
+    }
+
+    @media (max-width: 480px) {
+      :root { --header-height: 58px; --container-padding: 14px; }
+      .logo { font-size: clamp(17px, 4.5vw, 20px); }
+      .nav-action { width: 28px; height: 28px; font-size: 11px; }
+      .language-btn { width: 28px; height: 28px; font-size: 9px; }
+      .hamburger span { width: 22px; height: 2px; }
+
+      .language-menu { min-width: 130px; right: -10px; }
+      .language-option { font-size: 12px; padding: 8px 10px; }
+      .mobile-nav-links a { font-size: 14px; padding: 12px 14px; }
+
+      .btn { padding:11px 22px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration:0.01ms !important;
+        transition-duration:0.01ms !important;
+      }
+      html { scroll-behavior:auto; }
+    }
+  </style>
+  <link rel="stylesheet" href="site-header.css">
+</head>
+<body>
+
+<!-- ============================================================
+     HEADER
+============================================================ -->
+<header class="site-header">
+  <nav class="navbar">
+    <a href="index.html" class="logo">
+      Taste <span>Siem Reap</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html" data-i18n="navHome">Home</a></li>
+      <li><a href="res.html" data-i18n="navRestaurants">Restaurants</a></li>
+      <li><a href="experience.html" data-i18n="navExperience">Experience</a></li>
+      <li><a href="Aboutus.html" data-i18n="navAbout">About Us</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <div class="language-wrapper" id="languageWrapper">
+        <button class="language-btn" id="languageButton" type="button" aria-label="Language">
+          <span id="currentLanguage">EN</span>
+        </button>
+        <div class="language-menu" id="languageMenu">
+          <button class="language-option active" data-language="en" type="button">🇬🇧 English</button>
+          <button class="language-option" data-language="zh" type="button">🇨🇳 中文</button>
+          <button class="language-option" data-language="km" type="button">🇰🇭 ខ្មែរ</button>
+        </div>
+      </div>
+
+      <button class="hamburger" id="hamburger" type="button" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<!-- ============================================================
+     MOBILE NAV
+============================================================ -->
+<div class="mobile-nav-overlay" id="mobileNav">
+  <ul class="mobile-nav-links">
+    <li><a href="index.html" data-i18n="navHome">Home</a></li>
+    <li><a href="res.html" data-i18n="navRestaurants">Restaurants</a></li>
+    <li><a href="experience.html" data-i18n="navExperience">Experience</a></li>
+    <li><a href="Aboutus.html" data-i18n="navAbout">About Us</a></li>
+  </ul>
+</div>
+
+<!-- ============================================================
+     HERO
+============================================================ -->
+<section class="legal-hero">
+  <div class="eyebrow" data-i18n="termsEyebrow">Please Read Carefully</div>
+  <h1><span data-i18n="termsTitle1">Terms of</span> <span data-i18n="termsTitle2">Use</span></h1>
+  <p data-i18n="termsIntro">The rules and guidelines for using the Taste Siem Reap website and its content. By visiting our site, you agree to these terms.</p>
+  <div class="last-updated">
+    <span>📅</span>
+    <span data-i18n="lastUpdated">Last updated: January 2026</span>
+  </div>
+</section>
+
+<!-- ============================================================
+     MAIN CONTENT
+============================================================ -->
+<section class="legal-section">
+
+  <!-- Intro box -->
+  <div class="legal-intro">
+    <p data-i18n="introP1">Welcome to <strong>Taste Siem Reap</strong>. These Terms of Use explain the rules for using our website, its content, and its features. By browsing or using our site, you agree to follow these terms.</p>
+    <p data-i18n="introP2">If you do not agree with any part of these terms, please stop using the website. If you have questions, you can always <a href="contact.html" style="color:var(--gold-light);text-decoration:underline;">contact us</a>.</p>
+  </div>
+
+  <!-- Table of contents -->
+  <div class="toc">
+    <h2><span class="icon">📋</span><span data-i18n="tocTitle">On This Page</span></h2>
+    <ul class="toc-list">
+      <li><a href="#acceptance" data-i18n="toc1">Acceptance of Terms</a></li>
+      <li><a href="#use-site" data-i18n="toc2">Use of the Website</a></li>
+      <li><a href="#content" data-i18n="toc3">Content & Accuracy</a></li>
+      <li><a href="#intellectual" data-i18n="toc4">Intellectual Property</a></li>
+      <li><a href="#thirdparty" data-i18n="toc5">Third-Party Links</a></li>
+      <li><a href="#disclaimer" data-i18n="toc6">Disclaimer</a></li>
+      <li><a href="#liability" data-i18n="toc7">Limitation of Liability</a></li>
+      <li><a href="#changes" data-i18n="toc8">Changes to These Terms</a></li>
+      <li><a href="#governing" data-i18n="toc9">Governing Law</a></li>
+    </ul>
+  </div>
+
+  <!-- 1. Acceptance -->
+  <div class="legal-block" id="acceptance">
+    <h2><span class="num">01.</span><span data-i18n="b1Title">Acceptance of Terms</span></h2>
+    <p data-i18n="b1Text">By accessing or using the Taste Siem Reap website — including any page, tool, feature, or content — you confirm that you have read, understood, and agree to be bound by these Terms of Use, along with our <a href="privacy.html" style="color:var(--gold-light);text-decoration:underline;">Privacy Policy</a>.</p>
+    <p data-i18n="b1Text2">If you are using this website on behalf of a company or organization, you confirm that you have authority to bind that entity to these terms.</p>
+  </div>
+
+  <!-- 2. Use of the Website -->
+  <div class="legal-block" id="use-site">
+    <h2><span class="num">02.</span><span data-i18n="b2Title">Use of the Website</span></h2>
+    <p data-i18n="b2Text">You are welcome to use Taste Siem Reap for personal, non-commercial purposes. When using our site, you agree <strong>not</strong> to:</p>
+    <ul>
+      <li><span data-i18n="b2L1"><strong>Copy or republish</strong> our content (text, images, reviews) without permission.</span></li>
+      <li><span data-i18n="b2L2"><strong>Use automated tools</strong> (bots, scrapers) to mass-download or extract data from the site.</span></li>
+      <li><span data-i18n="b2L3"><strong>Attempt to hack, disrupt, or overload</strong> the website or its servers.</span></li>
+      <li><span data-i18n="b2L4"><strong>Submit false, misleading, or harmful content</strong> through our contact form or other features.</span></li>
+      <li><span data-i18n="b2L5"><strong>Use the site for any illegal activity</strong> or in violation of any applicable law.</span></li>
+      <li><span data-i18n="b2L6"><strong>Impersonate</strong> Taste Siem Reap, our team, or any other person or business.</span></li>
+    </ul>
+    <p data-i18n="b2Text2">We reserve the right to restrict or block access to anyone who violates these rules, without prior notice.</p>
+  </div>
+
+  <!-- 3. Content & Accuracy -->
+  <div class="legal-block" id="content">
+    <h2><span class="num">03.</span><span data-i18n="b3Title">Content & Accuracy</span></h2>
+    <p data-i18n="b3Text">We work hard to keep our restaurant recommendations, prices, and travel tips accurate and up to date. However, we cannot guarantee that all information is always correct at the time you read it.</p>
+    <ul>
+      <li><span data-i18n="b3L1"><strong>Prices and hours</strong> may change without notice — please confirm directly with the restaurant.</span></li>
+      <li><span data-i18n="b3L2"><strong>Reviews and opinions</strong> are personal impressions at a specific point in time.</span></li>
+      <li><span data-i18n="b3L3"><strong>Travel conditions</strong> (visa rules, transport, safety) may change — always double-check with official sources.</span></li>
+    </ul>
+    <div class="callout">
+      <p data-i18n="b3Callout"><strong>Please note:</strong> Taste Siem Reap is an independent guide. We are not responsible for decisions you make based on our content. Always use your own judgment when traveling and dining.</p>
+    </div>
+  </div>
+
+  <!-- 4. Intellectual Property -->
+  <div class="legal-block" id="intellectual">
+    <h2><span class="num">04.</span><span data-i18n="b4Title">Intellectual Property</span></h2>
+    <p data-i18n="b4Text">All original content on Taste Siem Reap — including text, articles, restaurant descriptions, design, logos, and the overall look and feel of the site — is owned by us or used with permission, and is protected by copyright and related laws.</p>
+    <p data-i18n="b4Text2">You may:</p>
+    <ul>
+      <li><span data-i18n="b4L1"><strong>Share links</strong> to our pages freely on social media or with friends.</span></li>
+      <li><span data-i18n="b4L2"><strong>Quote short excerpts</strong> for personal, educational, or journalistic use, with clear credit to Taste Siem Reap and a link to the source.</span></li>
+    </ul>
+    <p data-i18n="b4Text3">You may <strong>not</strong> copy, reproduce, or republish substantial portions of our content without written permission.</p>
+  </div>
+
+  <!-- 5. Third-Party Links -->
+  <div class="legal-block" id="thirdparty">
+    <h2><span class="num">05.</span><span data-i18n="b5Title">Third-Party Links</span></h2>
+    <p data-i18n="b5Text">Our site may include links to third-party websites — for example, restaurant websites, booking platforms, map services, or social media pages. These links are provided for your convenience.</p>
+    <p data-i18n="b5Text2">We do not control these external sites, and we are not responsible for their content, privacy practices, or accuracy. Visiting them is at your own risk, and their own terms and privacy policies will apply.</p>
+  </div>
+
+  <!-- 6. Disclaimer -->
+  <div class="legal-block" id="disclaimer">
+    <h2><span class="num">06.</span><span data-i18n="b6Title">Disclaimer</span></h2>
+    <p data-i18n="b6Text">Taste Siem Reap is provided on an <strong>"as is"</strong> and <strong>"as available"</strong> basis. While we do our best to keep everything working smoothly and accurately, we make no guarantees about:</p>
+    <ul>
+      <li><span data-i18n="b6L1">The accuracy, completeness, or reliability of any content on the site.</span></li>
+      <li><span data-i18n="b6L2">The availability of the website at any given time (it may be offline for maintenance).</span></li>
+      <li><span data-i18n="b6L3">The quality, safety, or service of any restaurant or business mentioned on the site.</span></li>
+    </ul>
+    <p data-i18n="b6Text2">Your use of the site and reliance on its content is entirely at your own discretion and risk.</p>
+  </div>
+
+  <!-- 7. Limitation of Liability -->
+  <div class="legal-block" id="liability">
+    <h2><span class="num">07.</span><span data-i18n="b7Title">Limitation of Liability</span></h2>
+    <p data-i18n="b7Text">To the fullest extent permitted by law, Taste Siem Reap and its team shall not be liable for any direct, indirect, incidental, or consequential damages arising from:</p>
+    <ul>
+      <li><span data-i18n="b7L1">Your use of, or inability to use, the website.</span></li>
+      <li><span data-i18n="b7L2">Any errors, omissions, or inaccuracies in the content.</span></li>
+      <li><span data-i18n="b7L3">Any loss, injury, or damage related to restaurants, travel, or experiences mentioned on the site.</span></li>
+    </ul>
+    <p data-i18n="b7Text2">Nothing in these terms limits any rights you may have under mandatory consumer protection laws in your country.</p>
+  </div>
+
+  <!-- 8. Changes -->
+  <div class="legal-block" id="changes">
+    <h2><span class="num">08.</span><span data-i18n="b8Title">Changes to These Terms</span></h2>
+    <p data-i18n="b8Text">We may update these Terms of Use from time to time to reflect changes in our website, services, or legal requirements. When we do, we'll update the "Last updated" date at the top of this page.</p>
+    <p data-i18n="b8Text2">Continued use of Taste Siem Reap after changes means you accept the updated terms. If you don't agree, please stop using the site.</p>
+  </div>
+
+  <!-- 9. Governing Law -->
+  <div class="legal-block" id="governing">
+    <h2><span class="num">09.</span><span data-i18n="b9Title">Governing Law</span></h2>
+    <p data-i18n="b9Text">These Terms of Use are governed by the laws of the Kingdom of Cambodia, without regard to conflict of law principles. Any disputes arising from your use of the site will be handled under Cambodian jurisdiction.</p>
+    <p data-i18n="b9Text2">If any part of these terms is found to be unenforceable, the remaining parts will continue to apply.</p>
+  </div>
+
+  <!-- Contact box -->
+  <div class="legal-contact">
+    <h2 data-i18n="ctaTitle">Have Questions About <span>These Terms?</span></h2>
+    <p data-i18n="ctaText">If anything here is unclear, or if you have a question about how you can use our content, please reach out — we're always happy to help.</p>
+    <a href="contact.html" class="btn btn-primary" data-i18n="ctaBtn">Contact Us</a>
+  </div>
+
+</section>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <h2>Taste <span>Siem Reap</span></h2>
+      <p data-i18n="footerDescription">Your guide to the best restaurants, authentic experiences and travel tips in Siem Reap, Cambodia.</p>
+      <div class="socials">
+        <span class="social">f</span>
+        <span class="social">◎</span>
+        <span class="social">♪</span>
+        <span class="social">▶</span>
+      </div>
+    </div>
+
+    <div class="footer-column">
+      <h3 data-i18n="exploreFooter">EXPLORE</h3>
+      <a href="res.html" data-i18n="navRestaurants">Restaurants</a>
+      <a href="experience.html" data-i18n="navExperience">Experience</a>
+      <a href="tip.html" data-i18n="travelTips">Travel Tips</a>
+      <a href="Aboutus.html" data-i18n="navAbout">About Us</a>
+    </div>
+
+    <div class="footer-column">
+      <h3 data-i18n="informationFooter">INFORMATION</h3>
+      <a href="hari.html" data-i18n="heritage">Heritage</a>
+      <a href="tvr.html" data-i18n="travelGuide">Travel Guide</a>
+      <a href="abtsr.html" data-i18n="aboutSiemReap">About Siem Reap</a>
+      <a href="faq.html" data-i18n="faq">FAQ</a>
+    </div>
+
+    <div class="footer-column">
+      <h3 data-i18n="supportFooter">SUPPORT</h3>
+      <a href="contactus.html" data-i18n="contactUs">Contact Us</a>
+      <a href="prv.html" data-i18n="privacy">Privacy Policy</a>
+      <a href="tou.html" data-i18n="terms">Terms of Use</a>
+    </div>
+  </div>
+
+  <div class="copyright" data-i18n="copyright">
+    © 2026 Taste Siem Reap. All rights reserved.
+  </div>
+</footer>
+
+<script>
+  (function(){
+    // ----- translations -----
+    const translations = {
+      en: {
+        navHome: "Home",
+        navRestaurants: "Restaurants",
+        navExperience: "Experience",
+        navAbout: "About Us",
+
+        termsEyebrow: "Please Read Carefully",
+        termsTitle1: "Terms of",
+        termsTitle2: "Use",
+        termsIntro: "The rules and guidelines for using the Taste Siem Reap website and its content. By visiting our site, you agree to these terms.",
+        lastUpdated: "Last updated: January 2026",
+
+        introP1: "Welcome to Taste Siem Reap. These Terms of Use explain the rules for using our website, its content, and its features. By browsing or using our site, you agree to follow these terms.",
+        introP2: "If you do not agree with any part of these terms, please stop using the website. If you have questions, you can always contact us.",
+
+        tocTitle: "On This Page",
+        toc1: "Acceptance of Terms",
+        toc2: "Use of the Website",
+        toc3: "Content & Accuracy",
+        toc4: "Intellectual Property",
+        toc5: "Third-Party Links",
+        toc6: "Disclaimer",
+        toc7: "Limitation of Liability",
+        toc8: "Changes to These Terms",
+        toc9: "Governing Law",
+
+        b1Title: "Acceptance of Terms",
+        b1Text: "By accessing or using the Taste Siem Reap website — including any page, tool, feature, or content — you confirm that you have read, understood, and agree to be bound by these Terms of Use, along with our Privacy Policy.",
+        b1Text2: "If you are using this website on behalf of a company or organization, you confirm that you have authority to bind that entity to these terms.",
+
+        b2Title: "Use of the Website",
+        b2Text: "You are welcome to use Taste Siem Reap for personal, non-commercial purposes. When using our site, you agree not to:",
+        b2L1: "Copy or republish our content (text, images, reviews) without permission.",
+        b2L2: "Use automated tools (bots, scrapers) to mass-download or extract data from the site.",
+        b2L3: "Attempt to hack, disrupt, or overload the website or its servers.",
+        b2L4: "Submit false, misleading, or harmful content through our contact form or other features.",
+        b2L5: "Use the site for any illegal activity or in violation of any applicable law.",
+        b2L6: "Impersonate Taste Siem Reap, our team, or any other person or business.",
+        b2Text2: "We reserve the right to restrict or block access to anyone who violates these rules, without prior notice.",
+
+        b3Title: "Content & Accuracy",
+        b3Text: "We work hard to keep our restaurant recommendations, prices, and travel tips accurate and up to date. However, we cannot guarantee that all information is always correct at the time you read it.",
+        b3L1: "Prices and hours may change without notice — please confirm directly with the restaurant.",
+        b3L2: "Reviews and opinions are personal impressions at a specific point in time.",
+        b3L3: "Travel conditions (visa rules, transport, safety) may change — always double-check with official sources.",
+        b3Callout: "Please note: Taste Siem Reap is an independent guide. We are not responsible for decisions you make based on our content. Always use your own judgment when traveling and dining.",
+
+        b4Title: "Intellectual Property",
+        b4Text: "All original content on Taste Siem Reap — including text, articles, restaurant descriptions, design, logos, and the overall look and feel of the site — is owned by us or used with permission, and is protected by copyright and related laws.",
+        b4Text2: "You may:",
+        b4L1: "Share links to our pages freely on social media or with friends.",
+        b4L2: "Quote short excerpts for personal, educational, or journalistic use, with clear credit to Taste Siem Reap and a link to the source.",
+        b4Text3: "You may not copy, reproduce, or republish substantial portions of our content without written permission.",
+
+        b5Title: "Third-Party Links",
+        b5Text: "Our site may include links to third-party websites — for example, restaurant websites, booking platforms, map services, or social media pages. These links are provided for your convenience.",
+        b5Text2: "We do not control these external sites, and we are not responsible for their content, privacy practices, or accuracy. Visiting them is at your own risk, and their own terms and privacy policies will apply.",
+
+        b6Title: "Disclaimer",
+        b6Text: "Taste Siem Reap is provided on an \"as is\" and \"as available\" basis. While we do our best to keep everything working smoothly and accurately, we make no guarantees about:",
+        b6L1: "The accuracy, completeness, or reliability of any content on the site.",
+        b6L2: "The availability of the website at any given time (it may be offline for maintenance).",
+        b6L3: "The quality, safety, or service of any restaurant or business mentioned on the site.",
+        b6Text2: "Your use of the site and reliance on its content is entirely at your own discretion and risk.",
+
+        b7Title: "Limitation of Liability",
+        b7Text: "To the fullest extent permitted by law, Taste Siem Reap and its team shall not be liable for any direct, indirect, incidental, or consequential damages arising from:",
+        b7L1: "Your use of, or inability to use, the website.",
+        b7L2: "Any errors, omissions, or inaccuracies in the content.",
+        b7L3: "Any loss, injury, or damage related to restaurants, travel, or experiences mentioned on the site.",
+        b7Text2: "Nothing in these terms limits any rights you may have under mandatory consumer protection laws in your country.",
+
+        b8Title: "Changes to These Terms",
+        b8Text: "We may update these Terms of Use from time to time to reflect changes in our website, services, or legal requirements. When we do, we'll update the \"Last updated\" date at the top of this page.",
+        b8Text2: "Continued use of Taste Siem Reap after changes means you accept the updated terms. If you don't agree, please stop using the site.",
+
+        b9Title: "Governing Law",
+        b9Text: "These Terms of Use are governed by the laws of the Kingdom of Cambodia, without regard to conflict of law principles. Any disputes arising from your use of the site will be handled under Cambodian jurisdiction.",
+        b9Text2: "If any part of these terms is found to be unenforceable, the remaining parts will continue to apply.",
+
+        ctaTitle: "Have Questions About These Terms?",
+        ctaText: "If anything here is unclear, or if you have a question about how you can use our content, please reach out — we're always happy to help.",
+        ctaBtn: "Contact Us",
+
+        footerDescription: "Your guide to the best restaurants, authentic experiences and travel tips in Siem Reap, Cambodia.",
+        exploreFooter: "EXPLORE",
+        informationFooter: "INFORMATION",
+        supportFooter: "SUPPORT",
+        travelTips: "Travel Tips",
+        heritage: "Heritage",
+        travelGuide: "Travel Guide",
+        aboutSiemReap: "About Siem Reap",
+        faq: "FAQ",
+        contactUs: "Contact Us",
+        privacy: "Privacy Policy",
+        terms: "Terms of Use",
+        copyright: "© 2026 Taste Siem Reap. All rights reserved."
+      },
+
+      km: {
+        navHome: "ទំព័រដើម",
+        navRestaurants: "ភោជនីយដ្ឋាន",
+        navExperience: "បទពិសោធន៍",
+        navAbout: "អំពីយើង",
+
+        termsEyebrow: "សូមអានដោយប្រុងប្រយ័ត្ន",
+        termsTitle1: "លក្ខខណ្ឌ",
+        termsTitle2: "ប្រើប្រាស់",
+        termsIntro: "ច្បាប់ និងការណែនាំសម្រាប់ការប្រើប្រាស់គេហទំព័រ Taste Siem Reap និងខ្លឹមសាររបស់វា។ ការមកទស្សនាគេហទំព័ររបស់យើង មានន័យថាអ្នកយល់ព្រមនឹងលក្ខខណ្ឌទាំងនេះ។",
+        lastUpdated: "ធ្វើបច្ចុប្បន្នភាពចុងក្រោយ៖ ខែមករា 2026",
+
+        introP1: "សូមស្វាគមន៍មកកាន់ Taste Siem Reap។ លក្ខខណ្ឌប្រើប្រាស់ទាំងនេះពន្យល់ពីច្បាប់សម្រាប់ការប្រើប្រាស់គេហទំព័ររបស់យើង ខ្លឹមសារ និងមុខងាររបស់វា។ ការរុករក ឬប្រើប្រាស់គេហទំព័ររបស់យើង មានន័យថាអ្នកយល់ព្រមអនុវត្តតាមលក្ខខណ្ឌទាំងនេះ។",
+        introP2: "ប្រសិនបើអ្នកមិនយល់ព្រមនឹងផ្នែកណាមួយនៃលក្ខខណ្ឌទាំងនេះ សូមបញ្ឈប់ការប្រើប្រាស់គេហទំព័រ។ ប្រសិនបើអ្នកមានសំណួរ អ្នកអាចទាក់ទងយើងបានគ្រប់ពេល។",
+
+        tocTitle: "នៅលើទំព័រនេះ",
+        toc1: "ការយល់ព្រមនឹងលក្ខខណ្ឌ",
+        toc2: "ការប្រើប្រាស់គេហទំព័រ",
+        toc3: "ខ្លឹមសារ និងភាពត្រឹមត្រូវ",
+        toc4: "កម្មសិទ្ធិបញ្ញា",
+        toc5: "តំណភ្ជាប់ភាគីទីបី",
+        toc6: "ការបដិសេធ",
+        toc7: "ការកំណត់ការទទួលខុសត្រូវ",
+        toc8: "ការផ្លាស់ប្តូរលក្ខខណ្ឌទាំងនេះ",
+        toc9: "ច្បាប់គ្រប់គ្រង",
+
+        b1Title: "ការយល់ព្រមនឹងលក្ខខណ្ឌ",
+        b1Text: "ការចូលមើល ឬប្រើប្រាស់គេហទំព័រ Taste Siem Reap — រួមទាំងទំព័រ ឧបករណ៍ មុខងារ ឬខ្លឹមសារណាមួយ — អ្នកបញ្ជាក់ថាអ្នកបានអាន យល់ និងយល់ព្រមអនុវត្តតាមលក្ខខណ្ឌប្រើប្រាស់ទាំងនេះ រួមទាំងគោលការណ៍ឯកជនភាពរបស់យើង។",
+        b1Text2: "ប្រសិនបើអ្នកកំពុងប្រើប្រាស់គេហទំព័រនេះក្នុងនាមក្រុមហ៊ុន ឬអង្គការ អ្នកបញ្ជាក់ថាអ្នកមានសិទ្ធិចងភ្ជាប់អង្គភាពនោះទៅនឹងលក្ខខណ្ឌទាំងនេះ។",
+
+        b2Title: "ការប្រើប្រាស់គេហទំព័រ",
+        b2Text: "អ្នកត្រូវបានស្វាគមន៍ឱ្យប្រើប្រាស់ Taste Siem Reap សម្រាប់គោលបំណងផ្ទាល់ខ្លួន និងមិនមែនពាណិជ្ជកម្ម។ នៅពេលប្រើប្រាស់គេហទំព័ររបស់យើង អ្នកយល់ព្រមមិន៖",
+        b2L1: "ចម្លង ឬបោះពុម្ពឡើងវិញនូវខ្លឹមសាររបស់យើង (អត្ថបទ រូបភាព ការវាយតម្លៃ) ដោយគ្មានការអនុញ្ញាត។",
+        b2L2: "ប្រើប្រាស់ឧបករណ៍ស្វ័យប្រវត្តិ (បូត ស្ក្រេភើរ) ដើម្បីទាញយកទិន្នន័យពីគេហទំព័រជាដុំៗ។",
+        b2L3: "ព្យាយាមហែក រំខាន ឬផ្ទុកលើសទម្ងន់គេហទំព័រ ឬម៉ាស៊ីនមេរបស់វា។",
+        b2L4: "ផ្ញើខ្លឹមសារមិនពិត បំភាន់ ឬបង្កគ្រោះថ្នាក់តាមរយៈទម្រង់ទំនាក់ទំនង ឬមុខងារផ្សេងទៀត។",
+        b2L5: "ប្រើប្រាស់គេហទំព័រសម្រាប់សកម្មភាពខុសច្បាប់ ឬបំពានច្បាប់ជាធរមាន។",
+        b2L6: "ក្លែងខ្លួនជា Taste Siem Reap ក្រុមការងាររបស់យើង ឬបុគ្គល ឬអាជីវកម្មផ្សេងទៀត។",
+        b2Text2: "យើងរក្សាសិទ្ធិក្នុងការរឹតបន្តឹង ឬទប់ស្កាត់ការចូលប្រើចំពោះអ្នកដែលបំពានច្បាប់ទាំងនេះ ដោយគ្មានការជូនដំណឹងជាមុន។",
+
+        b3Title: "ខ្លឹមសារ និងភាពត្រឹមត្រូវ",
+        b3Text: "យើងខិតខំយ៉ាងខ្លាំងដើម្បីរក្សាការណែនាំភោជនីយដ្ឋាន តម្លៃ និងគន្លឹះធ្វើដំណើររបស់យើងឱ្យមានភាពត្រឹមត្រូវ និងទាន់សម័យ។ ទោះជាយ៉ាងណា យើងមិនអាចធានាថាព័ត៌មានទាំងអស់តែងតែត្រឹមត្រូវនៅពេលអ្នកអានវាបានទេ។",
+        b3L1: "តម្លៃ និងម៉ោងអាចផ្លាស់ប្តូរដោយគ្មានការជូនដំណឹង — សូមបញ្ជាក់ផ្ទាល់ជាមួយភោជនីយដ្ឋាន។",
+        b3L2: "ការវាយតម្លៃ និងមតិយោបល់គឺជាចំណាប់អារម្មណ៍ផ្ទាល់ខ្លួននៅពេលវេលាជាក់លាក់មួយ។",
+        b3L3: "លក្ខខណ្ឌធ្វើដំណើរ (ច្បាប់ទិដ្ឋាការ ការធ្វើដំណើរ សុវត្ថិភាព) អាចផ្លាស់ប្តូរ — ត្រូវពិនិត្យជាមួយប្រភពផ្លូវការជានិច្ច។",
+        b3Callout: "សូមចំណាំ៖ Taste Siem Reap គឺជាមគ្គុទេសក៍ឯករាជ្យ។ យើងមិនទទួលខុសត្រូវចំពោះការសម្រេចចិត្តដែលអ្នកធ្វើដោយផ្អែកលើខ្លឹមសាររបស់យើងទេ។ សូមប្រើការវិនិច្ឆ័យផ្ទាល់ខ្លួនរបស់អ្នកជានិច្ច នៅពេលធ្វើដំណើរ និងញ៉ាំអាហារ។",
+
+        b4Title: "កម្មសិទ្ធិបញ្ញា",
+        b4Text: "ខ្លឹមសារដើមទាំងអស់នៅលើ Taste Siem Reap — រួមទាំងអត្ថបទ អត្ថបទព័ត៌មាន ការពិពណ៌នាភោជនីយដ្ឋាន ការរចនា ឡូហ្គោ និងរូបរាងទូទៅនៃគេហទំព័រ — គឺជាកម្មសិទ្ធិរបស់យើង ឬត្រូវបានប្រើប្រាស់ដោយមានការអនុញ្ញាត ហើយត្រូវបានការពារដោយច្បាប់រក្សាសិទ្ធិ និងច្បាប់ពាក់ព័ន្ធ។",
+        b4Text2: "អ្នកអាច៖",
+        b4L1: "ចែករំលែកតំណទៅកាន់ទំព័ររបស់យើងដោយសេរីនៅលើបណ្តាញសង្គម ឬជាមួយមិត្តភក្តិ។",
+        b4L2: "ដកស្រង់អត្ថបទខ្លីៗសម្រាប់ការប្រើប្រាស់ផ្ទាល់ខ្លួន ការអប់រំ ឬសារព័ត៌មាន ដោយផ្តល់កិត្តិយសច្បាស់លាស់ដល់ Taste Siem Reap និងតំណទៅកាន់ប្រភព។",
+        b4Text3: "អ្នកមិនអាចចម្លង ផលិតឡើងវិញ ឬបោះពុម្ពឡើងវិញនូវផ្នែកធំៗនៃខ្លឹមសាររបស់យើងដោយគ្មានការអនុញ្ញាតជាលាយលក្ខណ៍អក្សរទេ។",
+
+        b5Title: "តំណភ្ជាប់ភាគីទីបី",
+        b5Text: "គេហទំព័ររបស់យើងអាចរួមបញ្ចូលតំណទៅកាន់គេហទំព័រភាគីទីបី — ឧទាហរណ៍ គេហទំព័រភោជនីយដ្ឋាន វេទិកាកក់ សេវាកម្មផែនទី ឬទំព័របណ្តាញសង្គម។ តំណទាំងនេះត្រូវបានផ្តល់ជូនសម្រាប់ភាពងាយស្រួលរបស់អ្នក។",
+        b5Text2: "យើងមិនគ្រប់គ្រងគេហទំព័រខាងក្រៅទាំងនេះទេ ហើយយើងមិនទទួលខុសត្រូវចំពោះខ្លឹមសារ ការអនុវត្តឯកជនភាព ឬភាពត្រឹមត្រូវរបស់វាទេ។ ការមកទស្សនាពួកវាគឺជាហានិភ័យផ្ទាល់ខ្លួនរបស់អ្នក ហើយលក្ខខណ្ឌ និងគោលការណ៍ឯកជនភាពរបស់ពួកវានឹងអនុវត្ត។",
+
+        b6Title: "ការបដិសេធ",
+        b6Text: "Taste Siem Reap ត្រូវបានផ្តល់ជូនតាមលក្ខខណ្ឌ \"ដូចដែលមាន\" និង \"ដូចដែលអាចប្រើបាន\"។ ទោះបីជាយើងខិតខំឱ្យអ្វីៗដំណើរការរលូន និងត្រឹមត្រូវ យើងមិនធានាអំពី៖",
+        b6L1: "ភាពត្រឹមត្រូវ ភាពពេញលេញ ឬភាពអាចទុកចិត្តបាននៃខ្លឹមសារណាមួយនៅលើគេហទំព័រ។",
+        b6L2: "ភាពអាចប្រើបាននៃគេហទំព័រនៅពេលណាមួយ (វាអាចបិទសម្រាប់ការថែទាំ)។",
+        b6L3: "គុណភាព សុវត្ថិភាព ឬសេវាកម្មនៃភោជនីយដ្ឋាន ឬអាជីវកម្មណាមួយដែលបានលើកឡើងនៅលើគេហទំព័រ។",
+        b6Text2: "ការប្រើប្រាស់គេហទំព័រ និងការពឹងផ្អែកលើខ្លឹមសាររបស់វា គឺស្ថិតនៅក្នុងការសម្រេចចិត្ត និងហានិភ័យផ្ទាល់ខ្លួនរបស់អ្នកទាំងស្រុង។",
+
+        b7Title: "ការកំណត់ការទទួលខុសត្រូវ",
+        b7Text: "ក្នុងកម្រិតអតិបរមាដែលច្បាប់អនុញ្ញាត Taste Siem Reap និងក្រុមការងាររបស់យើង នឹងមិនទទួលខុសត្រូវចំពោះការខូចខាតផ្ទាល់ ប្រយោល ឧបទ្ទវហេតុ ឬជាលទ្ធផលណាមួយដែលកើតចេញពី៖",
+        b7L1: "ការប្រើប្រាស់ ឬអសមត្ថភាពប្រើប្រាស់គេហទំព័ររបស់អ្នក។",
+        b7L2: "កំហុស ការខកខាន ឬភាពមិនត្រឹមត្រូវណាមួយនៅក្នុងខ្លឹមសារ។",
+        b7L3: "ការបាត់បង់ របួស ឬការខូចខាតណាមួយដែលពាក់ព័ន្ធនឹងភោជនីយដ្ឋាន ការធ្វើដំណើរ ឬបទពិសោធន៍ដែលបានលើកឡើងនៅលើគេហទំព័រ។",
+        b7Text2: "គ្មានអ្វីនៅក្នុងលក្ខខណ្ឌទាំងនេះកំណត់សិទ្ធិណាមួយដែលអ្នកអាចមានក្រោមច្បាប់ការពារអ្នកប្រើប្រាស់ជាកាតព្វកិច្ចនៅក្នុងប្រទេសរបស់អ្នកទេ។",
+
+        b8Title: "ការផ្លាស់ប្តូរលក្ខខណ្ឌទាំងនេះ",
+        b8Text: "យើងអាចធ្វើបច្ចុប្បន្នភាពលក្ខខណ្ឌប្រើប្រាស់ទាំងនេះម្តងម្កាល ដើម្បីឆ្លុះបញ្ចាំងពីការផ្លាស់ប្តូរនៅក្នុងគេហទំព័រ សេវាកម្ម ឬតម្រូវការផ្លូវច្បាប់របស់យើង។ នៅពេលយើងធ្វើដូច្នេះ យើងនឹងធ្វើបច្ចុប្បន្នភាពកាលបរិច្ឆេទ \"ធ្វើបច្ចុប្បន្នភាពចុងក្រោយ\" នៅផ្នែកខាងលើនៃទំព័រនេះ។",
+        b8Text2: "ការបន្តប្រើប្រាស់ Taste Siem Reap បន្ទាប់ពីការផ្លាស់ប្តូរ មានន័យថាអ្នកទទួលយកលក្ខខណ្ឌដែលបានធ្វើបច្ចុប្បន្នភាព។ ប្រសិនបើអ្នកមិនយល់ព្រម សូមបញ្ឈប់ការប្រើប្រាស់គេហទំព័រ។",
+
+        b9Title: "ច្បាប់គ្រប់គ្រង",
+        b9Text: "លក្ខខណ្ឌប្រើប្រាស់ទាំងនេះត្រូវបានគ្រប់គ្រងដោយច្បាប់នៃព្រះរាជាណាចក្រកម្ពុជា ដោយមិនគិតពីគោលការណ៍ជម្លោះច្បាប់។ ជម្លោះណាមួយដែលកើតចេញពីការប្រើប្រាស់គេហទំព័ររបស់អ្នក នឹងត្រូវបានដោះស្រាយក្រោមយុត្តាធិការកម្ពុជា។",
+        b9Text2: "ប្រសិនបើផ្នែកណាមួយនៃលក្ខខណ្ឌទាំងនេះត្រូវបានរកឃើញថាមិនអាចអនុវត្តបាន ផ្នែកដែលនៅសល់នឹងបន្តអនុវត្ត។",
+
+        ctaTitle: "មានសំណួរអំពីលក្ខខណ្ឌទាំងនេះ?",
+        ctaText: "ប្រសិនបើអ្វីមួយនៅទីនេះមិនច្បាស់លាស់ ឬប្រសិនបើអ្នកមានសំណួរអំពីរបៀបដែលអ្នកអាចប្រើប្រាស់ខ្លឹមសាររបស់យើង សូមទាក់ទងមកយើង — យើងរីករាយក្នុងការជួយជានិច្ច។",
+        ctaBtn: "ទាក់ទងយើង",
+
+        footerDescription: "មគ្គុទេសក៍របស់អ្នកទៅកាន់ភោជនីយដ្ឋានល្អៗ បទពិសោធន៍ពិត និងគន្លឹះធ្វើដំណើរនៅសៀមរាប។",
+        exploreFooter: "ស្វែងរក",
+        informationFooter: "ព័ត៌មាន",
+        supportFooter: "ជំនួយ",
+        travelTips: "គន្លឹះធ្វើដំណើរ",
+        heritage: "បេតិកភណ្ឌ",
+        travelGuide: "មគ្គុទេសក៍ធ្វើដំណើរ",
+        aboutSiemReap: "អំពីសៀមរាប",
+        faq: "សំណួរដែលសួរញឹកញាប់",
+        contactUs: "ទាក់ទងយើង",
+        privacy: "គោលការណ៍ឯកជនភាព",
+        terms: "លក្ខខណ្ឌប្រើប្រាស់",
+        copyright: "© 2026 Taste Siem Reap។ រក្សាសិទ្ធិគ្រប់យ៉ាង។"
+      },
+
+      zh: {
+        navHome: "首页",
+        navRestaurants: "餐厅",
+        navExperience: "体验",
+        navAbout: "关于我们",
+
+        termsEyebrow: "请仔细阅读",
+        termsTitle1: "使用",
+        termsTitle2: "条款",
+        termsIntro: "使用 Taste Siem Reap 网站及其内容的规则和指南。访问我们的网站即表示您同意这些条款。",
+        lastUpdated: "最后更新：2026年1月",
+
+        introP1: "欢迎来到 Taste Siem Reap。本使用条款说明了使用我们的网站、内容及其功能的规则。浏览或使用我们的网站即表示您同意遵守这些条款。",
+        introP2: "如果您不同意这些条款的任何部分，请停止使用本网站。如有疑问，您可以随时联系我们。",
+
+        tocTitle: "本页内容",
+        toc1: "条款的接受",
+        toc2: "网站的使用",
+        toc3: "内容与准确性",
+        toc4: "知识产权",
+        toc5: "第三方链接",
+        toc6: "免责声明",
+        toc7: "责任限制",
+        toc8: "本条款的变更",
+        toc9: "适用法律",
+
+        b1Title: "条款的接受",
+        b1Text: "访问或使用 Taste Siem Reap 网站——包括任何页面、工具、功能或内容——即表示您确认已阅读、理解并同意受本使用条款以及我们的隐私政策的约束。",
+        b1Text2: "如果您代表公司或组织使用本网站，您确认您有权使该实体受这些条款的约束。",
+
+        b2Title: "网站的使用",
+        b2Text: "欢迎您将 Taste Siem Reap 用于个人、非商业目的。使用我们的网站时，您同意不：",
+        b2L1: "未经许可复制或重新发布我们的内容（文字、图片、评论）。",
+        b2L2: "使用自动化工具（机器人、爬虫）批量下载或提取网站数据。",
+        b2L3: "试图攻击、干扰或使网站或其服务器过载。",
+        b2L4: "通过我们的联系表单或其他功能提交虚假、误导或有害的内容。",
+        b2L5: "将网站用于任何非法活动或违反任何适用法律。",
+        b2L6: "冒充 Taste Siem Reap、我们的团队或任何其他人或企业。",
+        b2Text2: "我们保留在不事先通知的情况下限制或阻止任何违反这些规则者访问的权利。",
+
+        b3Title: "内容与准确性",
+        b3Text: "我们努力使餐厅推荐、价格和旅行贴士保持准确和最新。但是，我们无法保证所有信息在您阅读时始终正确。",
+        b3L1: "价格和营业时间可能随时更改——请直接与餐厅确认。",
+        b3L2: "评论和意见是特定时间点的个人印象。",
+        b3L3: "旅行条件（签证规定、交通、安全）可能变化——请始终与官方来源核实。",
+        b3Callout: "请注意：Taste Siem Reap 是一个独立指南。我们不对您基于我们内容做出的决定负责。旅行和用餐时请始终运用自己的判断力。",
+
+        b4Title: "知识产权",
+        b4Text: "Taste Siem Reap 上的所有原创内容——包括文字、文章、餐厅描述、设计、标志以及网站的整体外观和感觉——均归我们所有或经许可使用，并受版权及相关法律保护。",
+        b4Text2: "您可以：",
+        b4L1: "在社交媒体上或与朋友自由分享我们页面的链接。",
+        b4L2: "出于个人、教育或新闻目的引用简短摘录，并明确注明 Taste Siem Reap 及来源链接。",
+        b4Text3: "未经书面许可，您不得复制、再现或重新发布我们内容的大部分。",
+
+        b5Title: "第三方链接",
+        b5Text: "我们的网站可能包含指向第三方网站的链接——例如餐厅网站、预订平台、地图服务或社交媒体页面。这些链接是为了您的方便而提供的。",
+        b5Text2: "我们不控制这些外部网站，也不对其内容、隐私做法或准确性负责。访问它们需自行承担风险，其自身的条款和隐私政策将适用。",
+
+        b6Title: "免责声明",
+        b6Text: "Taste Siem Reap 按“现状”和“可用”基础提供。虽然我们尽力保持一切顺畅准确地运行，但我们不对以下事项作出保证：",
+        b6L1: "网站上任何内容的准确性、完整性或可靠性。",
+        b6L2: "网站在任何给定时间的可用性（可能因维护而离线）。",
+        b6L3: "网站上提到的任何餐厅或企业的质量、安全或服务。",
+        b6Text2: "您使用网站及依赖其内容完全由您自行决定并承担风险。",
+
+        b7Title: "责任限制",
+        b7Text: "在法律允许的最大范围内，Taste Siem Reap 及其团队不对以下原因引起的任何直接、间接、附带或后果性损害负责：",
+        b7L1: "您使用或无法使用网站。",
+        b7L2: "内容中的任何错误、遗漏或不准确之处。",
+        b7L3: "与网站上提到的餐厅、旅行或体验相关的任何损失、伤害或损害。",
+        b7Text2: "本条款中的任何内容均不限制您根据所在国家/地区的强制性消费者保护法律可能拥有的任何权利。",
+
+        b8Title: "本条款的变更",
+        b8Text: "我们可能会不时更新本使用条款，以反映我们的网站、服务或法律要求的变化。更新时，我们会更新本页顶部的“最后更新”日期。",
+        b8Text2: "变更后继续使用 Taste Siem Reap 即表示您接受更新后的条款。如果您不同意，请停止使用本网站。",
+
+        b9Title: "适用法律",
+        b9Text: "本使用条款受柬埔寨王国法律管辖，不考虑法律冲突原则。因您使用本网站而产生的任何争议将在柬埔寨司法管辖下处理。",
+        b9Text2: "如果本条款的任何部分被认定为不可执行，其余部分将继续适用。",
+
+        ctaTitle: "对这些条款有疑问？",
+        ctaText: "如果此处有任何不清楚之处，或者您对如何使用我们的内容有疑问，请联系我们——我们随时乐意为您提供帮助。",
+        ctaBtn: "联系我们",
+
+        footerDescription: "你的暹粒旅行指南，带你发现最佳餐厅、真实体验和旅行贴士。",
+        exploreFooter: "探索",
+        informationFooter: "信息",
+        supportFooter: "支持",
+        travelTips: "旅行贴士",
+        heritage: "文化遗产",
+        travelGuide: "旅行指南",
+        aboutSiemReap: "关于暹粒",
+        faq: "常见问题",
+        contactUs: "联系我们",
+        privacy: "隐私政策",
+        terms: "使用条款",
+        copyright: "© 2026 Taste Siem Reap。版权所有。"
+      }
+    };
+
+    // ----- state -----
+    let currentLanguage =
+      localStorage.getItem("selectedLanguage") ||
+      localStorage.getItem("tasteSiemReapLanguage") ||
+      "en";
+
+    // ----- translate function -----
+    function translatePage(lang) {
+      const dict = translations[lang];
+      if (!dict) return;
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (!dict[key]) return;
+        el.textContent = dict[key];
+      });
+
+      document.documentElement.lang = lang;
+
+      const spanCurrent = document.getElementById('currentLanguage');
+      if (spanCurrent) {
+        if (lang === 'en') spanCurrent.textContent = 'EN';
+        else if (lang === 'km') spanCurrent.textContent = 'ខ្មែរ';
+        else if (lang === 'zh') spanCurrent.textContent = '中文';
+      }
+
+      document.querySelectorAll('.language-option').forEach(opt => {
+        opt.classList.toggle('active', opt.dataset.language === lang);
+      });
+
+      currentLanguage = lang;
+      localStorage.setItem('selectedLanguage', lang);
+      localStorage.setItem('tasteSiemReapLanguage', lang);
+    }
+
+    // ----- language dropdown -----
+    const langBtn = document.getElementById('languageButton');
+    const langMenu = document.getElementById('languageMenu');
+
+    langBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      langMenu.classList.toggle('show');
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.language-wrapper')) {
+        langMenu.classList.remove('show');
+      }
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') langMenu.classList.remove('show');
+    });
+
+    document.querySelectorAll('.language-option').forEach(opt => {
+      opt.addEventListener('click', function() {
+        translatePage(this.dataset.language);
+        langMenu.classList.remove('show');
+      });
+    });
+
+    // ----- mobile hamburger -----
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+
+    hamburger.addEventListener('click', function() {
+      this.classList.toggle('active');
+      mobileNav.classList.toggle('open');
+      document.body.style.overflow =
+        mobileNav.classList.contains('open') ? 'hidden' : '';
+    });
+
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', function() {
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    window.addEventListener('resize', function() {
+      if (window.innerWidth > 768) {
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // ----- smooth scroll for TOC -----
+    document.querySelectorAll('.toc-list a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // ----- init -----
+    translatePage(currentLanguage);
+
+    // ----- vh fix -----
+    document.documentElement.style.setProperty('--vh', window.innerHeight * 0.01 + 'px');
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function() {
+        document.documentElement.style.setProperty('--vh', window.innerHeight * 0.01 + 'px');
+      }, 100);
+    });
+  })();
+</script>
+</body>
+</html>
